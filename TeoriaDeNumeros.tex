@@ -7,7 +7,7 @@
 % =======         HEADER FOR DOCUMENT        ============
 % =======================================================
     % *********   DOCUMENT ITSELF   **************
-    \documentclass[12pt]{report}                                    %Type of docuemtn and size of font
+    \documentclass[12pt, fleqn]{report}                             %Type of docuemtn and size of font and left eq
     \usepackage[margin=1.2in]{geometry}                             %Margins and Geometry pacakge
     \usepackage{ifthen}                                             %Allow simple programming
     \usepackage{hyperref}                                           %Create MetaData for a PDF and LINKS!
@@ -22,8 +22,8 @@
     \usepackage{changepage}                                         %Allow us to use identate paragraphs
 
     % *********   MATH AND HIS STYLE  *********
-    \usepackage{amsthm, amssymb, amsfonts, mathrsfs}                %Make math beautiful
-    \usepackage[fleqn]{amsmath}                                     %Please make equations left
+    \usepackage{ntheorem, amsmath, amssymb, amsfonts}               %All fucking math, I want all!
+    \usepackage{mathrsfs, mathtools, empheq}                        %All fucking math, I want all!
     \usepackage{centernot}                                          %Allow me to negate a symbol
     \decimalpoint                                                   %Use decimal point
 
@@ -59,7 +59,7 @@
             {\footnotesize{\textsc{\nouppercase{\rightmark}}}}      %And fot it put the name
     }
 
-    \rfoot{\textsc{\small{\hyperref[sec:Index]{Ve al Índice}}}}    %This will always be a footer  
+    \rfoot{\textsc{\small{\hyperref[sec:Index]{Ve al Índice}}}}     %This will always be a footer  
 
     \fancyfoot[L]{                                                  %Algoritm for a changing footer
         \ifthenelse{\isodd{\value{page}}}                           %IF ODD PAGE:
@@ -79,6 +79,9 @@
 
     % =====  GENERAL TEXT  ==========
     \newcommand \Quote {\qq}                                        %Use: \Quote to use quotes
+    \newcommand \Over {\overline}                                   %Use: \Bar to use just for short
+    \newcommand \ForceNewLine {$\Space$\\}                          %Use it in theorems for example
+    
     \newenvironment{Indentation}[1][0.75em]                         %Use: \begin{Inde...}[Num]...\end{Inde...}
     {\begin{adjustwidth}{#1}{}}                                     %If you dont put nothing i will use 0.75 em
     {\end{adjustwidth}}                                             %This indentate a paragraph
@@ -90,11 +93,32 @@
     \DeclareMathOperator \Space {\quad}                             %Use: \Space for a cool mega space
     \DeclareMathOperator \MiniSpace {\;}                            %Use: \Space for a cool mini space
     \newcommand \Such {\MiniSpace|\MiniSpace}                       %Use: \Such like in sets
+    \newcommand \Also {\Space \text{y} \Space}                      %Use: \Also so it's look cool
+    \newcommand \Remember[1]{\Space\text{\scriptsize{#1}}}          %Use: \Remember so it's look cool
+
+    \newtheorem{Theorem}{Teorema}[section]                          %Use: \begin{Theorem}[Name]\label{Nombre}...
+    \newtheorem{Corollary}{Colorario}[Theorem]                      %Use: \begin{Corollary}[Name]\label{Nombre}...
+    \newtheorem{Lemma}[Theorem]{Lemma}                              %Use: \begin{Lemma}[Name]\label{Nombre}...
+    \newtheorem{Definition}{Definición}[section]                    %Use: \begin{Definition}[Name]\label{Nombre}...
+
+    \newcommand{\Set}[1]{\left\{ \MiniSpace #1 \MiniSpace \right\}} %Use: \Set {Info}
+    \newcommand{\Brackets}[1]{\left[ #1 \right]}                    %Use: \Brackets {Info} 
+    \newcommand{\Wrap}[1]{\left( #1 \right)}                        %Use: \Wrap {Info} 
+    \newcommand{\pfrac}[2]{\Wrap{\dfrac{#1}{#2}}}                   %Use: Put fractions in parentesis
+
+    \newenvironment{MultiLineEquation}[1]                           %Use: To create MultiLine equations
+        {\begin{equation}\begin{alignedat}{#1}}                     %Use: \begin{Multi..}{Num. de Columnas}
+        {\end{alignedat}\end{equation}}                             %And.. that's it!
+    \newenvironment{MultiLineEquation*}[1]                          %Use: To create MultiLine equations
+        {\begin{equation*}\begin{alignedat}{#1}}                    %Use: \begin{Multi..}{Num. de Columnas}
+        {\end{alignedat}\end{equation*}}                            %And.. that's it!
+
 
     % =====  LOGIC  ==================
     \DeclareMathOperator \doublearrow {\leftrightarrow}             %Use: \doublearrow for a double arrow
     \newcommand \lequal {\MiniSpace \Leftrightarrow \MiniSpace}     %Use: \lequal for a double arrow
     \newcommand \linfire {\MiniSpace \Rightarrow \MiniSpace}        %Use: \lequal for a double arrow
+    \newcommand \longto {\longrightarrow}                           %Use: \longto for a long arrow
 
     % =====  NUMBER THEORY  ==========
     \DeclareMathOperator \Naturals  {\mathbb{N}}                     %Use: \Naturals por Notation
@@ -113,11 +137,29 @@
     \newcommand{\lVector}[1]{                                       %Use: \lVector {Matrix Notation} use a abs 
         \ensuremath{\begin{vmatrix}#1\end{vmatrix}}                 %Example: \lVector{a\\b\\c} or \lVector{a&b&c} 
     }
+    \newcommand{\bVector}[1]{                                       %Use: \bVector {Matrix Notation} use a brackets 
+        \ensuremath{\begin{bmatrix}#1\end{bmatrix}}                 %Example: \bVector{a\\b\\c} or \bVector{a&b&c} 
+    }
     \newcommand{\Vector}[1]{                                        %Use: \Vector {Matrix Notation} no parentesis
         \ensuremath{\begin{matrix}#1\end{matrix}}                   %Example: \Vector{a\\b\\c} or \Vector{a&b&c}
     }
 
+    % MATRIX
+    \makeatletter                                                   %Example: \begin{matrix}[cc|c]
+    \renewcommand*\env@matrix[1][*\c@MaxMatrixCols c] {             %WTF! IS THIS
+        \hskip -\arraycolsep                                        %WTF! IS THIS
+        \let\@ifnextchar\new@ifnextchar                             %WTF! IS THIS
+        \array{#1}                                                  %WTF! IS THIS
+    }                                                               %WTF! IS THIS
+    \makeatother                                                    %WTF! IS THIS
 
+    % TRIGONOMETRIC FUNCTIONS
+    \newcommand{\Cos}[1]{\cos\Wrap{#1}}
+    \newcommand{\Sin}[1]{\sin\Wrap{#1}}
+
+    % === COMPLEX ANALYSIS ===
+    \newcommand \Cis[1]  {\Cos{#1} + i \Sin{#1}}                    %Use: \Cis for cos(x) + i sin(x)
+    \newcommand \pCis[1] {\Wrap{\Cis{#1}}}                          %Use: \pCis for the same ut parantesis
 
 % =====================================================
 % ============     	  COVER PAGE	   ================
@@ -2522,7 +2564,7 @@
         Equivalencia}, cada uno de ellos formados por elementos que están
         relacionados entre sí.
 
-        Esta partición se representa por $A \backslash R$ y se llama
+        Esta partición se representa por $Conjunto \backslash Relacion$ y se llama
         \textbf{Conjunto Cociente}.
 
 
@@ -2558,12 +2600,47 @@
                 desde $0 \leq r < n$.
 
                 \begin{equation}
-                    \Integers \backslash n \Integers = 
+                    \Integers \backslash \text{Congruencias Módulo n} = 
                         \Integers_n = \{ [0]_n , [1]_n, [2]_n, \dots  [n-1]_n\}
                 \end{equation}
 
 
 
+        % ==================================
+        % =========   FORMAL     ===========
+        % ==================================
+        \clearpage
+        \subsection{Inversos en $Z_n$}
+
+            Sea $Z_n$ y sus conjuntos concientes sean:
+            $\Integers_n = \{ [0]_n , [1]_n, [2]_n, \dots  [n-1]_n\}$
+
+
+            % ==================================
+            % ====   INVERSO ADITIVO     =======
+            % ==================================
+            \subsubsection{Inversos Aditivos}
+
+                Si quieres encontrar el inverso (k') para un elemento $k$ donde $k < n$
+                (O el lo mismo: que $k$ pertenece a la clase $[k]_n$), si queremos encontrar
+                su inverso aditivo, lo que tenemos que hacer es encontrar un número $k' < n$ tal que:
+                \begin{MultiLineEquation}{3}
+                    k + k'         &= 0         &&\Remember{Como elementos}    \\
+                    [k]_n + [k']_n &= [0]_n     &&\Remember{Como campo}
+                \end{MultiLineEquation}
+
+            % ==================================
+            % ==  INVERSO MULTIPLICATIVO    ====
+            % ==================================
+            \subsubsection{Inversos Multiplicativo}
+
+                Si quieres encontrar el inverso (k'') para un elemento $k$ donde $k < n$
+                (O el lo mismo: que $k$ pertenece a la clase $[k]_n$), si queremos encontrar
+                su inverso aditivo, lo que tenemos que hacer es encontrar un número $k'' < n$ tal que:
+                \begin{MultiLineEquation}{3}
+                    k \cdot k'          &= 1         &&\Remember{Como elementos}    \\
+                    [k]_n \cdot [k'']_n &= [1]_n     &&\Remember{Como campo}
+                \end{MultiLineEquation}
 
 
 

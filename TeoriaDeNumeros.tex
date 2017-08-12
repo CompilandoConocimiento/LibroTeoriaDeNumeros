@@ -161,6 +161,7 @@
     \newcommand \Cis[1]  {\Cos{#1} + i \Sin{#1}}                    %Use: \Cis for cos(x) + i sin(x)
     \newcommand \pCis[1] {\Wrap{\Cis{#1}}}                          %Use: \pCis for the same ut parantesis
 
+
 % =====================================================
 % ============     	  COVER PAGE	   ================
 % =====================================================
@@ -210,19 +211,44 @@
 % ======================================================================================
 % ===========================    ENTEROS Y NATURALES          ==========================
 % ======================================================================================
-\chapter{Naturales}
+\chapter{Naturales y Enteros}
     \clearpage
 
-    % =====================================================
-    % ==========     PRINCIPIO BUEN ORDEN        ==========
-    % =====================================================
-    \section{Principio de Buen Orden}
 
-        % ==================================
-        % =========   FORMAL     ===========
-        % ==================================
-        \subsection*{Definición Formal}
+    % =====================================================
+    % ========    CONSTRUCCION DE LOS ENTEROS       =======
+    % =====================================================
+    \section{Construcción de los Enteros}
 
+        Podemos empezar a construir a los enteros, usando nuestro viejo amigo, los 
+        naturales.
+
+        Podemos empezar a crearlo basandonos en el conjunto $\Naturals \times \Naturals$
+        entonces nuestros pares $(a, b)$ casi parecen estar hablando de nuestro entero 
+        $a-b$.
+
+        Para formal formalmente a los enteros tendremos que crear una relación de equivalencia
+        ya que hay pares que deberían ir a mismo número como $(3,2)$ y $(2,1)$.
+
+        Nuestra relación será entonces:
+        \begin{equation}
+            (a,b) \equiv (c,d) \Space \text{ ssi } a + d = b + c
+        \end{equation}
+
+        Creo que demostrar que esto es una relación de equivalencia es bastante sencillo.
+
+        Usando esto podemos entonces crear nuestro conjunto consiente de
+        $\Naturals \times \Naturals \backslash \equiv$ y resulta que el conjunto que contiene
+        a todas las clases de equivalencias será $\Integers$.
+
+        Es decir, resulta que cada elemento de $\Integers$ será una clase de equivalencia
+        de un par ordenado $(a,b) \in \Naturals \times \Naturals$, entonces
+        las clases de equivalencia será que:
+
+        $[(a,b)]_{\equiv} = \Set{(c,d) \in \Naturals \times \Naturals \Such a+d=b+c}$
+
+        Con esto podemos decir que:
+        $\Integers = \Set{ [(a,b)]_{\equiv} \Such (a,b) \in \Naturals \times \Naturals}$
 
 
 

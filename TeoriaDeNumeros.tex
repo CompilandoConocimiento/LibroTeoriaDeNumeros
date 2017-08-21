@@ -944,6 +944,10 @@
 
             \end{SmallIndentation}
 
+
+            De esta demostración podemos decir algo muy importante \textbf{El mínimo común divisor de $a, b$
+            se puede escribir como la combinación lineal más pequeña positiva con $a, b$}
+
         % ==================================
         % ======   PROPIEDADES     =========
         % ==================================
@@ -1026,6 +1030,26 @@
                         podemos decir que $amc + aqc = c$ esto es lo mismo que $a(mc+qc) = c$
                         por lo tanto podemos decir que $q=mc+qc$ y tener que $c = aq$, 
                         es decir $a|c$. 
+
+                    \end{SmallIndentation} 
+
+                \clearpage
+
+                \item $GCD(ka, kb) = |k|GCD(a,b)$
+
+                    % ======== DEMOSTRACION ========
+                    \begin{SmallIndentation}[1em]
+                        \textbf{Demostración}:
+
+                        Usando la idea de que el mínimo común multiplo se puede expresar como 
+                        la mínima combinación lineal podemos decir que:
+
+                        \begin{MultiLineEquation}{2}
+                            GCD(ka, kb)
+                                &= m(ka) + n(kb)    \Remember{Recuerda que es la mínima combinación}    \\
+                                &= |k|(am+bn)       \Remember{Recuerda que es la mínima combinación}    \\
+                                &= |k|GCD(a+b)      \Remember{Magia}
+                        \end{MultiLineEquation}
 
                     \end{SmallIndentation} 
 

@@ -723,6 +723,27 @@
             \end{itemize}
 
            
+        % ==================================
+        % ======   PROPIEDADES     =========
+        % ==================================
+        \clearpage
+        \subsection{Demostrar que $a=b$ usando divisibilidad}
+
+            Al igual que en conjuntos (doble contensión), podemos crear algo parecido en teoría
+            de números.
+
+            Podemos afirmar que $a = b$ si y solo si $a|b$ y $b|a$.
+
+            % ======== DEMOSTRACION ========
+            \begin{SmallIndentation}[1em]
+                \textbf{Ideas}:
+
+                Esto es cierto por la naturaleza de la divisibilidad, pues es reflexiva, es
+                decir $a|a$, pero además tenemos que si $a \neq 0$ entonces $a\neg|b$.
+
+                Por lo tanto si $a|b$ y $b|a$ entonces nos les queda de otra mas que ser el
+                mismo número.
+            \end{SmallIndentation}
 
 
     % =====================================================
@@ -1435,9 +1456,12 @@
             \begin{SmallIndentation}[1em]
                 \textbf{Ideas}:
 
-                Si $ab \neq 0$, el conjunto múltiplos comunes positivos es distinto del vacío
-                y por lo tanto tiene un elemento mínimo. Este elemento es llamado el mínimo
-                común múltiplo de $a$ y $b$. Este es denotado por $MCM(a,b) = LCM(a,b)$.
+                Si $ab \neq 0$, el conjunto múltiplos comunes positivos es distinto del vacío,
+                esto lo podemos ver pues mínimo $|ab| \in \Set{x \in \Integers \Such a|x \Also b|x}$
+
+                Y ya que pertenece a los naturales, por el principio de buen orden tiene un
+                elemento mínimo. Este elemento es llamado el mínimo común múltiplo de $a$ y $b$.
+                Este es denotado por $MCM(a,b) = LCM(a,b)$.
 
             \end{SmallIndentation}
 
@@ -1451,6 +1475,28 @@
 
 
             \begin{itemize}
+
+                \item Si $a|m$ y $b|m$ entonces $LCM(a,b)|m$
+
+                    % ======== DEMOSTRACION ========
+                    \begin{SmallIndentation}[1em]
+                        \textbf{Demostración}:
+
+                        Por contradicción podemos demostrarlo facilmente, ya que
+                        si no lo fuera tendríamos que $m = q \cot LCM(a,b) + r$
+                        donde $0<r<LCM(a,b)$
+
+                        Despejando a $r$ tenemos que $r = m - q \cdot LCM(a,b)$
+                        
+                        Y como $a|m$ y $a|LCM(a,b)$ entonces tenemos que $a|m - q \cdot LCM(a,b)$
+                        por lo tanto $a|r$
+
+                        Y como $b|m$ y $a|LCM(a,b)$ entonces tenemos que $b|m - q \cdot LCM(a,b)$
+                        por lo tanto $b|r$.
+
+                        Pero por todo esto vemos que $r$ es un múltiplo común, incluso más 
+                        pequeño que $LCM(a,b)$. Esto si que es una contradicción.    
+                    \end{SmallIndentation}
 
                 \item Siempre se cumple que $GCD(a,b) \cdot LCM(a,b) = |ab|$
 

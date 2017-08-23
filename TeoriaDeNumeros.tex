@@ -252,6 +252,61 @@
         $\Integers = \Set{ [(a,b)]_{\equiv} \Such (a,b) \in \Naturals \times \Naturals}$
 
 
+        % =====================================================
+        % ========    CONSTRUCCION DE LOS ENTEROS       =======
+        % =====================================================
+        \section{Operaciones entre los Enteros}
+
+            Ya hemos visto que en el fondo podemos abstraer a los enteros como elementos del
+            conjunto conciente, es decir cada \Quote{número entero} es en realidad una clase
+            de equivalencia, es decir, operar entre enteros tenemos que crear operaciónes entre
+            clases, estas las definimos como:
+
+            \begin{itemize}
+                \item
+                    \textbf{Suma en Enteros}
+                    $[(a,b)] + [(c,d)] := [(a+c, b+d)]$
+
+                \item
+                    \textbf{Multiplicación en Enteros}
+                    $[(a,b)] \cdot [(c,d)] := [(ac+bd, ad+bc)]$
+
+                \item
+                    \textbf{Inverso Aditivo}
+                    $-[(a,b)] := [(b,a)]$
+
+                \item
+                    \textbf{Neutro Aditivo}
+                    $0_{\Integers} := [(a,a)]$ para cada $a \in \Naturals$
+
+                 \item
+                    \textbf{Neutro Multiplicativo}
+                    $1_{\Integers} := [(a+1,a)]$ para cada $a \in \Naturals$
+            \end{itemize}
+
+
+            Decimos que estas operaciones estan bien definidas porque su resultado NO depende que 
+            el elemento representante que eligamos.
+
+
+            % ===============================
+            % ========  CANCELACION   =======
+            % ===============================
+            \clearpage
+            \subsection{Cancelación}
+
+                Algo que también pasa con los enteros es que admiten cancelación, es decir:
+                \begin{itemize}
+                    \item
+                        Si  $[(a,b)] + [(c,d)] = [(a,b)] + [(e,f)]$ entonces tenemos qu
+                        $[(c,d)] = [(e,f)]$
+
+                    \item
+                        Si  $[(a,b)] \cdot [(c,d)] = [(a,b)] \cdot [(e,f)]$ y $a \neq b$ entonces
+                        tenemos que $[(c,d)] = [(e,f)]$
+                \end{itemize}
+
+
 
 
 % ======================================================================================

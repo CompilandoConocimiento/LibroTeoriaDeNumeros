@@ -1646,7 +1646,7 @@
     \clearpage
     \section{Ecuaciones Diofanticas}
 
-        Diofantos fue un matemático que vivió en Alexandria al rededor de 250 a.c.
+        Diofantos fue un matemático que vivió en Alexandria alrededor de 250 a.c.
         Él fue el primero en estudiar soluciones a ecuaciones del tipo $ax+by=c$ en los enteros.
 
         Esa es la única razón por las que las llamamos así, esto es todo amiguitos.
@@ -1877,7 +1877,7 @@
         % ==================================
         \subsection*{Definición Formal}
 
-            Un número $p \in \Naturals$ es llamado número primo o simplemente
+            Un número $p \in \Naturals - {1}$ es llamado número primo o simplemente
             primo, \textbf{si sus únicos divisores positivos son 1 y p}.
 
             Un entero mayor que 1 que no es primo es llamado compuesto.
@@ -1892,7 +1892,7 @@
 
             \item \textbf{Teorema de Euclides}:
                 Si p es un primo y $p|ab$ entonces eso implica que p divide mínimo
-                a $a$ ó a $b$, es decir $p|a \lor p|b$
+                a $a$ ó a $b$.
 
                 % ======== DEMOSTRACION ========
                 \begin{SmallIndentation}[1em]
@@ -1950,6 +1950,38 @@
                     siempre es la misma, el conjunto no esta completo, hay más primos.
 
                     Siempre hay más primos.
+
+                \end{SmallIndentation}
+
+            \clearpage
+
+            \item \textbf{Hay mucho espacio entre Primos...Pero mucho}:
+                Dado cualquier entero $k$, podemos encontrar $k$ números compuestos
+                (osea no primos) no consecutivos. 
+
+                % ======== DEMOSTRACION ========
+                \begin{SmallIndentation}[1em]
+                    \textbf{Demostración}:
+
+                    Esta demostración esta bien genial, porque es muy sencilla.
+
+                    Una de dichas susesiones puede ser: 
+                    $k! + 2, k! + 3, \cdots, k! + k$
+
+                    Esto es bastante sencillo de probar pues:
+
+                    \begin{itemize}
+                        \item Sabemos que $k! = (1)(2)(3) \dots (k)$ no es primo
+                        \item QUÍZA $k! + 1$ pueda ser primo, así que por si las dudas no
+                            lo contamos
+                        \item Sabemos que $k! + 2$ no es primo pues podemos factorizar un $2$ tanto de 
+                            $k!$ como del $+2$, por lo tanto es un compuesto.
+                        \item Sabemos que $k! + 3$ no es primo pues podemos factorizar un $3$ tanto de 
+                            $k!$ como del $+3$, por lo tanto es un compuesto.
+                        \item Puedes seguir este proceso hasta $k! + k$
+                    \end{itemize}
+
+                    Y bingo, ahí esta una lista de números consecutivos compuestos.
 
                 \end{SmallIndentation}
 
@@ -2103,19 +2135,17 @@
         \subsection{Factorización Prima}
 
             Como vimos podemos escribir cualquier $n \in \Naturals$ como:
-
             \begin{equation}
                 n = p_1 p_2 p_3 \dots p_s
             \end{equation}
 
             Estos $p_i$ no tienen porque ser diferentes todos, así que 
             otra forma equivalente de escribirlos es como:
-
             \begin{equation}
                 n = p_1^{\alpha_1}p_2^{\alpha_2} \dots p_s^{\alpha_s}
                 \Space
-                \text{ donde tenemos que }
-                \alpha_i \geq 0 \text{, y también } p_1 < p_2 < \dots < p_r
+                \text{ donde}
+                \alpha_i \geq 0 \text{, y también } p_1 < p_2 < \dots < p_s
             \end{equation}
 
 

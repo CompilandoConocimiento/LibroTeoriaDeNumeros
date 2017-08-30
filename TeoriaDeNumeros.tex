@@ -758,20 +758,41 @@
                     \end{SmallIndentation}
 
 
-                \item Si $b|a$ y $|a| \neq |b|$ entonces $b\not|a$.
+                \item El producto de $n$ números consecutivos será siempre divisible entre
+                $n!$, es decir $n! | (k)(k+1)(k+2)(k+3)(k+4)\dots(k+n)$
 
                     % ======== DEMOSTRACION ========
                     \begin{SmallIndentation}[1em]
                         \textbf{Demostración}:
 
-                        Si $b|a$ entonces podemos que $a=bq_1$ y si además $a|b$ entonces también
-                        debería existir un $b=aq_2$. Podemos unir ambas ecuaciones y decir: $b=bq_1q_2$
-                        Por lo tanto es obvio que $1=q_1q_2$. Por lo tanto $q_1 = q_2 = 1$
-                        ó bien $q_1 = q_2 = -1$.
+                        Esto es muy fácil de demostrar por inducción.
 
-                        Esto nos dice que $|a|=|b|$. Cosa que ya habíamos dicho que no podia ser.
+                        Sabemos que $k|0!$ y que $k+1|1!$.
 
-                        Otra forma de escribir esto es que si $b|a$ y $a|b$ entonces $|a| = |b|$.
+                        Supongamos que $n! | (k)(k+1)(k+2)(k+3)(k+4)\dots(k+n)$.
+
+                        Esto nos dice que:
+                        \begin{itemize}
+                            \item $2 | (k)(k+1)(k+2)(k+3)(k+4)\dots(k+n)$
+                                Pues mínimo alguno de los términos de la suseción será par
+                            \item $3 | (k)(k+1)(k+2)(k+3)(k+4)\dots(k+n)$
+                                Pues mínimo alguno de los términos de la suseción será divisible entre 3, pues hay mas de
+                                3 enteros consecutivos
+                            \item $4 | (k)(k+1)(k+2)(k+3)(k+4)\dots(k+n)$
+                                Pues mínimo alguno de los términos de la suseción será divisible entre 4, pues hay mas de
+                                4 enteros consecutivos
+                            \item ...
+                        \end{itemize}
+
+                        Ahora probar que $(n+1)! | (k)(k+1)(k+2)(k+3)(k+4)\dots(k+n)(k+n+1)$ es pan comido
+                        pues al haber $k+1$ elementos consecutivos este número $(k)(k+1)(k+2)(k+3)(k+4)\dots(k+n)(k+n+1)$
+                        siempre será divisible entre $k+1$.
+
+                        Y ya teniendo que:
+                        $n! | (k)(k+1)(k+2)(k+3)(k+4)\dots(k+n)$, es decir $(k)(k+1)(k+2)(k+3)(k+4)\dots(k+n) = q_1 n!$.
+                        Por lo tanto $(k)(k+1)(k+2)(k+3)(k+4)\dots(k+n)(k+n+1) = q_2 (k+1)!$.
+
+                        Demostrado por inducción :D
 
                     \end{SmallIndentation}
 
@@ -799,6 +820,57 @@
                 Por lo tanto si $a|b$ y $b|a$ entonces nos les queda de otra mas que ser el
                 mismo número.
             \end{SmallIndentation}
+
+
+
+        % ==================================
+        % ======   RESULTADOS COOL  ========
+        % ==================================
+        \clearpage
+        \subsection{Resultados ó Cosas Cool}
+
+            \begin{itemize}
+
+                \item Dado un conjunto de $k$ enteros arbitrarios (donde $k \in \Naturals$ y $k > 1$ )
+                    siempre se tiene que la diferencia de dos de ellos será divisible por $k$.
+
+
+                    % ======== DEMOSTRACION ========
+                    \begin{SmallIndentation}[1em]
+                        \textbf{Demostración}:
+
+                        Sean $a_1, a_2, a_3, \dots, a_{k+1}$ los $k$ enteros.
+
+                        Apliquemos el algoritmo de la división para todos los elementos del conjunto,
+                        obteniendo algo como:
+
+                        \begin{itemize}
+                            \item $a_1 = b_1 + r_1$
+                            \item $a_2 = b_2 + r_2$
+                            \item $a_3 = b_3 + r_3$
+                            \item \dots
+                        \end{itemize}
+
+                        Ahora, el truco esta en que como tenemos $k$ residuos, pero todos ellos tienen
+                        que cumplir que $0 \geq r_x < b$, pero esto implica que solo puede haber
+                        $k-1$ resudios posibles: $0, 1, \dots, k-1$. Por lo tanto habrá dos residuos iguales.
+
+                        Tomemos ambos enteros que nos dan resudios iguales y saquemos la diferencia:
+
+                        \begin{MultiLineEquation*}{2}
+                            a_i - a_j   &= (bq_i + r_i) - (bq_j + r_j)  \\
+                                        &= (bq_i + r_i) - (bq_j + r_i)  \\ 
+                                        &= (bq_i + r_i) - bq_j - r_i)   \\ 
+                                        &= bq_i - bq_j                  \\ 
+                                        &= b (q_i - q_j) + 0            \\ 
+                                        &= b q_x + 0                    \\ 
+                        \end{MultiLineEquation*}
+
+                        Y bingo, demostrado ;)
+
+                    \end{SmallIndentation}
+
+            \end{itemize}
 
 
     % =====================================================

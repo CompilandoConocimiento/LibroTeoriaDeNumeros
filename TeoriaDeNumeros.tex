@@ -776,11 +776,11 @@
                             \item $2 | (k)(k+1)(k+2)(k+3)(k+4)\dots(k+n)$
                                 Pues mínimo alguno de los términos de la suseción será par
                             \item $3 | (k)(k+1)(k+2)(k+3)(k+4)\dots(k+n)$
-                                Pues mínimo alguno de los términos de la suseción será divisible entre 3, pues hay mas de
-                                3 enteros consecutivos
+                                Pues mínimo alguno de los términos de la suseción será divisible entre 3,
+                                pues hay mas de 3 enteros consecutivos
                             \item $4 | (k)(k+1)(k+2)(k+3)(k+4)\dots(k+n)$
-                                Pues mínimo alguno de los términos de la suseción será divisible entre 4, pues hay mas de
-                                4 enteros consecutivos
+                                Pues mínimo alguno de los términos de la suseción será divisible entre 4,
+                                pues hay mas de 4 enteros consecutivos
                             \item ...
                         \end{itemize}
 
@@ -793,6 +793,47 @@
                         Por lo tanto $(k)(k+1)(k+2)(k+3)(k+4)\dots(k+n)(k+n+1) = q_2 (k+1)!$.
 
                         Demostrado por inducción :D
+
+                    \end{SmallIndentation}
+
+                \clearpage
+
+                \item $(bq_1 + r)^n = bq_2 + r^n$
+
+                    % ======== DEMOSTRACION ========
+                    \begin{SmallIndentation}[1em]
+                        \textbf{Ideas:}:
+
+                            Recuerda el binomio de Newton:
+                            \begin{MultiLineEquation*}{2}
+                                (x+y)^n 
+                                &= \sum _{k=0}^n {n \choose k}x^{n-k}y^{k}      \\
+                                &=  {n \choose 0} x^n +
+                                    {n \choose 1} x^{n-1} y + 
+                                    {n \choose 2} x^{n-2} y^2 +
+                                    \cdots + 
+                                    {n \choose n-1} x y^{n-1} +
+                                    {n \choose n} y^n                           \\
+                                &=  x^n +
+                                    {n \choose 1} x^{n-1} y + 
+                                    {n \choose 2} x^{n-2} y^2 +
+                                    \cdots + 
+                                    {n \choose n-1} x y^{n-1} +
+                                    y^n
+                            \end{MultiLineEquation*}
+
+                            Por lo tanto si te das cuenta, TODOS los elementos de dicha expansión tendrán 
+                            un término de $x$, excepto el último.
+                            Es decir $(x+y)^n = x(q) + y^n$
+
+                            Por lo tanto al expandir $(bq_1 + r)^n$ se tiene que:
+                            $(bq_1 + r)^n = bq_2 + r^n$
+
+                            \textbf{Recuerda:}
+
+                            Es muy común simplificar dicho resultado para decir que:
+                            $(bq_1 + 1)^n = bq_2 + 1$
+
 
                     \end{SmallIndentation}
 

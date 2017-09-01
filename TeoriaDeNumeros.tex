@@ -872,7 +872,7 @@
 
             \begin{itemize}
 
-                \item Dado un conjunto de $k$ enteros arbitrarios (donde $k \in \Naturals$ y $k > 1$ )
+                \item Dado un conjunto de $k$ enteros arbitrarios diferentes (donde $k \in \Naturals$ y $k > 1$ )
                     siempre se tiene que la diferencia de dos de ellos será divisible por $k$.
 
 
@@ -910,6 +910,35 @@
                         Y bingo, demostrado ;)
 
                     \end{SmallIndentation}
+
+
+                \item Dados $a, b \in \Integers$ existen enteros $x, y$ tal que:\\
+                    $GCD(x, y) = b$  y $LCM(x, y) = a$ si y solo si $b|a$.
+
+                    % ======== DEMOSTRACION ========
+                    \begin{SmallIndentation}[1em]
+                        \textbf{Demostración}:
+
+                        Probemos por doble condicional.
+
+                        Empecemos de ida:
+                        
+                        Dado $GCD(x, y) = b$ por lo tanto $b|x$ y dado $LCM(x, y) = a$ por lo tanto $x|a$
+                        y ya que la divisibilidad es transicitva tenemos por lo tanto que $b|a$.
+
+
+                        Primero empecemos de regreso:
+
+                        Si $b|a$, entonces $a = bq$.
+                        Podemos decir que $GCD(b, a) = GCD(b, bq) = b \cdot GCD(1, q)$.
+                        Podemos decir que $MCL(b, a) = MCL(b, bq) = bq = a$.
+
+                        Por lo tanto propongamos que $x=a$ y a $y=b$ entonces tenemos que 
+                        se cumple la propiedad.
+
+                    \end{SmallIndentation}
+
+
 
             \end{itemize}
 

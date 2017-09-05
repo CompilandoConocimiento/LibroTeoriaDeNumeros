@@ -2669,7 +2669,50 @@
 
                     \end{SmallIndentation}
 
-                \item Si $ac \equiv bc \pmod{n}$ entonces $a \equiv b \pmod{\frac{n}{GCD(c,p)}}$
+
+                \item Si $a \equiv b \pmod{n}$ y $c \equiv d \pmod{n}$ entonces
+                    $ra + sc \equiv rb + sd \pmod{n}$
+
+                    % ======== DEMOSTRACION ========
+                    \begin{SmallIndentation}[1em]
+                        \textbf{Demostración}:
+
+                        Si $a \equiv b \pmod{n}$ entonces $n| a - b$
+                        Si $c \equiv d \pmod{n}$ entonces $n| c - d$
+
+                        Por lo tanto $m | r (a-b) + s(c-d)$.
+                        Por lo tanto $m | (ra- sc) - (rb + sd)$
+
+                        Por lo tanto $ra + sc \equiv rb + sd \pmod{n}$
+
+                    \end{SmallIndentation}
+
+
+                \item Si $a \equiv b \pmod{n}$ y $c \equiv d \pmod{n}$ entonces
+                    $ac \equiv bd \pmod{n}$
+
+                    % ======== DEMOSTRACION ========
+                    \begin{SmallIndentation}[1em]
+                        \textbf{Demostración}:
+
+                        Si $a \equiv b \pmod{n}$ entonces $n| a - b$ por lo tanto $m | ca - cb$.
+
+                        Si $c \equiv d \pmod{n}$ entonces $n| c - d$ por lo tanto $m | bc - bd$.
+
+                        Y por lo tanto $n$ divide a cualquier combinación lineal, por ejemplo 
+                        $n | ca - cb + cb - bd$ 
+
+                        Por lo tanto $n | ca - bd$ por lo tanto $ac \equiv bd \pmod{n}$
+
+                    \end{SmallIndentation}
+
+
+                \item Los resultados anteriores nos obligan a decir que si $a \equiv b \pmod{n}$
+                    entonces $f(a) \equiv f(b) \pmod{n}$ para cualquier $f(x)$ polinomio de
+                    coeficientes enteros.
+
+
+                \item $ac \equiv bc \pmod{n}$ si y solo si $a \equiv b \pmod{\frac{n}{GCD(c,n)}}$
 
                     % ======== DEMOSTRACION ========
                     \begin{SmallIndentation}[1em]
@@ -2677,11 +2720,14 @@
 
                         Sabemos que $n|ac-bc$, es decir $n|c(a-b)$.
 
-                        Ademas sabemos que $GCD()$ 
+                        Y dividiendo entre $GCD(c, n)$ tenemos que:
+                        $\frac{c}{GCD(c, n)}a - \frac{c}{GCD(c, n)}b = q \frac{n}{GCD(c, n)}$
 
-                        y recuerda la
-                        propiedad que demostramos (supón $GCD(a, b) = 1$ y que $a|bc$, entonces $a|c$)
-                        por lo tanto $n|a-b$, que es lo mismo que $a \equiv b \pmod{n}$.
+                        Y por lo tanto $\frac{n}{GCD(c, n)} | \frac{c}{GCD(c, n)}a - \frac{c}{GCD(c, n)}b$
+                        es decir $\frac{n}{GCD(c, n)} | \frac{c}{GCD(c, n)} (a - b)$
+
+                        Y ya que $GCD\Wrap{\frac{n}{GCD(c, n)}, \frac{c}{GCD(c, n)}} = 1$
+                        entonces $\frac{n}{GCD(c, n)} | a - b$, es decir $a \equiv b \pmod{\frac{n}{GCD(c, n)}}$
 
                     \end{SmallIndentation}
 

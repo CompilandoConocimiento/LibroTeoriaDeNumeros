@@ -987,6 +987,23 @@
             \end{SmallIndentation}
 
 
+        % ==================================
+        % =========   ALTERNA    ===========
+        % ==================================
+        \subsection*{Definición Alterna}
+
+            Podemos también podemos decir que si
+            $a = p_1^{e_1} p_2^{e_2} \dots p_k^{e_k}$
+            $b = p_1^{f_1} p_2^{f_2} \dots p_k^{f_k}$
+
+            Entonces $GCD(a, b) = p_1^{min(e_1, f_1)} p_1^{min(e_2, f_2)} \dots p_k^{min(e_k, f_k)}$
+
+
+            Por ejemplo si $a = 5 = 2^0 \cdot 3^0 \cdot 5^1$ y
+            $b = 15 = 2^0 \cdot 3^1 \cdot 5^1 \cdot 7^0 \cdot 11^0 \cdot 13^0$
+
+            Entonces $GCD(5, 15) = 2^{min(0,0)} \cdot 3^{min(0,1)} \cdot 5^{min(1,1)} 
+                        \cdot 7^{min(0,0)} \cdot 11^{min(0,0)} \cdot 13^{min(0,0)} = 5^1 = 5$
 
 
         % ==================================
@@ -1683,6 +1700,18 @@
             \end{SmallIndentation}
 
 
+        % ==================================
+        % =========   ALTERNA    ===========
+        % ==================================
+        \subsection*{Definición Alterna}
+
+            Podemos también podemos decir que si
+            $a = p_1^{e_1} p_2^{e_2} \dots p_k^{e_k}$
+            $b = p_1^{f_1} p_2^{f_2} \dots p_k^{f_k}$
+
+            Entonces $LCM(a, b) = p_1^{max(e_1, f_1)} p_1^{max(e_2, f_2)} \dots p_k^{max(e_k, f_k)}$
+
+
 
         % ==================================
         % ======   PROPIEDADES     =========
@@ -1911,16 +1940,96 @@
 
         \begin{equation}
             \phi(n) = 
-                Card(
-                    \{ x \in \Naturals \Such
-                        GCD(n, x) = 1
-                        \text{ y además } x \leq n
-                    \}
-                )
+                \big|
+                    \Set{ x \in \Naturals \Such GCD(n, x) = 1 \text{ y } x \leq n }
+                \big|
         \end{equation}
  
         Es decir, $\phi(n)$ es la cantidad de naturales que son menores o iguales a
         $n$ y que ademas son primos relativos.
+
+
+        % ==================================
+        % ======   PROPIEDADES     =========
+        % ==================================
+        \clearpage
+        \subsection{Propiedades}
+
+            \begin{itemize}
+
+                \item Esta función es multiplicativa, es decir:
+                    $\phi(m n) =
+                        \phi(n)\phi(m) \dfrac{{\scriptstyle gcd(m,n)}}{\phi({\scriptstyle gcd(m,n)})}$
+
+                \item Para un primo $p \in \Primes$, $\phi(p) = p - 1$
+
+                    % ======== DEMOSTRACION ========
+                    \begin{SmallIndentation}[1em]
+                        \textbf{Ideas}:
+
+                        Sabemos de la definición de primo, que son aquellos naturales que solo tienen
+                        a si mismos (y a uno) como divisores comunes, por lo tanto, todos los demás
+                        naturales menores son coprimos con cualquier primo, por lo tanto $\phi(p) = p - 1$
+                    \end{SmallIndentation}
+
+
+                \item Una forma muy genial de calcular esta función en programación es:\\
+                    $\phi(n) = n \cdot \prod_{p|n} \Wrap{1 - \dfrac{1}{p}}$
+
+                    % ======== DEMOSTRACION ========
+                    \begin{SmallIndentation}[1em]
+                        \textbf{Demostración}:
+
+                        Esto nos dice que podemos encontar a $\phi(n)$ simplemente multiplicando
+                        $\Wrap{1 - \dfrac{1}{p}}$ donde $p$ es cada uno de los factores primos
+                        de $n$ de la forma y finalmente multiplicarlo por $n$.
+
+                        Recuerda que para un primo $p \in \Primes$, $\phi(p) = p - 1$ y que además
+                        Esta función es multiplicativa, es decir:
+                        $\phi(m \cdot n) = \phi(n)\phi(m) \cdot 
+                            \dfrac{{\scriptstyle gcd(m,n)}}{\phi({\scriptstyle gcd(m,n)})}$.
+
+                        Supón un $p \in \Primes$, entonces:
+                        $\phi(p^e) = p^e - p^{e-1} = p^e\Wrap{1 - \dfrac{1}{p}}$
+
+                        Por lo tanto:
+                        \begin{MultiLineEquation*}{2}
+                            \phi(n) &= \phi\Wrap{p_1^{e_1} \dots p_k^{e_k} }                        \\
+                                    &= \phi\Wrap{p_1^{e_1}} \dots \phi\Wrap{p_k^{e_k}}              \\
+                                    &= n \Wrap{1 - \dfrac{1}{p_1}} \dots \Wrap{1 - \dfrac{1}{p_k}}
+                        \end{MultiLineEquation*}
+
+                    \end{SmallIndentation}
+
+                \item $\sum_{d | n} \phi(d) =n$
+                    % ======== DEMOSTRACION ========
+                    \begin{SmallIndentation}[1em]
+                        \textbf{Ideas}:
+
+                        Esto nos dice que la multiplicación de las phi's de todos
+                        los divisores de $n$ es la misma $n$.
+
+                    \end{SmallIndentation}
+
+
+
+                \item $\sum_{gcd(i, n) \text{ y } i < n} i = \dfrac{n}{2} \phi(n)$
+                    % ======== DEMOSTRACION ========
+                    \begin{SmallIndentation}[1em]
+                        \textbf{Ideas}:
+
+                        Esto nos dice que la suma de todos los primos relativos menores que
+                        $n$ de $n$ es $\dfrac{n}{2} \phi(n)$.
+
+                    \end{SmallIndentation}
+
+                \item $\phi(n^m) = n^{m-1} \phi(n)$
+
+
+                \item Si $n$ Y $a$ son coprimos entonces $a^{\phi(n)} \equiv 1 \pmod{n}$
+
+            \end{itemize}
+
 
 
 

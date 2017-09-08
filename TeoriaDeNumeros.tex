@@ -943,6 +943,59 @@
             \end{itemize}
 
 
+
+        % =====================================================
+        % ========   CONGRUENCIAS Y DIVISIBILIDAD     =========
+        % =====================================================
+        \clearpage
+        \subsection{Criterios de Divisibilidad}
+
+            Gracias a las congruencias podemos ver mcuho más fácil si un $n$ enorme
+            es divisible.
+
+            Antes que nada vamos a trabajar con los dígitos de $n$ como en base 10,
+            así que antes vamos a explicar que son los dígitos siendo rigurosos matematicamente
+            hablando:
+
+            \begin{equation}
+            \begin{split}
+                n &= a_0(10^0) + a_1(10^1) + a_2(10^2) + \dots + a_k(10^k)          \\
+                n &= \sum_{i=0}^{k} a_i 10^i \Space \text{ con } 0 \leq a_i \leq 9
+            \end{split}
+            \end{equation}
+
+
+            \begin{itemize}
+
+                \item Un número $n \in \Integers$ es divisble entre 3 si y solo si
+                    la suma de digitos (en base 10) de $n$ es divisible entre 3.
+
+                    % ======== DEMOSTRACION ========
+                    \begin{SmallIndentation}[1em]
+                        \textbf{Demostración}:
+
+                        Antes que nada, recuerda que a $n$ lo puedes escribir como
+                        $n = a_0(10^0) + a_1(10^1) + a_2(10^2) + \dots + a_k(10^k)$.
+
+                        Ahora, también recuerda que $10 \equiv 1 \pmod{3}$.
+
+                        Ahora $3|n$ si y solo si $n \equiv 0 \pmod{3}$ y recuerda
+                        que podemos poner a $n$ escrito de otra forma:
+                        $a_0(10^0) + a_1(10^1) + a_2(10^2) + \dots + a_k(10^k) \equiv 0 \pmod{3}$
+                        y como recuerdas ($10 \equiv 1 \pmod{3}$) tenemos que esto ocurre
+                        si y solo si:  $a_0 + a_1 +\dots +a_k \equiv 0 \pmod{3}$, esto es lo mismo que
+                        $3|a_0+a_1+a_2+\dots$.
+
+                        Es decir, un número $n \in \Integers$ es divisble entre 3 si y solo si
+                        la suma de digitos de $n$ es divisible entre 3.
+
+                    \end{SmallIndentation}
+
+            \end{itemize}
+
+
+
+
     % =====================================================
     % =====    MAXIMO COMUN DIVISOR : GCD /MCD     ========
     % =====================================================
@@ -1729,7 +1782,7 @@
                         \textbf{Demostración}:
 
                         Por contradicción podemos demostrarlo facilmente, ya que
-                        si no lo fuera tendríamos que $m = q \cot LCM(a,b) + r$
+                        si no lo fuera tendríamos que $m = q \cdot LCM(a,b) + r$
                         donde $0<r<LCM(a,b)$
 
                         Despejando a $r$ tenemos que $r = m - q \cdot LCM(a,b)$
@@ -2870,6 +2923,82 @@
             Por lo tanto $a \% b = r$ donde $a =bq+r$ y $0 \leq r < b$.
 
 
+        % ==================================
+        % ====  SISTEMAS DE RESIDUOS   =====
+        % ==================================
+        \clearpage
+        \subsection{Sistema de Residuos}
+
+            Definimos a $\Set{r_1, r_2, r_3, \cdots, r_n}$ como un sistema
+            de residuos.
+
+            \begin{itemize}
+                \item Decimos que es un \textbf{Sistema Completo de Residuos}
+                    si y solo si es que cumple que:
+                    \begin{equation*}
+                        \forall k \in \Integers, \; \exists r_i, k \equiv r_i \pmod{n} 
+                        \Also
+                        r_i \equiv r_j \text{ solo si } i = j 
+                    \end{equation*}
+
+                \item Decimos que es un \textbf{Sistema Reducido de Residuos}
+                    si y solo si es que cumple que:
+                    \begin{equation*}
+                        \forall k \in \Naturals \text{ y } GCD(k, n), \; 
+                            \exists r_i, k \equiv r_i \pmod{n} 
+                        \Also
+                        r_i \equiv r_j \text{ solo si } i = j 
+                    \end{equation*}
+            \end{itemize}
+
+            Es decir para un número $n$ decimos que el conjunto completo de residuos
+            son por ejemplo todos los naturales (incluyendo al cero) menores que el.
+
+            Mientras que un conjunto reducido de residuos son por ejemplo el conjunto
+            de todos los coprimos de $n$ menores a $n$s.
+
+
+            Usando estas ideas podemos demostrar algunas ideas bien geniales:
+
+            \begin{itemize}
+
+                \item \textbf{Teorema Generalizado de Fermat por Euler}:
+
+                    Si $GCD(a, n) = 1$ entonces
+                    $a^{\phi(n)} \equiv 1 \pmod{n}$
+
+                    % ======== DEMOSTRACION ========
+                    \begin{SmallIndentation}[1em]
+                        \textbf{Demostración}:
+
+                        Resulta que esto es más sencillo de lo que crees.
+
+                        Sea $\Set{r_1, r_2, \dots, r_{\phi(n)}}$ un sistema reducido
+                        de residuos, ahora, gracias a que es un sistema reducido y a 
+                        que $GCD(a, n)$ entonces tenemos que:
+                        $\Set{ar_1, ar_2, \dots, ar_{\phi(n)}}$
+
+                        Por lo tanto tenemos que:
+                        \begin{equation*}
+                            (ar_1)(ar_2)\dots(ar_{\phi(n)})
+                            \equiv
+                            r_1 r_2 \dots r_{\phi(n)} \pmod{n}
+                        \end{equation*}
+
+                        Por lo tanto
+                        \begin{equation*}
+                            a^{\phi(n)}(r_1)(r_2)\dots(r_{\phi(n)})
+                            \equiv
+                            r_1 r_2 \dots r_{\phi(n)} \pmod{n}
+                        \end{equation*}
+
+                        Y ya que $GCD(n, \prod_{i=1}^{\phi(n)} r_i) = 1$
+
+                        $a^{\phi(n)} \equiv 1 \pmod{n}$
+
+                    \end{SmallIndentation}            
+
+                \end{itemize}
     % =====================================================
     % ========         EXPONENCIACION MODULAR     =========
     % =====================================================
@@ -2999,56 +3128,6 @@
 
 
 
-    % =====================================================
-    % ========   CONGRUENCIAS Y DIVISIBILIDAD     =========
-    % =====================================================
-    \clearpage
-    \section{Criterios de Divisibilidad}
-
-        Gracias a las congruencias podemos ver mcuho más fácil si un $n$ enorme
-        es divisible.
-
-        Antes que nada vamos a trabajar con los dígitos de $n$ como en base 10,
-        así que antes vamos a explicar que son los dígitos siendo rigurosos matematicamente
-        hablando:
-
-        \begin{equation}
-        \begin{split}
-            n &= a_0(10^0) + a_1(10^1) + a_2(10^2) + \dots + a_k(10^k)          \\
-            n &= \sum_{i=0}^{k} a_i 10^i \Space \text{ con } 0 \leq a_i \leq 9
-        \end{split}
-        \end{equation}
-
-
-        \begin{itemize}
-
-            \item Un número $n \in \Integers$ es divisble entre 3 si y solo si
-                la suma de digitos (en base 10) de $n$ es divisible entre 3.
-
-                % ======== DEMOSTRACION ========
-                \begin{SmallIndentation}[1em]
-                    \textbf{Demostración}:
-
-                    Antes que nada, recuerda que a $n$ lo puedes escribir como
-                    $n = a_0(10^0) + a_1(10^1) + a_2(10^2) + \dots + a_k(10^k)$.
-
-                    Ahora, también recuerda que $10 \equiv 1 \pmod{3}$.
-
-                    Ahora $3|n$ si y solo si $n \equiv 0 \pmod{3}$ y recuerda
-                    que podemos poner a $n$ escrito de otra forma:
-                    $a_0(10^0) + a_1(10^1) + a_2(10^2) + \dots + a_k(10^k) \equiv 0 \pmod{3}$
-                    y como recuerdas ($10 \equiv 1 \pmod{3}$) tenemos que esto ocurre
-                    si y solo si:  $a_0 + a_1 +\dots +a_k \equiv 0 \pmod{3}$, esto es lo mismo que
-                    $3|a_0+a_1+a_2+\dots$.
-
-                    Es decir, un número $n \in \Integers$ es divisble entre 3 si y solo si
-                    la suma de digitos de $n$ es divisible entre 3.
-
-                \end{SmallIndentation}
-
-        \end{itemize}
-
-
 
 
     % =====================================================
@@ -3066,37 +3145,6 @@
 
         E incluso a saber si es que no existe dicha solución.
 
-        % =======================================
-        % ======    PROPIEDADES UTILES      =====
-        % =======================================
-        \begin{itemize}
-
-            \item Un número $n \in \Integers$ es divisble entre 3 si y solo si
-                la suma de digitos (en base 10) de $n$ es divisible entre 3.
-
-                % ======== DEMOSTRACION ========
-                \begin{SmallIndentation}[1em]
-                    \textbf{Demostración}:
-
-                    Antes que nada, recuerda que a $n$ lo puedes escribir como
-                    $n = a(10^0) + b(10^1) + c(10^2) + \dots$ donde
-                    $a, b, c, \dots \in \Naturals$ son los dígitos de $n$.
-
-                    Ahora, también recuerda que $10 \equiv 1 \pmod{3}$.
-
-                    Ahora $3|n$ si y solo si $n \equiv 0 \pmod{3}$ y esto pasa si
-                    y solo si $a(10^0) + b(10^1) + c(10^2) + \dots \equiv 0 \pmod{3}$
-                    (esto es una propiedad que vimos antes) y como recuerdas
-                    ($10 \equiv 1 \pmod{3}$) tenemos que esto ocurre si y solo si:
-                    $a + b + c + \dots \equiv 0 \pmod{3}$, esto es lo mismo que
-                    $3|a+b+c+\dots$.
-
-                    Es decir, un número $n \in \Integers$ es divisble entre 3 si y solo si
-                    la suma de digitos de $n$ es divisible entre 3.
-
-                \end{SmallIndentation}
-
-        \end{itemize}
 
 
 

@@ -60,10 +60,10 @@
             {\footnotesize{\textsc{\nouppercase{\rightmark}}}}      %And fot it put the name
     }
 
-    \rfoot{\textsc{\small{Grupo 4098}}}                             %This will always be a footer  
+    \rfoot{\textsc{\small{\hyperref[sec:Index]{Ve al Índice}}}}     %This will always be a footer  
 
     \fancyfoot[L]{                                                  %Algoritm for a changing footer
-        \footnotesize{Problemas del Niven}
+        \footnotesize{Grupo 4098}
     }
     
     
@@ -210,6 +210,15 @@
 \end{titlepage}
 
 
+% =====================================================
+% ========                INDICE              =========
+% =====================================================
+\tableofcontents{}
+\label{sec:Index}
+
+\clearpage
+
+
 
 
 % ======================================================================================
@@ -217,19 +226,21 @@
 % ======================================================================================
 \section{Divisibilidad}
 
-    \begin{itemize}
-        \item
-            \textbf{Algoritmo de Euclides: Encontrar el GCD(A, B)}
+    \subsection{Problema 1}
+    \subsection*{Algoritmo de Euclides: Encontrar el GCD(A, B)}
 
-
-            Calcular el $GCD(7469, 2464)$
+            Calcular el $GCD(2947, 3997)$
             \begin{itemize}
-                \item $(a:7469) = (b:2464)(q:3) + (r:77)$                       
-                \item $(a:2464) = (b:77)(q:32) + (r:0)$
-            \end{itemize}
-            Así que $GCD(7469, 2464) = 77$\\
-
-
+                \item $(a:2947) = (b:3997)(q:0) + (r:2947)$
+                \item $(a:3997) = (b:2947)(q:1) + (r:1050)$
+                \item $(a:2947) = (b:1050)(q:2) + (r:847)$
+                \item $(a:1050) = (b:847)(q:1) + (r:203)$
+                \item $(a:847) = (b:203)(q:4) + (r:35)$
+                \item $(a:203) = (b:35)(q:5) + (r:28)$
+                \item $(a:35) = (b:28)(q:1) + (r:7)$
+                \item $(a:28) = (b:7)(q:4) + (r:0)$
+            \end{itemize}                    
+            Así que $GCD(2947, 3997) = 7$\\
 
             Calcular el $GCD(2689, 4001)$
             \begin{itemize}
@@ -243,9 +254,202 @@
                 \item $(a:2) = (b:1)(q:2) + (r:0)$   
             
             \end{itemize}                    
-            Así que $GCD(2689, 4001) = 1$
-    \end{itemize}
+            Así que $GCD(2689, 4001) = 1$\\
 
+            \clearpage
+
+
+
+            Calcular el $GCD(7469, 2464)$
+            \begin{itemize}
+                \item $(a:7469) = (b:2464)(q:3) + (r:77)$                       
+                \item $(a:2464) = (b:77)(q:32) + (r:0)$
+            \end{itemize}
+            Así que $GCD(7469, 2464) = 77$\\
+
+
+            Calcular el $GCD(2947, 3997)$
+            \begin{itemize}
+                \item $(a:2947) = (b:3997)(q:0) + (r:2947)$
+                \item $(a:3997) = (b:2947)(q:1) + (r:1050)$
+                \item $(a:2947) = (b:1050)(q:2) + (r:847)$
+                \item $(a:1050) = (b:847)(q:1) + (r:203)$
+                \item $(a:847) = (b:203)(q:4) + (r:35)$
+                \item $(a:203) = (b:35)(q:5) + (r:28)$
+                \item $(a:35) = (b:28)(q:1) + (r:7)$
+                \item $(a:28) = (b:7)(q:4) + (r:0)$
+            \end{itemize}                    
+            Así que $GCD(2947, 3997) = 7$\\
+
+
+            Calcular el $GCD(1109, 4999)$
+            \begin{itemize}
+                \item $(a:1109) = (b:4999)(q:0) + (r:1109)$
+                \item $(a:4999) = (b:1109)(q:4) + (r:563)$
+                \item $(a:1109) = (b:563)(q:1) + (r:546)$
+                \item $(a:563) = (b:546)(q:1) + (r:17)$
+                \item $(a:546) = (b:17)(q:32) + (r:2)$
+                \item $(a:17) = (b:2)(q:8) + (r:1)$
+                \item $(a:2) = (b:1)(q:2) + (r:0)$
+            \end{itemize}                    
+            Así que $GCD(1109, 4999) = 1$\\
+
+    \clearpage
+    \subsection{Problema 2}
+    \subsection*{Algoritmo de Euclides Extendido y Coeficientes de Bezut}
+
+            Encontremos los coeficientes de $243x + 198y = 9$
+            \begin{itemize}
+                \item $(a:243) = (b:198)(q:1) + (r:45)$
+                \item $(a:198) = (b:45)(q:4) + (r:18)$
+                \item $(a:45) = (b:18)(q:2) + (r:9)$
+                \item $(a:18) = (b:9)(q:2) + (r:0)$ 
+            \end{itemize}
+
+            El proceso para encontrar los coeficientes de Bezut son:
+
+            \begin{itemize}
+                \item $(a':243) = (a':243)(m:1) + (b':198)(n:0)$
+                \item $(b':198) = (a':243)(m:0) + (b':198)(n:1)$
+            \end{itemize}
+
+            \begin{itemize}
+                \item $(r:45) = (a:243) - (b:198)(1:1)  =  (a':243)(m:1) + (b':198)(n:-1)$
+                \item $(r:18) = (a:198) - (b:45)(1:4)  =  (a':243)(m:-4) + (b':198)(n:5)$
+                \item $(r:9) = (a:45) - (b:18)(1:2)  =  (a':243)(m:9) + (b':198)(n:-11)$
+                \item $(r:0) = (a:18) - (b:9)(1:2)  =  (a':243)(m:-22) + (b':198)(n:27)$
+            \end{itemize}
+
+            Por lo tanto el $GCD(243, 198) = 9$\\
+            Y los números de Bezut son $(243, 198) = (9, -11)$\\                       
+            Y la Identidad de Bezut es: $(GCD:9) = (a':243)(m:9) +(b':198)(n:-11)$\\
+
+
+
+            \clearpage
+
+
+            Encontremos los coeficientes de $71x + 50y = 1$
+            \begin{itemize}
+                \item $(a:71) = (b:50)(q:1) + (r:21)$
+                \item $(a:50) = (b:21)(q:2) + (r:8)$
+                \item $(a:21) = (b:8)(q:2) + (r:5)$ 
+                \item $(a:8) = (b:5)(q:1) + (r:3)$  
+                \item $(a:5) = (b:3)(q:1) + (r:2)$   
+                \item $(a:3) = (b:2)(q:1) + (r:1)$   
+                \item $(a:2) = (b:1)(q:2) + (r:0)$  
+            \end{itemize}
+
+            El proceso para encontrar los coeficientes de Bezut son:
+
+            \begin{itemize}
+                \item $(a':71) = (a':71)(m:1) + (b':50)(n:0)$
+                \item $(b':50) = (a':71)(m:0) + (b':50)(n:1)$    
+            \end{itemize}
+
+            \begin{itemize}
+                \item $(r:21) = (a:71) - (b:50)(1:1)  =  (a':71)(m:1) + (b':50)(n:-1)$
+                \item $(r:8) = (a:50) - (b:21)(1:2)  =  (a':71)(m:-2) + (b':50)(n:3) $
+                \item $(r:5) = (a:21) - (b:8)(1:2)  =  (a':71)(m:5) + (b':50)(n:-7)  $
+                \item $(r:3) = (a:8) - (b:5)(1:1)  =  (a':71)(m:-7) + (b':50)(n:10)  $
+                \item $(r:2) = (a:5) - (b:3)(1:1)  =  (a':71)(m:12) + (b':50)(n:-17) $
+                \item $(r:1) = (a:3) - (b:2)(1:1)  =  (a':71)(m:-19) + (b':50)(n:27) $
+                \item $(r:0) = (a:2) - (b:1)(1:2)  =  (a':71)(m:50) + (b':50)(n:-71) $ 
+            \end{itemize}
+
+            Por lo tanto el $GCD(71, 50) = 1$\\
+            Y los números de Bezut son $(71, 50) = (-19, 27)$\\                       
+            Y la Identidad de Bezut es: $(GCD:9) = (GCD:1) = (a':71)(m:-19) +(b':50)(n:27)$\\
+
+
+
+            \clearpage
+
+
+
+            Encontremos los coeficientes de $43 + 64 = 1$
+            \begin{itemize}
+                \item $(a:43) = (b:64)(q:0) + (r:43)$ 
+                \item $(a:64) = (b:43)(q:1) + (r:21)$ 
+                \item $(a:43) = (b:21)(q:2) + (r:1) $ 
+                \item $(a:21) = (b:1)(q:21) + (r:0) $ 
+            \end{itemize}
+
+            El proceso para encontrar los coeficientes de Bezut son:
+
+            \begin{itemize}
+                \item $(a':43) = (a':43)(m:1) + (b':64)(n:0)$
+                \item $(b':64) = (a':43)(m:0) + (b':64)(n:1)$   
+            \end{itemize}
+
+            \begin{itemize}
+                \item $(r:43) = (a:43) - (b:64)(1:0)  =  (a':43)(m:1) + (b':64)(n:0)  $ 
+                \item $(r:21) = (a:64) - (b:43)(1:1)  =  (a':43)(m:-1) + (b':64)(n:1) $ 
+                \item $(r:1) = (a:43) - (b:21)(1:2)  =  (a':43)(m:3) + (b':64)(n:-2)  $ 
+                \item $(r:0) = (a:21) - (b:1)(1:21)  =  (a':43)(m:-64) + (b':64)(n:43)$  
+            \end{itemize}
+
+            Por lo tanto el $GCD(43, 64) = 1$\\
+            Y los números de Bezut son $(43, 64) = (3, -2)$\\                       
+            Y la Identidad de Bezut es: $(GCD:1) = (a':43)(m:3) +(b':64)(n:-2)$\\
+
+
+
+
+            \clearpage
+
+
+
+            Encontremos los coeficientes de $93 + 81 = 3$
+            \begin{itemize}
+                \item $(a:93) = (b:81)(q:1) + (r:12)$
+                \item $(a:81) = (b:12)(q:6) + (r:9)$
+                \item $(a:12) = (b:9)(q:1) + (r:3)$
+                \item $(a:9) = (b:3)(q:3) + (r:0)$     
+            \end{itemize}
+
+            El proceso para encontrar los coeficientes de Bezut son:
+
+            \begin{itemize}
+                \item $(a':93) = (a':93)(m:1) + (b':81)(n:0)$
+                \item $(b':81) = (a':93)(m:0) + (b':81)(n:1)$ 
+            \end{itemize}
+
+            \begin{itemize}
+                \item $(r:12) = (a:93) - (b:81)(1:1)  =  (a':93)(m:1) + (b':81)(n:-1)$
+                \item $(r:9) = (a:81) - (b:12)(1:6)  =  (a':93)(m:-6) + (b':81)(n:7) $
+                \item $(r:3) = (a:12) - (b:9)(1:1)  =  (a':93)(m:7) + (b':81)(n:-8)  $
+                \item $(r:0) = (a:9) - (b:3)(1:3)  =  (a':93)(m:-27) + (b':81)(n:31) $
+            \end{itemize}
+
+            Por lo tanto el $GCD(93, 81) = 3$\\
+            Y los números de Bezut son $(93, 81) = (7, -8)$\\                       
+            Y la Identidad de Bezut es: $(GCD:3) = (a':93)(m:7) +(b':81)(n:-8)$\\
+
+
+
+
+            Encontremos los coeficientes de $10x + 15y = 5$
+            ... Espera, este es muy obvio, es simplemente
+            $(GCD:5) = (a':10)(m:-1) +(b':15)(n:1)$
+
+            Mientras que el de $6x + 5y = 1$ es $(GCD:1) = (a':6)(m:1) +(b':5)(n:-1)$
+
+            Por lo tanto:
+            $(GCD:1) = (a':6)(m:1) +(b':10)(n:1) + (c': 15)(o:-1)$
+
+
+    \clearpage
+    \subsection{Problema 3}
+    \subsection*{¿Cuantos enteros hay entre 100 y 1000 que sean divisibles entre 7?}
+
+        Empecemos porque el primero es 105, de ahi hay 127 más, pues 105 + (127 * 7) = 994.
+
+        Por lo tanto son 128 enteros.
+
+        Otro truco es aplicar el algoritmo de la división y ver que 
+        $1000 = 7(142) + 6$ y $100 = 7(14) + 2$ y $142-14 = 128$.
+            
 
 
 

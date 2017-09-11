@@ -1,0 +1,273 @@
+% ****************************************************************************************
+% ************************      NAME OF DOCUMENT      ************************************
+% ****************************************************************************************
+
+% =======================================================
+% =======         HEADER FOR DOCUMENT        ============
+% =======================================================
+    % *********   DOCUMENT ITSELF   **************
+    \documentclass[12pt, fleqn]{article}                             %Type of docuemtn and size of font and left eq
+    \usepackage[margin=1.2in]{geometry}                             %Margins and Geometry pacakge
+    \usepackage{ifthen}                                             %Allow simple programming
+    \usepackage{hyperref}                                           %Create MetaData for a PDF and LINKS!
+    \hypersetup{pageanchor=false}                                   %Solve 'double page 1' warnings in build
+    \setlength{\parindent}{0pt}                                     %Eliminate ugly indentation
+    \author{Oscar Andrés Rosas}                                     %Who I am
+
+    % *********   LANGUAJE AND UFT-8   *********
+    \usepackage[spanish]{babel}                                     %Please use spanish
+    \usepackage[utf8]{inputenc}                                     %Please use spanish - UFT
+    \usepackage[T1]{fontenc}                                        %Please use spanish
+    \usepackage{textcmds}                                           %Allow us to use quoutes
+    \usepackage{changepage}                                         %Allow us to use identate paragraphs
+    \usepackage{lipsum}                                             %Allow to put dummy text
+
+    % *********   MATH AND HIS STYLE  *********
+    \usepackage{ntheorem, amsmath, amssymb, amsfonts}               %All fucking math, I want all!
+    \usepackage{mathrsfs, mathtools, empheq}                        %All fucking math, I want all!
+    \usepackage{centernot}                                          %Allow me to negate a symbol
+    \decimalpoint                                                   %Use decimal point
+
+    % *********   GRAPHICS AND IMAGES *********
+    \usepackage{graphicx}                                           %Allow to create graphics
+    \usepackage{wrapfig}                                            %Allow to create images
+    \graphicspath{ {Graphics/} }                                    %Where are the images :D
+
+    % *********   LISTS AND TABLES ***********
+    \usepackage{listings}                                           %We will be using code here
+    \usepackage[inline]{enumitem}                                   %We will need to enumarate
+    \usepackage{tasks}                                              %Horizontal lists
+    \usepackage{longtable}                                          %Lets make tables awesome
+    \usepackage{booktabs}                                           %Lets make tables awesome
+    \usepackage{tabularx}                                           %Lets make tables awesome
+    \usepackage{multirow}                                           %Lets make tables awesome
+    \usepackage{multicol}                                           %Create multicolumns
+
+    % *********   HEADERS AND FOOTERS ********
+    \usepackage{fancyhdr}                                           %Lets make awesome headers/footers
+    \pagestyle{fancy}                                               %Lets make awesome headers/footers
+    \setlength{\headheight}{16pt}                                   %Top line
+    \setlength{\parskip}{0.5em}                                     %Top line
+    \renewcommand{\footrulewidth}{0.5pt}                            %Bottom line
+
+    \lhead{                                                         %Left Header
+        \hyperlink{section.\arabic{section}}                        %Make a link to the current chapter
+        {\normalsize{\textsc{\nouppercase{\leftmark}}}}             %And fot it put the name
+    }
+
+    \rhead{                                                         %Right Header
+        \hyperlink{section.\arabic{section}.\arabic{subsection}}    %Make a link to the current chapter
+            {\footnotesize{\textsc{\nouppercase{\rightmark}}}}      %And fot it put the name
+    }
+
+    \rfoot{\textsc{\small{Grupo 4098}}}                             %This will always be a footer  
+
+    \fancyfoot[L]{                                                  %Algoritm for a changing footer
+        \footnotesize{Problemas del Niven}
+    }
+    
+    
+    
+% ========================================
+% ===========   COMMANDS    ==============
+% ========================================
+
+    % =====  GENERAL TEXT  ==========
+    \newcommand \Quote {\qq}                                        %Use: \Quote to use quotes
+    \newcommand \Over {\overline}                                   %Use: \Bar to use just for short
+    \newcommand \ForceNewLine {$\Space$\\}                          %Use it in theorems for example
+    
+    \newenvironment{Indentation}[1][0.75em]                         %Use: \begin{Inde...}[Num]...\end{Inde...}
+    {\begin{adjustwidth}{#1}{}}                                     %If you dont put nothing i will use 0.75 em
+    {\end{adjustwidth}}                                             %This indentate a paragraph
+    \newenvironment{SmallIndentation}[1][0.75em]                    %Use: The same that we upper one, just 
+    {\begin{adjustwidth}{#1}{}\begin{footnotesize}}                 %footnotesize size of letter by default
+    {\end{footnotesize}\end{adjustwidth}}                           %that's it
+        
+    % =====  GENERAL MATH  ==========
+    \DeclareMathOperator \Space {\quad}                             %Use: \Space for a cool mega space
+    \DeclareMathOperator \MiniSpace {\;}                            %Use: \Space for a cool mini space
+    \newcommand \Such {\MiniSpace|\MiniSpace}                       %Use: \Such like in sets
+    \newcommand \Also {\Space \text{y} \Space}                      %Use: \Also so it's look cool
+    \newcommand \Remember[1]{\Space\text{\scriptsize{#1}}}          %Use: \Remember so it's look cool
+
+    \newtheorem{Theorem}{Teorema}[section]                          %Use: \begin{Theorem}[Name]\label{Nombre}...
+    \newtheorem{Corollary}{Colorario}[Theorem]                      %Use: \begin{Corollary}[Name]\label{Nombre}...
+    \newtheorem{Lemma}[Theorem]{Lemma}                              %Use: \begin{Lemma}[Name]\label{Nombre}...
+    \newtheorem{Definition}{Definición}[section]                    %Use: \begin{Definition}[Name]\label{Nombre}...
+
+    \newcommand{\Set}[1]{\left\{ \MiniSpace #1 \MiniSpace \right\}} %Use: \Set {Info}
+    \newcommand{\Brackets}[1]{\left[ #1 \right]}                    %Use: \Brackets {Info} 
+    \newcommand{\Wrap}[1]{\left( #1 \right)}                        %Use: \Wrap {Info} 
+    \newcommand{\pfrac}[2]{\Wrap{\dfrac{#1}{#2}}}                   %Use: Put fractions in parentesis
+
+    \newenvironment{MultiLineEquation}[1]                           %Use: To create MultiLine equations
+        {\begin{equation}\begin{alignedat}{#1}}                     %Use: \begin{Multi..}{Num. de Columnas}
+        {\end{alignedat}\end{equation}}                             %And.. that's it!
+    \newenvironment{MultiLineEquation*}[1]                          %Use: To create MultiLine equations
+        {\begin{equation*}\begin{alignedat}{#1}}                    %Use: \begin{Multi..}{Num. de Columnas}
+        {\end{alignedat}\end{equation*}}                            %And.. that's it!
+
+
+    % =====  LOGIC  ==================
+    \DeclareMathOperator \doublearrow {\leftrightarrow}             %Use: \doublearrow for a double arrow
+    \newcommand \lequal {\MiniSpace \Leftrightarrow \MiniSpace}     %Use: \lequal for a double arrow
+    \newcommand \linfire {\MiniSpace \Rightarrow \MiniSpace}        %Use: \lequal for a double arrow
+    \newcommand \longto {\longrightarrow}                           %Use: \longto for a long arrow
+
+    % =====  NUMBER THEORY  ==========
+    \DeclareMathOperator \Naturals  {\mathbb{N}}                     %Use: \Naturals por Notation
+    \DeclareMathOperator \Primes    {\mathbb{P}}                     %Use: \Naturals por Notation
+    \DeclareMathOperator \Integers  {\mathbb{Z}}                     %Use: \Integers por Notation
+    \DeclareMathOperator \Racionals {\mathbb{Q}}                     %Use: \Racionals por Notation
+    \DeclareMathOperator \Reals     {\mathbb{R}}                     %Use: \Reals por Notation
+    \DeclareMathOperator \Complexs  {\mathbb{C}}                     %Use: \Complex por Notation
+
+    % === LINEAL ALGEBRA & VECTORS ===
+    \DeclareMathOperator \LinealTransformation {\mathcal{T}}        %Use: \LinealTransformation for a cool T
+    \newcommand{\Mag}[1]{\left| #1 \right|}                         %Use: \Mag {Info} 
+
+    \newcommand{\pVector}[1]{                                       %Use: \pVector {Matrix Notation} use parentesis
+        \ensuremath{\begin{pmatrix}#1\end{pmatrix}}                 %Example: \pVector{a\\b\\c} or \pVector{a&b&c} 
+    }
+    \newcommand{\lVector}[1]{                                       %Use: \lVector {Matrix Notation} use a abs 
+        \ensuremath{\begin{vmatrix}#1\end{vmatrix}}                 %Example: \lVector{a\\b\\c} or \lVector{a&b&c} 
+    }
+    \newcommand{\bVector}[1]{                                       %Use: \bVector {Matrix Notation} use a brackets 
+        \ensuremath{\begin{bmatrix}#1\end{bmatrix}}                 %Example: \bVector{a\\b\\c} or \bVector{a&b&c} 
+    }
+    \newcommand{\Vector}[1]{                                        %Use: \Vector {Matrix Notation} no parentesis
+        \ensuremath{\begin{matrix}#1\end{matrix}}                   %Example: \Vector{a\\b\\c} or \Vector{a&b&c}
+    }
+
+    % MATRIX
+    \makeatletter                                                   %Example: \begin{matrix}[cc|c]
+    \renewcommand*\env@matrix[1][*\c@MaxMatrixCols c] {             %WTF! IS THIS
+        \hskip -\arraycolsep                                        %WTF! IS THIS
+        \let\@ifnextchar\new@ifnextchar                             %WTF! IS THIS
+        \array{#1}                                                  %WTF! IS THIS
+    }                                                               %WTF! IS THIS
+    \makeatother                                                    %WTF! IS THIS
+
+    % TRIGONOMETRIC FUNCTIONS
+    \newcommand{\Cos}[1]{\cos\Wrap{#1}}                             %Simple wrappers
+    \newcommand{\Sin}[1]{\sin\Wrap{#1}}                             %Simple wrappers
+
+    % === COMPLEX ANALYSIS ===
+    \newcommand \Cis[1]  {\Cos{#1} + i \Sin{#1}}                    %Use: \Cis for cos(x) + i sin(x)
+    \newcommand \pCis[1] {\Wrap{\Cis{#1}}}                          %Use: \pCis for the same ut parantesis
+    \newcommand \bCis[1] {\Brackets{\Cis{#1}}}                      %Use: \bCis for the same to Brackets
+
+
+
+
+% =====================================================
+% ============        COVER PAGE       ================
+% =====================================================
+\begin{document}
+\begin{titlepage}
+
+    \center
+    % ============ UNIVERSITY NAME AND DATA =========
+    \textsc{\Large Algebra Superior 2}\\[0.5cm] 
+    \textsc{\large Grupo 4098}\\[1.5cm]
+
+    % ============ NAME OF THE DOCUMENT  ============
+    \rule{\linewidth}{0.5mm} \\[1.0cm]
+        { \huge \bfseries Soluciones y Demostraciones}\\[1.0cm] 
+    \rule{\linewidth}{0.5mm} \\[2.0cm]
+     
+    % ============  MY INFORMATION  =================
+    \begin{minipage}{0.55\textwidth}
+        \begin{flushleft}
+            \footnotesize{
+            \textbf{\textsc{Alumnos:}}\\
+                \begin{itemize}
+                    \item Palacios Rodríguez Ricardo Rubén
+                    \item Rosas Hernandez Oscar Andres
+                    \item José Martín Panting Magaña
+                \end{itemize}
+            }
+        \end{flushleft}
+    \end{minipage}
+    ~
+    \begin{minipage}{0.4\textwidth}
+        \begin{flushright} \footnotesize
+            \textbf{\textsc{Profesor: }}\\
+            Leonardo Faustinos Morales
+        \end{flushright}
+    \end{minipage}\\[3,5cm]
+
+    % ====== SEMI TITLE ==========
+    {\LARGE Solución a Problemas de Niven}\\[4cm] 
+    
+    
+    % ====== DATE ================
+    {\large 12 de Septiembre de 2017}\\[2cm] 
+
+    \vfill
+
+\end{titlepage}
+
+
+
+
+% ======================================================================================
+% ==================================     DIVISIBILIDAD    ==============================
+% ======================================================================================
+\section{Divisibilidad}
+
+    \begin{itemize}
+        \item
+            \textbf{Algoritmo de Euclides: Encontrar el GCD(A, B)}
+
+
+            Calcular el $GCD(7469, 2464)$
+            \begin{itemize}
+                \item $(a:7469) = (b:2464)(q:3) + (r:77)$                       
+                \item $(a:2464) = (b:77)(q:32) + (r:0)$
+            \end{itemize}
+            Así que $GCD(7469, 2464) = 77$\\
+
+
+
+            Calcular el $GCD(2689, 4001)$
+            \begin{itemize}
+                \item $(a:2689) = (b:4001)(q:0) + (r:2689)$ 
+                \item $(a:4001) = (b:2689)(q:1) + (r:1312)$ 
+                \item $(a:2689) = (b:1312)(q:2) + (r:65)$   
+                \item $(a:1312) = (b:65)(q:20) + (r:12)$  
+                \item $(a:65) = (b:12)(q:5) + (r:5)$ 
+                \item $(a:12) = (b:5)(q:2) + (r:2)$
+                \item $(a:5) = (b:2)(q:2) + (r:1)$    
+                \item $(a:2) = (b:1)(q:2) + (r:0)$   
+            
+            \end{itemize}                    
+            Así que $GCD(2689, 4001) = 1$
+    \end{itemize}
+
+
+
+
+
+
+
+
+% ======================================================================================
+% ==================================     PRIMOS    =====================================
+% ======================================================================================
+\clearpage
+\section{Primos}
+
+
+
+
+
+
+
+
+
+
+
+
+\end{document}

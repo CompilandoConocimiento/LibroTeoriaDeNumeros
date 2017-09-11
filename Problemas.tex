@@ -449,9 +449,133 @@
 
         Otro truco es aplicar el algoritmo de la división y ver que 
         $1000 = 7(142) + 6$ y $100 = 7(14) + 2$ y $142-14 = 128$.
-            
 
 
+
+    \subsection{Problema 9}
+    \subsection*{Si $bc|ac$ entonces $a|c$}
+
+        % ======== DEMOSTRACION ========
+        \begin{SmallIndentation}[1em]
+            \textbf{Demostración}:
+
+            Si $c=0$ esto se reduce a $0|0$ lo cual es cierto.
+
+            Si $bc|ac$ entonces $ac = q(bc)$, por lo tanto ya que estamos en los
+            enteros podemos cancelar y ver que $a = bq$ es decir $b|a$.
+
+        \end{SmallIndentation}
+
+
+
+    \subsection{Problema 15}
+    \subsection*{Si $x, y$ son impares entonces $(x^2 +y^2)$ es par
+        pero no divisible entre 4}
+
+        % ======== DEMOSTRACION ========
+        \begin{SmallIndentation}[1em]
+            \textbf{Demostración}:
+
+            Pongamos que: $x = 2k_1 + 1$ y $x = 2k_2 + 1$, entonces:
+            \begin{MultiLineEquation*}{3}
+                x^2 + y^2
+                    &= (2k_1 + 1)^2 + (2k_2 + 1)^2              \\
+                    &= 4k_1^2 + 4k_1 + 1 + 4k_2^2 + 4k_2 + 1    \\
+                    &= 4k_1^2 + 4k_1 + 4k_2^2 + 4k_2 + 2        \\
+                    &= 4(k_1^2 + k_1 + k_2^2 + k_2) + 2         \\
+                    &= 2(2(k_1^2 + k_1 + k_2^2 + k_2) + 1)
+            \end{MultiLineEquation*}
+                
+            Gracias a la última línea vemos que que $x^2 + y^2$ es par, y gracias
+            a la penúltima línea es vemos que no puede ser divisible entre 4
+                
+
+        \end{SmallIndentation}
+
+
+    \clearpage
+    \subsection{Problema 19}
+    \subsection*{Cualquier conjunto de números primos pares, son primos relativos}
+
+
+        % ======== DEMOSTRACION ========
+        \begin{SmallIndentation}[1em]
+            \textbf{Demostración}:
+
+            Por contradicción, supón que hay un conjunto donde no son primos 
+            relativos, pero si sus pares de elementos son coprimos.
+
+            Sabemos que:
+            \begin{equation*}
+                A = \Set{a_1, a_2, a_3,\dots, a_{n-1}, a_n}
+                \text{ donde } 
+                (a_i,a_j) = 1 \; \forall i,j, \MiniSpace i \neq j
+            \end{equation*}
+
+            Si el conjunto no fuera coprimo entonces pasaría que:
+            $GCD(a_1, a_2, a_3,\dots, a_{n-1}, a_n) = d$ con $d \neq 1$
+
+            Y por definición sabemos que $d|a_i \; \forall a_i \in S$
+
+            Pero si para todos los pares de números tenemos que el único número que 
+            divide a ambos es el uno.
+
+            Así, ningún miembro de $A$ tiene un divisor común con $d$ lo que sea
+            una contradicción.
+
+            Por lo tanto, el conjunto de enteros que son relativamente primos
+            en pares es también relativamente primo.
+
+        \end{SmallIndentation}
+
+
+
+    \subsection{Problema 25}
+    \subsection*{Demuestre que existe una cantidad infinita de enteros
+        x, y tal que $x+y=100$ y $(x,y)=5$}
+
+
+        % ======== DEMOSTRACION ========
+        \begin{SmallIndentation}[1em]
+            \textbf{Demostración}:
+
+            Ve que una solución es $55 + 45 = 5$ y $(55, 45)=5$
+            Para encontrar todas las demás soluciones simplemente 
+            tenemos que:
+            \begin{itemize}
+                \item x = 55 + r
+                \item y = 55 - r
+            \end{itemize}
+
+            donde $r = 100k$ y $k$ es cualquier entero tal que $(k, 55) = 1$
+        \end{SmallIndentation}
+
+
+    \clearpage
+    \subsection{Problema 33}
+    \subsection*{GCD(a,b,c) = GCD((a, b), c)}
+
+        % ======== DEMOSTRACION ========
+        \begin{SmallIndentation}[1em]
+            \textbf{Demostración}:
+
+            Usando la factorización de primos tenemos que:
+            \begin{itemize}
+                \item $a = \prod_i p^{\alpha_i}$
+                \item $b = \prod_i p^{\beta_i}$
+                \item $c = \prod_i p^{\gamma_i}$
+            \end{itemize}
+
+            Entonces tenemos que:
+
+            \begin{MultiLineEquation*}{2}
+                GCD(a,b,c)
+                    &= \prod_i p^{min(\alpha_i, \beta_i, \gamma_i)}
+                    &= \prod_i p^{min(min(\alpha_i, \beta_i), \gamma_i))}
+                    &= GCD((a,b),c)
+            \end{MultiLineEquation*}
+
+        \end{SmallIndentation}
 
 
 
@@ -462,6 +586,69 @@
 % ======================================================================================
 \clearpage
 \section{Primos}
+
+
+    \subsection{Problema 11}
+    \subsection*{Si $x, y$ son coprimos con 3 entonces $x^2 + y^2$ no puede ser un cuadrado
+        perfecto}
+
+        % ======== DEMOSTRACION ========
+        \begin{SmallIndentation}[1em]
+            \textbf{Demostración}:
+
+            Antes que nada recuerda que un cuadrado perfecto, lo podemos expresar como:
+            \begin{itemize}
+                \item $(3k+0)^2 = 9k^2 = 3(3k^2)$
+                \item $(3k+1)^2 = 9k^2 + 6k + 1 = 3(3k^2 + 2k) + 1$
+                \item $(3k+2)^2 = 9k^2 + 12k + 3 +1 = 3(3k^2 + 4k + 1) + 1$
+            \end{itemize}
+
+            Es decir, todo cuadrado perfecto o es divisible entre 3 o es de la forma
+            $3k+1$.
+
+            Veamos los casos posibles:
+            \begin{itemize}
+                \item $x=3k_1+1$ y $y=3k_2+1$
+
+                    Dado esto tenemos que:
+                    \begin{MultiLineEquation*}{3}
+                        (3k_1+1)^2 + (3k_2+1)^2
+                            &= 9k_1^2 + 6k_1 + 1  +  9k_2^2 + 6k_2 + 1      \\
+                            &= 9k_1^2 + 6k_1 + 9k_2^2 + 6k_2 + 2            \\
+                            &= 9k_1^2 + 6k_1 + 9k_2^2 + 6k_2 + 2            \\
+                            &= 3(3k_1^2 + 2k_1 + 3k_2^2 + 2k_2) + 2            
+                    \end{MultiLineEquation*}
+
+                    Por lo tanto no puede ser un cuadrado perfecto.
+                        
+                \item $x=3k_1+1$ y $y=3k_2+2$
+                    
+                    Dado esto tenemos que:
+                    \begin{MultiLineEquation*}{3}
+                        (3k_1+1)^2 + (3k_2+2)^2
+                            &= 9k_1^2 + 6k_1 + 1 + 9k_2^2 + 12k_2 +3+1      \\
+                            &= 9k_1^2 + 6k_1 + 3 + 9k_2^2 + 12k_2 + 2       \\
+                            &= 3(3k_1^2 + 2k_1 + 1 + 3k_2^2 + 4k_2) + 2
+                    \end{MultiLineEquation*}
+
+                    Por lo tanto no puede ser un cuadrado perfecto.
+
+
+                \item $x=3k_1+2$ y $y=3k_2+2$
+
+                    Dado esto tenemos que:
+                    \begin{MultiLineEquation*}{3}
+                        (3k_1+2)^2 + (3k_2+2)^2
+                            &= 9k_1^2 + 12k_1 + 3+1  +  9k_2^2 + 12k_2 +3+1 \\
+                            &= 9k_1^2 + 12k_1 + 6  +  9k_2^2 + 12k_2 + 2    \\
+                            &= 3(3k_1^2 + 6k_1 + 2 + 3k_2^2 + 6k_2) + 2    
+                    \end{MultiLineEquation*}
+
+                    Por lo tanto no puede ser un cuadrado perfecto.
+            \end{itemize}
+
+
+        \end{SmallIndentation}
 
 
 

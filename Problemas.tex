@@ -170,12 +170,12 @@
     \center
     % ============ UNIVERSITY NAME AND DATA =========
     \textsc{\Large Algebra Superior 2}\\[0.5cm] 
-    \textsc{\large Grupo 4098}\\[1.5cm]
+    \textsc{\large Grupo 4098}\\[1.0cm]
 
     % ============ NAME OF THE DOCUMENT  ============
     \rule{\linewidth}{0.5mm} \\[1.0cm]
         { \huge \bfseries Soluciones y Demostraciones}\\[1.0cm] 
-    \rule{\linewidth}{0.5mm} \\[2.0cm]
+    \rule{\linewidth}{0.5mm} \\[1.5cm]
      
     % ============  MY INFORMATION  =================
     \begin{minipage}{0.55\textwidth}
@@ -186,6 +186,14 @@
                     \item Palacios Rodríguez Ricardo Rubén
                     \item Rosas Hernandez Oscar Andres
                     \item José Martín Panting Magaña
+                    \item Raúl Leyva Cedillo
+                    \item Angel Mariano Guiño Flores
+                    \item Gloria Guadalupe Cervantes Vidal
+                    \item David Iván Morales Campos
+                    \item Aaron Barrera Tellez
+                    \item Elias Garcia Alejandro
+                    \item Víctor Hugo García Hernández
+                    \item Oscar Márquez Esquivel
                 \end{itemize}
             }
         \end{flushleft}
@@ -198,12 +206,9 @@
         \end{flushright}
     \end{minipage}\\[3,5cm]
 
-    % ====== SEMI TITLE ==========
-    {\LARGE Solución a Problemas de Niven}\\[4cm] 
-    
     
     % ====== DATE ================
-    {\large 12 de Septiembre de 2017}\\[2cm] 
+    {\large 12 de Septiembre de 2017}\\[1cm] 
 
     \vfill
 
@@ -528,6 +533,47 @@
 
         \end{SmallIndentation}
 
+    \subsection{Problema 21}
+    \subsection*{Demuestre que cualquier entero de la forma $6k+1$ es de la forma $3k-1$
+        pero no de manera inversa}
+
+
+        % ======== DEMOSTRACION ========
+        \begin{SmallIndentation}[1em]
+            \textbf{Demostración}:
+
+            Si tenemos un número de la forma $6k+1$ entonces ve que $6k+1 = 3(2k+2)-1$
+
+            Pero veamos una contraprueba para su inversa:
+            Dado un número de la forma $3k-1$, por ejemplo 2, tenemos que no lo
+            podemos escribir de la forma $6k+1$, pues implica $6k+1=2$ es decir
+            $6k=1$, lo cual obviamente no tiene solución en los enteros, por lo tanto
+            queda demostrado que su inversa no es correcta.
+            
+        \end{SmallIndentation}
+
+
+
+    \subsection{Problema 23}
+    \subsection*{$n^2 = 3k$ ó $n^2 = 3k + 1$}
+
+
+        % ======== DEMOSTRACION ========
+        \begin{SmallIndentation}[1em]
+            \textbf{Demostración}:
+
+            Antes que nada recuerda que un cuadrado perfecto, lo podemos expresar como:
+            \begin{itemize}
+                \item $(3k+0)^2 = 9k^2 = 3(3k^2)$
+                \item $(3k+1)^2 = 9k^2 + 6k + 1 = 3(3k^2 + 2k) + 1$
+                \item $(3k+2)^2 = 9k^2 + 12k + 3 +1 = 3(3k^2 + 4k + 1) + 1$
+            \end{itemize}
+
+            Es decir, todo cuadrado perfecto o es divisible entre 3 o es de la forma
+            $3k+1$.
+            
+        \end{SmallIndentation}
+
 
 
     \subsection{Problema 25}
@@ -586,6 +632,73 @@
 % ======================================================================================
 \clearpage
 \section{Primos}
+
+
+    \subsection{Problema 9}
+    \subsection*{Cualquier número es divisible entre 11 si y solo si la diferencia de la suma
+        de los dígitos impares y los dígitos pares son divisibles entre 11}
+
+        % ======== DEMOSTRACION ========
+        \begin{SmallIndentation}[1em]
+            \textbf{Demostración}:
+
+            Antes que nada, recuerda que a $n$ lo puedes escribir como
+            $n = a_0(10^0) + a_1(10^1) + a_2(10^2) + \dots + a_k(10^k)$.
+
+            Ahora, veamos este curioso patrón donde esta la clave:
+            \begin{itemize}
+                 \item $10 \equiv -1 \pmod{11}$
+                 \item $100 \equiv (10)(10) \equiv (-1)(-1) \equiv 1 \pmod{11}$
+                 \item $1000 \equiv (100)(10)(10) \equiv (-1)(-1)(-1) \equiv -1 \pmod{11}$
+                 \item $\dots$
+             \end{itemize} 
+
+            Por lo tanto vemos que que de manera general $10^n \equiv (-1)^n \pmod{11}$
+
+            Entonces si un número $x$ es divisible entre 11 tendremos que $x \equiv 0 \pmod{11}$
+            Por lo tanto $(1)a_0 + (10)a_1 + \dots +(10^k)a_k \equiv 0 \pmod{11}$
+            es decir $(1)a_0 + (-1)a_1 + (1)a_1 +\dots +(-1)^{k-1}a_k \equiv 0 \pmod{11}$
+
+            Que si te das cuenta, es lo que queriamos demostrar :D
+
+        \end{SmallIndentation}
+
+
+
+        \subsection{Problema 10}
+    \subsection*{Si $x, y$ son impares entonces $x^2 + y^2$ no puede ser un cuadrado
+        perfecto}
+
+        % ======== DEMOSTRACION ========
+        \begin{SmallIndentation}[1em]
+            \textbf{Demostración}:
+
+            Esta demostración se deduce de manera inmediata del siguiente problema, pero ya 
+            que lo estoy haciendo en \LaTeX es tal fácil como un copy paste :D
+
+            Antes que nada recuerda que un cuadrado perfecto, lo podemos expresar como:
+            \begin{itemize}
+                \item $(3k+0)^2 = 9k^2 = 3(3k^2)$
+                \item $(3k+1)^2 = 9k^2 + 6k + 1 = 3(3k^2 + 2k) + 1$
+                \item $(3k+2)^2 = 9k^2 + 12k + 3 +1 = 3(3k^2 + 4k + 1) + 1$
+            \end{itemize}
+
+            Es decir, todo cuadrado perfecto o es divisible entre 3 o es de la forma
+            $3k+1$.
+
+            Dado esto tenemos que:
+            \begin{MultiLineEquation*}{3}
+                (3k_1+1)^2 + (3k_2+1)^2
+                    &= 9k_1^2 + 6k_1 + 1  +  9k_2^2 + 6k_2 + 1      \\
+                    &= 9k_1^2 + 6k_1 + 9k_2^2 + 6k_2 + 2            \\
+                    &= 9k_1^2 + 6k_1 + 9k_2^2 + 6k_2 + 2            \\
+                    &= 3(3k_1^2 + 2k_1 + 3k_2^2 + 2k_2) + 2            
+            \end{MultiLineEquation*}
+
+            Por lo tanto no puede ser un cuadrado perfecto.
+
+        \end{SmallIndentation}
+
 
 
     \subsection{Problema 11}

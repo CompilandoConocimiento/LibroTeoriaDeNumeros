@@ -967,7 +967,7 @@
 
             \begin{itemize}
 
-                \item Un número $n \in \Integers$ es divisble entre 3 si y solo si
+                \item Un número $n \in \Integers$ es divisible entre 3 si y solo si
                     la suma de digitos (en base 10) de $n$ es divisible entre 3.
 
                     % ======== DEMOSTRACION ========
@@ -1984,7 +1984,7 @@
 
 
     % =====================================================
-    % ======   TEOREMA FUNDAMENTAL DE ARITMETICA  =========
+    % ==============    PHI DE EULER    ===================
     % =====================================================
     \clearpage
     \section{Función Phi de Euler: $\phi$ }
@@ -2003,94 +2003,8 @@
 
 
         % ==================================
-        % ======   PROPIEDADES     =========
-        % ==================================
-        \clearpage
-        \subsection{Propiedades}
-
-            \begin{itemize}
-
-                \item Esta función es multiplicativa, es decir:
-                    $\phi(m n) =
-                        \phi(n)\phi(m) \dfrac{{\scriptstyle gcd(m,n)}}{\phi({\scriptstyle gcd(m,n)})}$
-
-                \item Para un primo $p \in \Primes$, $\phi(p) = p - 1$
-
-                    % ======== DEMOSTRACION ========
-                    \begin{SmallIndentation}[1em]
-                        \textbf{Ideas}:
-
-                        Sabemos de la definición de primo, que son aquellos naturales que solo tienen
-                        a si mismos (y a uno) como divisores comunes, por lo tanto, todos los demás
-                        naturales menores son coprimos con cualquier primo, por lo tanto $\phi(p) = p - 1$
-                    \end{SmallIndentation}
-
-
-                \item Una forma muy genial de calcular esta función en programación es:\\
-                    $\phi(n) = n \cdot \prod_{p|n} \Wrap{1 - \dfrac{1}{p}}$
-
-                    % ======== DEMOSTRACION ========
-                    \begin{SmallIndentation}[1em]
-                        \textbf{Demostración}:
-
-                        Esto nos dice que podemos encontar a $\phi(n)$ simplemente multiplicando
-                        $\Wrap{1 - \dfrac{1}{p}}$ donde $p$ es cada uno de los factores primos
-                        de $n$ de la forma y finalmente multiplicarlo por $n$.
-
-                        Recuerda que para un primo $p \in \Primes$, $\phi(p) = p - 1$ y que además
-                        Esta función es multiplicativa, es decir:
-                        $\phi(m \cdot n) = \phi(n)\phi(m) \cdot 
-                            \dfrac{{\scriptstyle gcd(m,n)}}{\phi({\scriptstyle gcd(m,n)})}$.
-
-                        Supón un $p \in \Primes$, entonces:
-                        $\phi(p^e) = p^e - p^{e-1} = p^e\Wrap{1 - \dfrac{1}{p}}$
-
-                        Por lo tanto:
-                        \begin{MultiLineEquation*}{2}
-                            \phi(n) &= \phi\Wrap{p_1^{e_1} \dots p_k^{e_k} }                        \\
-                                    &= \phi\Wrap{p_1^{e_1}} \dots \phi\Wrap{p_k^{e_k}}              \\
-                                    &= n \Wrap{1 - \dfrac{1}{p_1}} \dots \Wrap{1 - \dfrac{1}{p_k}}
-                        \end{MultiLineEquation*}
-
-                    \end{SmallIndentation}
-
-                \item $\sum_{d | n} \phi(d) =n$
-                    % ======== DEMOSTRACION ========
-                    \begin{SmallIndentation}[1em]
-                        \textbf{Ideas}:
-
-                        Esto nos dice que la multiplicación de las phi's de todos
-                        los divisores de $n$ es la misma $n$.
-
-                    \end{SmallIndentation}
-
-
-
-                \item $\sum_{gcd(i, n) \text{ y } i < n} i = \dfrac{n}{2} \phi(n)$
-                    % ======== DEMOSTRACION ========
-                    \begin{SmallIndentation}[1em]
-                        \textbf{Ideas}:
-
-                        Esto nos dice que la suma de todos los primos relativos menores que
-                        $n$ de $n$ es $\dfrac{n}{2} \phi(n)$.
-
-                    \end{SmallIndentation}
-
-                \item $\phi(n^m) = n^{m-1} \phi(n)$
-
-
-                \item Si $n$ Y $a$ son coprimos entonces $a^{\phi(n)} \equiv 1 \pmod{n}$
-
-            \end{itemize}
-
-
-
-
-
-        % ==================================
         % =====      EJEMPLO        ========
         % ==================================
-        \clearpage
         \subsection{Ejemplo}
             
             Supón que $n=9$ entonces tenemos que:
@@ -2114,13 +2028,11 @@
 
 
 
-
-
-
         % ==================================
-        % ======   IMPORTANTES     =========
+        % ======   PROPIEDADES     =========
         % ==================================
-        \subsection{Proposiciones Importantes}
+        \clearpage
+        \subsection{Propiedades}
 
             \begin{itemize}
 
@@ -2156,7 +2068,80 @@
 
                     \end{SmallIndentation}
 
+                \item Esta función es multiplicativa, es decir:
+                    $\phi(m n) =
+                        \phi(n)\phi(m) \dfrac{{\scriptstyle gcd(m,n)}}{\phi({\scriptstyle gcd(m,n)})}$
+
+                \item Para un primo $p \in \Primes$, $\phi(p) = p - 1$
+
+                    % ======== DEMOSTRACION ========
+                    \begin{SmallIndentation}[1em]
+                        \textbf{Ideas}:
+
+                        Sabemos de la definición de primo, que son aquellos naturales que solo tienen
+                        a si mismos (y a uno) como divisores comunes, por lo tanto, todos los demás
+                        naturales menores son coprimos con cualquier primo, por lo tanto $\phi(p) = p - 1$
+                    \end{SmallIndentation}
+
+                \item $\sum_{d | n} \phi(d) =n$
+                    % ======== DEMOSTRACION ========
+                    \begin{SmallIndentation}[1em]
+                        \textbf{Ideas}:
+
+                        Esto nos dice que la multiplicación de las phi's de todos
+                        los divisores de $n$ es la misma $n$.
+
+                    \end{SmallIndentation}
+
+
+
+                \item $\sum_{gcd(i, n) \text{ y } i < n} i = \dfrac{n}{2} \phi(n)$
+                    % ======== DEMOSTRACION ========
+                    \begin{SmallIndentation}[1em]
+                        \textbf{Ideas}:
+
+                        Esto nos dice que la suma de todos los primos relativos menores que
+                        $n$ de $n$ es $\dfrac{n}{2} \phi(n)$.
+
+                    \end{SmallIndentation}
+
+                \item $\phi(n^m) = n^{m-1} \phi(n)$
+
+
+                \item Si $n$ y $a$ son coprimos entonces $a^{\phi(n)} \equiv 1 \pmod{n}$
+
+                \clearpage
+
+                \item Una forma muy genial de calcular esta función en programación es:\\
+                    $\phi(n) = n \cdot \prod_{p|n} \Wrap{1 - \dfrac{1}{p}}$
+
+                    % ======== DEMOSTRACION ========
+                    \begin{SmallIndentation}[1em]
+                        \textbf{Demostración}:
+
+                        Esto nos dice que podemos encontar a $\phi(n)$ simplemente multiplicando
+                        $\Wrap{1 - \dfrac{1}{p}}$ donde $p$ es cada uno de los factores primos
+                        de $n$ de la forma y finalmente multiplicarlo por $n$.
+
+                        Recuerda que para un primo $p \in \Primes$, $\phi(p) = p - 1$ y que además
+                        Esta función es multiplicativa, es decir:
+                        $\phi(m \cdot n) = \phi(n)\phi(m) \cdot 
+                            \dfrac{{\scriptstyle gcd(m,n)}}{\phi({\scriptstyle gcd(m,n)})}$.
+
+                        Supón un $p \in \Primes$, entonces:
+                        $\phi(p^e) = p^e - p^{e-1} = p^e\Wrap{1 - \dfrac{1}{p}}$
+
+                        Por lo tanto:
+                        \begin{MultiLineEquation*}{2}
+                            \phi(n) &= \phi\Wrap{p_1^{e_1} \dots p_k^{e_k} }                        \\
+                                    &= \phi\Wrap{p_1^{e_1}} \dots \phi\Wrap{p_k^{e_k}}              \\
+                                    &= n \Wrap{1 - \dfrac{1}{p_1}} \dots \Wrap{1 - \dfrac{1}{p_k}}
+                        \end{MultiLineEquation*}
+
+                    \end{SmallIndentation}
+
             \end{itemize}
+
 
 
 
@@ -2999,6 +2984,10 @@
                     \end{SmallIndentation}            
 
                 \end{itemize}
+
+
+
+
     % =====================================================
     % ========         EXPONENCIACION MODULAR     =========
     % =====================================================
@@ -3129,21 +3118,140 @@
 
 
 
-
     % =====================================================
-    % ========       ECUACIONES MODULO N          =========
+    % ========       ARITMETICA MODULAR           =========
     % =====================================================
     \clearpage
-    \section{Ecuaciones Módulo N}
+    \section{Teorema de Wilson}
 
-        Esta sección nos ayudará a resolver ecuaciónes pero con
-        congruencias de la forma
-
+        Este hermoso teorema lo podemos escribir como:
         \begin{equation}
-            ax \equiv b \pmod{n}
+            \text{Si $p$ es primo entonces } (p-1)! \equiv -1 \pmod{p}
         \end{equation}
 
-        E incluso a saber si es que no existe dicha solución.
+
+        % ======== DEMOSTRACION ========
+        \begin{SmallIndentation}[1em]
+            \textbf{Demostración}:
+
+            Esto tiene muchas interpretaciones como que multiplicar todos los residuos
+            posibles de dividir entre un primo son congruentes con $p-1 \pmod{p}$.
+
+            Pero dejando de lado las intepretaciones, veamos como demostrarlo.
+            El truco aquí esta en los inversos:
+
+            \begin{itemize}
+                \item $1, p-1$ son inversos de si mismos, es decir
+                    $(1)(1) \equiv (p-1)(p-1) \equiv 1 \pmod{p}$
+
+                \item Si hablamos de los enteros $2 \leq i \leq p-2$ vemos que 
+                    nunca se cumple que $i^2 \equiv 1 \pmod{p}$
+
+                    Esto es muy fácil de demostrar, pues por contradicción tenemos
+                    que: $i^2 \equiv 1 \pmod{p}$ implica que $i^2 - 1\equiv 0 \pmod{p}$
+                    es decir $(i+1)(i-1) \equiv 0 \pmod{p}$ pero esto implicaría que
+                    $p | (i+1)(i-1)$ pero esto no se puede pues $p$ es primo y 
+                    $i+1, i-1$ son residuos módulo $p$ :o ¡Contradicción!
+
+            \end{itemize}
+
+
+            Ahora veamos que todos los i del producto $(p-1)!$ que cumplen
+            con $2 \leq i \leq p-2$ tienen que tener inverso.
+
+            Esto de deduce del Pequeño Teorema de Fermat, donde tenemos
+            que $(i, p) = 1$ implica que $i^{\phi(p)-1}$ es el inverso de $i$.
+
+            Así que de que existen, existen.
+            Ahora, ya que $\Set{1, 2, \dots, p-1}$ es un sistema completo y reducido
+            de residuos tenemos que $\exists j \in \Set{1, 2, \dots, p-1}$ donde
+            $i^{\phi(p)-1} \equiv j \pmod{p}$ y $i \neq j$.
+
+            Por lo tanto vemos que $(p-1)!$ se puede escribir de manera muy bonita donde
+            todos los productos se cancelan menos $p-1$ y 1:
+            \begin{equation}
+                (p-1)!
+                    \equiv (1)[(i_1)(i_1)^{-1}][(i_2)(i_2)^{-1}] \cdots
+                        \Brackets{(i_{\frac{p-3}{2}})(i_{\frac{p-3}{2}})^{-1}}(p-1)
+                    \equiv p-1
+                    \equiv 1
+                    \pmod{p}           
+            \end{equation}
+
+            Esto se puede hacer pues $p$ es impar, por lo tanto $\frac{p-3}{2}$ es un 
+            entero.
+
+            Y con esto hemos demostrado este hermoso teorema :')
+
+        \end{SmallIndentation}   
+
+
+
+
+
+    % ============================================
+    % ========        PROPIEDADES        =========
+    % ============================================
+    \clearpage
+    \subsection{Propiedades}
+
+        \begin{itemize}
+            \item $x^2 \equiv -1 \pmod{p}$ si y solo si $p=4k+1$
+
+             % ======== DEMOSTRACION ========
+            \begin{SmallIndentation}[1em]
+                \textbf{Demostración}:
+
+                Esto parece más difícil de lo que es, simplemente tendremos
+                que ver que tenemos que podemos el teorema anterior en forma
+                de cuadrado, el enunciado anterior es $(p-1)! \equiv -1 \pmod{p}$
+
+                Para hacerlo tendremos que usar la idea de que:
+                \begin{MultiLineEquation*}{3}
+                    (j)(p-j)                        
+                        &\equiv jp - j^2         &&\pmod{p}    \\
+                        &\equiv 0 - j^2          &&\pmod{p}    \\
+                        &\equiv  - j^2           &&\pmod{p}
+                \end{MultiLineEquation*}
+
+                Usaremos ese truco para poner a nuestro producto de la forma:
+                \begin{MultiLineEquation*}{3}
+                    (p-1)!
+                        &\equiv [(1)(p-1)][(2)(p-2)]\dots
+                        \Brackets{(\frac{p-1}{2})(p-\frac{p-1}{2})} &&\pmod{p}    \\
+                        &\equiv \prod_{i=2}^{\frac{p-1}{2}} i (p-i) &&\pmod{p}    \\
+                        &\equiv \prod_{i=2}^{\frac{p-1}{2}} ip-i^2  &&\pmod{p}    \\
+                        &\equiv \prod_{i=2}^{\frac{p-1}{2}} 0 -i^2  &&\pmod{p}    \\
+                        &\equiv \prod_{i=2}^{\frac{p-1}{2}}   -i^2  &&\pmod{p}    \\
+                        &\equiv (-1)^{\frac{p-1}{2}}
+                            \prod_{i=2}^{\frac{p-1}{2}}    i^2      &&\pmod{p}    \\
+                        &\equiv (-1)^{\frac{p-1}{2}}
+                            \Wrap{\prod_{i=2}^{\frac{p-1}{2}} i}^2  &&\pmod{p}    \\ 
+                        &\equiv -1                                  &&\pmod{p}    \\
+                \end{MultiLineEquation*}
+
+                Por lo tanto lo anterior lo podemos simplificar a 
+                $x^2 \equiv -1 \pmod{p}$ si y solo si 
+                $(-1)^{\frac{p-1}{2}} = 1$, es decir si $\frac{p-1}{2}$ es par
+                es decir: $\frac{p-1}{2} = 2k$ despejando tenemos que 
+                $p=4k+1$.
+
+
+                Y es más, gracias a esta demostración vemos que la $x$ que estamos
+                buscando es $\prod_{i=2}^{\frac{p-1}{2}} i$
+                
+                Yo llamo a esto una buena demostración.
+
+            \end{SmallIndentation}
+        \end{itemize}
+
+
+
+
+
+
+
+
 
 
 
@@ -3228,6 +3336,7 @@
                     [k]_n + [k']_n &= [0]_n     &&\Remember{Como campo}
                 \end{MultiLineEquation}
 
+
             % ==================================
             % ==  INVERSO MULTIPLICATIVO    ====
             % ==================================
@@ -3240,6 +3349,16 @@
                     k \cdot k'          &= 1         &&\Remember{Como elementos}    \\
                     [k]_n \cdot [k'']_n &= [1]_n     &&\Remember{Como campo}
                 \end{MultiLineEquation}
+
+
+                Podemos ver que el pequeño teorema de Fermat, ya sabes el que dice que:
+                Si $(a, m) = 1$ entonces $a^{\phi(n)} \equiv 1 \pmod{n}$
+
+                Esto si te das cuenta nos dice que mucho sobre el inverso multiplicativo
+                pues tendremos que $(a)a^{\phi(n)-1} \equiv 1 \pmod{n}$.
+
+                Así que ahí esta tu inverso, es $a^{\phi(n)-1}$
+
 
 
 

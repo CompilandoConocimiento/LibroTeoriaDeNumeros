@@ -562,7 +562,7 @@
 
             \begin{itemize}
 
-                \item $b|b$
+                \item \textbf{Relación Reflexiva:} $b|b$
 
                     % ======== DEMOSTRACION ========
                     \begin{SmallIndentation}[1em]
@@ -570,6 +570,42 @@
 
                         Basta con ver que si $a = b$ entonces $b = bq$, por lo tanto $q = 1$.
                         Y listo, $1 \in \Integers$.
+
+                    \end{SmallIndentation}
+
+                \item \textbf{Relación Transitiva:} Si $b|a$ y $a|c$ entonces $b|c$
+
+                    % ======== DEMOSTRACION ========
+                    \begin{SmallIndentation}[1em]
+                        \textbf{Demostración}:
+
+                        Sabemos que $a=bq_1$, y $c=aq_2$ por lo tanto podemos sustituir, 
+                        $c=(bq_1)q_2$ que es lo mismo que $c=bq_3$, donde $q_3 = q_1q_2$
+                        donde $q_3 \in \Integers$. 
+                        Y ya que $c=bq_3$ podemos decir que $b|c$.
+
+                    \end{SmallIndentation}
+
+
+
+                \item \textbf{Igualdad Usando Divisibilidad:} $a = \pm b$ si y solo si $a|b$ y $b|a$
+
+                    % ======== DEMOSTRACION ========
+                    \begin{SmallIndentation}[1em]
+                        \textbf{Demostración}:
+
+
+                            Al igual que en conjuntos (doble contensión), podemos crear algo parecido en
+                            teoría de números.
+
+                            Sabemos que $a=bq_1$, y $b=aq_2$ por lo tanto podemos sustituir, 
+                            $a=(aq_2)q_1$ por lo tanto $1=(q_1)(q_2)$, que es lo mismo que
+                            $\frac{1}{q_2}=q_1$ ahora que para $q_1$ siga en los $\Integers$,
+                            $q_2 = \pm 1$ por lo tanto $q_1 = \pm \frac{1}{1} = \pm 1$ por
+                            lo tanto tenemos que $a = bq_1$ que es lo mismo que decir que $a = \pm b$.
+
+                            Por lo tanto si $a|b$ y $b|a$ entonces nos les queda de otra mas que ser el
+                            mismo número (sin contar los signos de dichos números).
 
                     \end{SmallIndentation}
 
@@ -584,6 +620,17 @@
 
                     \end{SmallIndentation}
 
+
+                \item $0|a$ si y solo $a=0$
+
+                    % ======== DEMOSTRACION ========
+                    \begin{SmallIndentation}[1em]
+                        \textbf{Demostración}:
+
+                        Basta con ver que tenemos $a = 0q$, esto es lo mismo que $a = 0$.
+
+                    \end{SmallIndentation}
+
                 \item $1|a$ y también $-1|a$
 
                     % ======== DEMOSTRACION ========
@@ -594,16 +641,7 @@
                         Y listo, $\pm a \in \Integers$.
 
                     \end{SmallIndentation}
-            
-                \item $0|a$ si y solo $a=0$
 
-                    % ======== DEMOSTRACION ========
-                    \begin{SmallIndentation}[1em]
-                        \textbf{Demostración}:
-
-                        Basta con ver que tenemos $a = 0q$, esto es lo mismo que $a = 0$.
-
-                    \end{SmallIndentation}
 
                 \item $b|1$ si y solo si $b=1$ ó $b=-1$
 
@@ -615,80 +653,34 @@
                         recordar que $b, q \in \Integers$, por lo tanto $q=1$ o bien $q=-1$ que es lo
                         mismo que decir que $b=1$ ó $b=-1$. 
 
-                    \end{SmallIndentation}
-
-
-                \item $b|a$ y $a|b$ si y solo si $a=\pm b$
-
-                    % ======== DEMOSTRACION ========
-                    \begin{SmallIndentation}[1em]
-                        \textbf{Demostración}:
-
-                        Sabemos que $a=bq_1$, y $b=aq_2$ por lo tanto podemos sustituir, 
-                        $a=(aq_2)q_1$ por lo tanto $1=(q_1)(q_2)$, que es lo mismo que
-                        $\frac{1}{q_2}=q_1$ ahora que para $q_1$ siga en los $\Integers$,
-                        $q_2 = \pm 1$ por lo tanto $q_1 = \pm \frac{1}{1} = \pm 1$ por
-                        lo tanto tenemos que $a = bq_1$ que es lo mismo que decir que $a = \pm b$.
-
-                    \end{SmallIndentation}
-
-
-                \item Si $b|a$ y $a|c$ entonces $b|c$
-
-                    % ======== DEMOSTRACION ========
-                    \begin{SmallIndentation}[1em]
-                        \textbf{Demostración}:
-
-                        Sabemos que $a=bq_1$, y $c=aq_2$ por lo tanto podemos sustituir, 
-                        $c=(bq_1)q_2$ que es lo mismo que $c=bq_3$, donde $q_3 = q_1q_2$
-                        donde $q_3 \in \Integers$. 
-                        Y ya que $c=bq_3$ podemos decir que $b|c$.
-
-                    \end{SmallIndentation}
+                    \end{SmallIndentation}                
 
                 \clearpage
 
-                \item Si $a|b$ y $a|b \pm c$ entonces $a|c$
+
+
+                \item \textbf{Divisilibidad y los Signos:}
+                    $b|a \lequal b|-a \lequal -b|a \lequal -b|-a$
 
                     % ======== DEMOSTRACION ========
                     \begin{SmallIndentation}[1em]
                         \textbf{Demostración}:
 
-                        Sabemos que $b=aq_1$, y $b \pm c=aq_2$, si restamos tenemos que
-                        $b \pm c -b = aq_2 - aq_1$, que es lo mismo que $\pm c = (q_2-q_1)a$,
-                        que es lo mismo que $c = \pm(q_2-q_1)a$ que es lo mismo que $c = q_3a$.
+                        Sabemos que existe $q_1$ tal que $a=bq_1$ para nuestro primer ssi
+                        basta con decir que $-a=b(-q_1) = bq_2$ y listo, encontre a $q_2$
+                        con lo que puedo afirmar que $b|-a$.
+
+                        Para el segundo basta con ver que $a = -bq_3$ donde $q_3 = q_2$, con
+                        lo que puedo afirmar que $-b|a$.
+
+                        Para el último ssi basta con con ver que $-a=-bq_4$ donde $q_4=q_1$
+                        así que puedo afirmar que $-b|-a$.
 
                     \end{SmallIndentation}
 
-
-
-                \item Si $b|a$ entonces $b|ak$ $\forall k \in \Integers$.
-
-                    % ======== DEMOSTRACION ========
-                    \begin{SmallIndentation}[1em]
-                        \textbf{Demostración}:
-
-                        Sabemos que $a=bq$ por lo mismo podemos decir que
-                        $ak=b(qk)$ por lo tanto $b|ak$.
-
-                    \end{SmallIndentation}
-                    
-
-
-                \item Si $b|a$ y $b|c$ entonces $b|a \pm c$
-
-                    % ======== DEMOSTRACION ========
-                    \begin{SmallIndentation}[1em]
-                        \textbf{Demostración}:
-
-                        Sabemos que $a=bq_1$, y $c=bq_2$ por lo tanto podemos decir que
-                        sumar o restar ambas ecuaciones, lo que nos daría
-                        $a \pm c = bq_1 \pm bq_2$ que es lo mismo que
-                        $a \pm c = b (q_1 \pm q_2)$ por lo que podemos decir que $b|a \pm c$.
-
-                    \end{SmallIndentation}
-
-                \item Si $b|a$ y $b|c$ si y solo si $b|\alpha a + \beta c$ $\; \forall \alpha, \beta \in \Integers$ 
+                \item \textbf{Combinación Lineal:}
+                    Si $b|a$ y $b|c$ si y solo si
+                        $b|\alpha a + \beta c$ $\; \forall \alpha, \beta \in \Integers$ 
 
                     % ======== DEMOSTRACION ========
                     \begin{SmallIndentation}[1em]
@@ -713,29 +705,30 @@
                     \end{SmallIndentation}
 
 
-                
-
-                \item $b|a$ si y solo si $b|-a$ si y solo si $-b|a$ si y solo si $-b|-a$
+                \item Si $a|b$ y $a|b \pm c$ entonces $a|c$
 
                     % ======== DEMOSTRACION ========
                     \begin{SmallIndentation}[1em]
                         \textbf{Demostración}:
 
-                        Sabemos que existe $q_1$ tal que $a=bq_1$ para nuestro primer ssi
-                        basta con decir que $-a=b(-q_1) = bq_2$ y listo, encontre a $q_2$
-                        con lo que puedo afirmar que $b|-a$.
-
-                        Para el segundo basta con ver que $a = -bq_3$ donde $q_3 = q_2$, con
-                        lo que puedo afirmar que $-b|a$.
-
-                        Para el último ssi basta con con ver que $-a=-bq_4$ donde $q_4=q_1$
-                        así que puedo afirmar que $-b|-a$.
+                        Sabemos que $b=aq_1$, y $b \pm c=aq_2$, si restamos tenemos que
+                        $b \pm c -b = aq_2 - aq_1$, que es lo mismo que $\pm c = (q_2-q_1)a$,
+                        que es lo mismo que $c = \pm(q_2-q_1)a$ que es lo mismo que $c = q_3a$.
 
                     \end{SmallIndentation}
 
 
+                \item Si $b|a$ entonces $b|ak$ $\forall k \in \Integers$.
 
-                \clearpage
+                    % ======== DEMOSTRACION ========
+                    \begin{SmallIndentation}[1em]
+                        \textbf{Demostración}:
+
+                        Sabemos que $a=bq$ por lo mismo podemos decir que
+                        $ak=b(qk)$ por lo tanto $b|ak$.
+
+                    \end{SmallIndentation}
+                    
 
                 \item Si $b|a$ y $a \neq 0$ entonces $|b| \leq |a|$.
 
@@ -754,45 +747,6 @@
                         $a = bq$, por lo tanto tenemos que $|a| \geq |b|$.
 
                         Esto es lo mismo que $|b| \leq |a|$
-
-                    \end{SmallIndentation}
-
-
-                \item El producto de $n$ números consecutivos será siempre divisible entre
-                $n!$, es decir $n! | (k)(k+1)(k+2)(k+3)(k+4)\dots(k+n)$
-
-                    % ======== DEMOSTRACION ========
-                    \begin{SmallIndentation}[1em]
-                        \textbf{Demostración}:
-
-                        Esto es muy fácil de demostrar por inducción.
-
-                        Sabemos que $k|0!$ y que $k+1|1!$.
-
-                        Supongamos que $n! | (k)(k+1)(k+2)(k+3)(k+4)\dots(k+n)$.
-
-                        Esto nos dice que:
-                        \begin{itemize}
-                            \item $2 | (k)(k+1)(k+2)(k+3)(k+4)\dots(k+n)$
-                                Pues mínimo alguno de los términos de la suseción será par
-                            \item $3 | (k)(k+1)(k+2)(k+3)(k+4)\dots(k+n)$
-                                Pues mínimo alguno de los términos de la suseción será divisible entre 3,
-                                pues hay mas de 3 enteros consecutivos
-                            \item $4 | (k)(k+1)(k+2)(k+3)(k+4)\dots(k+n)$
-                                Pues mínimo alguno de los términos de la suseción será divisible entre 4,
-                                pues hay mas de 4 enteros consecutivos
-                            \item ...
-                        \end{itemize}
-
-                        Ahora probar que $(n+1)! | (k)(k+1)(k+2)(k+3)(k+4)\dots(k+n)(k+n+1)$ es pan comido
-                        pues al haber $k+1$ elementos consecutivos este número $(k)(k+1)(k+2)(k+3)(k+4)\dots(k+n)(k+n+1)$
-                        siempre será divisible entre $k+1$.
-
-                        Y ya teniendo que:
-                        $n! | (k)(k+1)(k+2)(k+3)(k+4)\dots(k+n)$, es decir $(k)(k+1)(k+2)(k+3)(k+4)\dots(k+n) = q_1 n!$.
-                        Por lo tanto $(k)(k+1)(k+2)(k+3)(k+4)\dots(k+n)(k+n+1) = q_2 (k+1)!$.
-
-                        Demostrado por inducción :D
 
                     \end{SmallIndentation}
 
@@ -839,36 +793,13 @@
 
             \end{itemize}
 
-           
-        % ==================================
-        % ======   PROPIEDADES     =========
-        % ==================================
-        \clearpage
-        \subsection{Demostrar que $a=b$ usando divisibilidad}
-
-            Al igual que en conjuntos (doble contensión), podemos crear algo parecido en teoría
-            de números.
-
-            Podemos afirmar que $a = b$ si y solo si $a|b$ y $b|a$.
-
-            % ======== DEMOSTRACION ========
-            \begin{SmallIndentation}[1em]
-                \textbf{Ideas}:
-
-                Esto es cierto por la naturaleza de la divisibilidad, pues es reflexiva, es
-                decir $a|a$, pero además tenemos que si $a \neq 0$ entonces $a\neg|b$.
-
-                Por lo tanto si $a|b$ y $b|a$ entonces nos les queda de otra mas que ser el
-                mismo número.
-            \end{SmallIndentation}
-
 
 
         % ==================================
         % ======   RESULTADOS COOL  ========
         % ==================================
         \clearpage
-        \subsection{Resultados ó Cosas Cool}
+        \subsection{Propiedades poco Comunes}
 
             \begin{itemize}
 
@@ -937,6 +868,50 @@
                         se cumple la propiedad.
 
                     \end{SmallIndentation}
+
+                \clearpage
+
+
+                \item El producto de $n$ números consecutivos será siempre divisible entre
+                    $n!$, es decir $n! | (k)(k+1)(k+2)(k+3)(k+4)\dots(k+n)$
+
+                    % ======== DEMOSTRACION ========
+                    \begin{SmallIndentation}[1em]
+                        \textbf{Demostración}:
+
+                        Esto es muy fácil de demostrar por inducción.
+
+                        Sabemos que $k|0!$ y que $k+1|1!$.
+
+                        Supongamos que $n! | (k)(k+1)(k+2)(k+3)(k+4)\dots(k+n)$.
+
+                        Esto nos dice que:
+                        \begin{itemize}
+                            \item $2 | (k)(k+1)(k+2)(k+3)(k+4)\dots(k+n)$
+                                Pues mínimo alguno de los términos de la suseción será par
+                            \item $3 | (k)(k+1)(k+2)(k+3)(k+4)\dots(k+n)$
+                                Pues mínimo alguno de los términos de la suseción será divisible entre 3,
+                                pues hay mas de 3 enteros consecutivos
+                            \item $4 | (k)(k+1)(k+2)(k+3)(k+4)\dots(k+n)$
+                                Pues mínimo alguno de los términos de la suseción será divisible entre 4,
+                                pues hay mas de 4 enteros consecutivos
+                            \item ...
+                        \end{itemize}
+
+                        Ahora probar que $(n+1)! | (k)(k+1)(k+2)(k+3)(k+4)\dots(k+n)(k+n+1)$ es pan comido
+                        pues al haber $k+1$ elementos consecutivos este número
+                        $(k)(k+1)(k+2)(k+3)(k+4)\dots(k+n)(k+n+1)$
+                        siempre será divisible entre $k+1$.
+
+                        Y ya teniendo que:
+                        $n! | (k)(k+1)(k+2)(k+3)(k+4)\dots(k+n)$, es decir
+                        $(k)(k+1)(k+2)(k+3)(k+4)\dots(k+n) = q_1 n!$.
+                        Por lo tanto $(k)(k+1)(k+2)(k+3)(k+4)\dots(k+n)(k+n+1) = q_2 (k+1)!$.
+
+                        Demostrado por inducción :D
+
+                    \end{SmallIndentation}
+
 
 
 
@@ -2274,42 +2249,25 @@
 
                 \end{SmallIndentation}
 
-        \end{itemize}
 
+            \item \textbf{Encontrar los divisores de $n$ de manera inteligente: }
 
-
-
-
-    % ==================================
-    % ======   COMO ENCONTRARLOS   =====
-    % ==================================
-    \clearpage
-    \section{Como Saber si $n \in \Primes$}
-    
-        Dado un entero particular, ¿Cómo podemos saber si es primo o no?
-
-        Si el número es compuesto, ¿Cómo podemos encontrar un divisor no trivial?
-
-
-        % ===================================
-        % ====   CRIBA DE ESATOSTENES   =====
-        % ===================================
-        \subsection{Fuerza Bruta Inteligente}
-
-            La primera idea es verificar si todos los enteros menores son
-            divisores, si los únicos divisores son el 1 y el -1 entonces
-            el número será primo.
-
-            Este método es simple pero costoso en términos de cómputo. Sin
-            embargo hay una propiedad que nos podría facilitar el cálculo.
-
-            \begin{itemize}
-
-                \item Todo número compuesto $n$ tiene un divisor $a$ tal que
-                    $a \leq \sqrt{n}$
+                Todo número compuesto $n$ tiene un divisor $a$ tal que $a \leq \sqrt{n}$
 
                     % ======== DEMOSTRACION ========
                     \begin{SmallIndentation}[1em]
+
+                        Dado un entero particular, ¿Cómo podemos saber si es primo o no?
+
+                        Si el número es compuesto, ¿Cómo podemos encontrar un divisor no trivial?
+
+                        La primera idea es verificar si todos los enteros menores son
+                        divisores, si los únicos divisores son el 1 y el -1 entonces
+                        el número será primo.
+
+                        Este método es simple pero costoso en términos de cómputo. Sin
+                        embargo la propiedad de arriba nos podría facilitar el cálculo.\\
+
                         \textbf{Demostración}:
 
                         En efecto, como n es compuesto, $n = ab$.
@@ -2323,7 +2281,9 @@
 
                     \end{SmallIndentation}
 
-                \end{itemize}
+        \end{itemize}
+
+
 
 
 

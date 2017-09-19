@@ -477,7 +477,7 @@
 
         \end{SmallIndentation}
 
-     \subsection{Problema 11}
+    \subsection{Problema 11}
     \subsection*{Nunca se cumple que $4|n^2 +2$}
 
         % ======== DEMOSTRACION ========
@@ -490,6 +490,46 @@
 
             Si $n$ es impar, tenemos que $(2k+1)^+2$ se puede expresar como $4k^2 + 4k + 1 + 2$
             es decir $4(k^2+k) +3$, por lo tanto tampoco es divisible entre cuatro.
+
+        \end{SmallIndentation}
+
+
+    \subsection{Problema 13}
+    \subsection*{Si $k$ es primo entonces el producto de todos los primos menores o
+        iguales que $k$ divide a $n^k - n$}
+
+        % ======== DEMOSTRACION ========
+        \begin{SmallIndentation}[1em]
+            \textbf{Demostración}:
+
+            Suponga que $k$ es primo, por lo tanto si $k=2$ tenemos que 
+            $(n^2-n) = n(n-1)$ y como son dos números consecutivos mínimo uno
+            es par. Por lo tanto $2|n^2 -n$.
+
+            Si $k \neq 2$ entonces $k$ es impar, veamos que pasa con los primos
+            primos:
+
+            Si $k=3$ entonces $(n^3-n)=n(n+1)(n-1)$ es decir 3 números consecutivos
+            por lo tanto es divisible entre 3 y también entre 2. Por lo tanto 
+            $2*3|n^3-n$.
+
+            Si $k=5$ entonces:
+            \begin{MultiLineEquation*}{3}
+                (n^5-n) 
+                    &= n(n^4-1)                     \\
+                    &= n(n^2+1)(n^2-1)              \\
+                    &= n(n+1)(n-1)(n^2+1)           \\
+                    &= n(n+1)(n-1)(n-2)(n+2)+5
+            \end{MultiLineEquation*}
+            es decir son 5 números consecutivos por lo tanto es divisible entre
+            5, 3 y también entre 2. Por lo tanto $2*3*5|n^5-n$.
+
+            De forma más general como $k-1$ es par y tenemos la expresión $n(n^k-1)$
+            donde podemos expandir este polinomio para tener k números consecutivos
+            (esto se prueba usando inducción) es decir, será divisible entre el
+            producto de los primos menores o iguales
+            que $k$.
+
 
         \end{SmallIndentation}
 
@@ -543,7 +583,6 @@
         \end{SmallIndentation}
 
 
-    \clearpage
     \subsection{Problema 19}
     \subsection*{Cualquier conjunto de números primos pares, son primos relativos}
 
@@ -578,8 +617,9 @@
 
         \end{SmallIndentation}
 
+    \clearpage
     \subsection{Problema 21}
-    \subsection*{Demuestre que cualquier entero de la forma $6k+1$ es de la forma $3k-1$
+    \subsection*{Demuestre que cualquier entero de la forma $6k+5$ es de la forma $3k-1$
         pero no de manera inversa}
 
 
@@ -587,12 +627,12 @@
         \begin{SmallIndentation}[1em]
             \textbf{Demostración}:
 
-            Si tenemos un número de la forma $6k+1$ entonces ve que $6k+1 = 3(2k+2)-1$
+            Si tenemos un número de la forma $6k+5$ entonces ve que $6k+5 = 3(2k+2)-1$
 
             Pero veamos una contraprueba para su inversa:
-            Dado un número de la forma $3k-1$, por ejemplo 2, tenemos que no lo
-            podemos escribir de la forma $6k+1$, pues implica $6k+1=2$ es decir
-            $6k=1$, lo cual obviamente no tiene solución en los enteros, por lo tanto
+            Dado un número de la forma $3k-1$, por ejemplo 3, tenemos el $3(3)-1=8$ no lo
+            podemos escribir de la forma $6k+5$, pues implica $6k+5=8$ es decir
+            $6k=3$, lo cual obviamente no tiene solución en los enteros, por lo tanto
             queda demostrado que su inversa no es correcta.
             
         \end{SmallIndentation}
@@ -635,13 +675,13 @@
             tenemos que:
             \begin{itemize}
                 \item x = 55 + r
-                \item y = 55 - r
+                \item y = 45 - r
             \end{itemize}
 
             donde $r = 100k$ y $k$ es cualquier entero tal que $(k, 55) = 1$
         \end{SmallIndentation}
 
-
+    \clearpage
     \subsection{Problema 29}
     \subsection*{$a, b \in \Integers$ existen enteros $x, y$ tal que
         $GCD(x, y) = b$  y $LCM(x, y) = a$ si y solo si $b|a$}
@@ -658,7 +698,7 @@
             y ya que la divisibilidad es transicitva tenemos por lo tanto que $b|a$.
 
 
-            Primero empecemos de regreso:
+            Ahora de regreso regreso:
 
             Si $b|a$, entonces $a = bq$.
             Podemos decir que $GCD(b, a) = GCD(b, bq) = b \cdot GCD(1, q)$.
@@ -670,25 +710,33 @@
         \end{SmallIndentation}
 
 
+    \clearpage
     \subsection{Problema 31}
-    \subsection*{$a - 1 |a^n -1$}
+    \subsection*{$a - b |a^n - b^n$}
 
         % ======== DEMOSTRACION ========
         \begin{SmallIndentation}[1em]
             \textbf{Demostración}:
 
-            Es muy obvio esto si $n=1$, pues $a-1|a-1$ y con $n=2$, pues $a-1|a^2-1$
-            ya que gracias a la diferencia de cuadrados tenemos que:
-            $a-1|(a+1)(a-1)$.
-
-            Con una $n$ par es también muy fácil pues basta con ver que podemos siempre
-            factorizar un $a-1$, pero también podemos hacer lo mismo con un $n$ impar, 
-            basta con ver la descomposición del polinomio.
+            Para que fuera cierto teniamos que encontrar
+            $a^n - b^n = a-b(q)$ podemos proponer de manera completamente arbitraria
+            que:
+            \begin{MultiLineEquation*}{3}
+                (a-b) \sum_{k=0}^{n-1} a^k b^{n-1-k}
+                    &= (a-b) \sum_{k=0}^{n-1} a^k b^{n-1-k}         \\
+                    &= \sum_{k=0}^{n-1} a^{k+1} b^{n-1-k} 
+                       -
+                       \sum_{k=0}^{n-1} a^k b^{n-k}                 \\
+                    &= a^n + \sum_{k=1}^{n-1} a^{k} b^{n-k} 
+                       -
+                       \sum_{k=1}^{n-1} a^k b^{n-k} 
+                       -b^n                                         \\
+                    &= a^n - b^n                                    
+            \end{MultiLineEquation*}
 
         \end{SmallIndentation}
 
 
-    \clearpage
     \subsection{Problema 33}
     \subsection*{GCD(a,b,c) = GCD((a, b), c)}
 
@@ -704,7 +752,6 @@
             \end{itemize}
 
             Entonces tenemos que:
-
             \begin{MultiLineEquation*}{2}
                 GCD(a,b,c)
                     &= \prod_i p^{min(\alpha_i, \beta_i, \gamma_i)}
@@ -713,7 +760,6 @@
             \end{MultiLineEquation*}
 
         \end{SmallIndentation}
-
 
     \subsection{Problema 35}
     \subsection*{Si $GCD(b, c) = 1$ y $r|b$ entonces $GCD(r, c) = 1$}

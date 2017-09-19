@@ -1357,7 +1357,20 @@
 
                         Y bingo, ahí esta nuestra pareja de primos relativos.
 
-                    \end{SmallIndentation} 
+                    \end{SmallIndentation}
+
+                \item Si $(a, c) = 1$ y $(b, c) = 1$ entonces $(ab, c) = 1$
+
+                    % ======== DEMOSTRACION ========
+                    \begin{SmallIndentation}[1em]
+                        \textbf{Demostración}:
+
+                        Veamos que por hipotesis en  su factorización en primos entre $a$ y $c$
+                        no se comparten ningun primo, ni tampoco entre $a$ y $c$, por lo tanto
+                        $ab$ (que solo es sumar los exponentes de sus potencias de primos)
+                        no compartirá ningún primo con $c$, por lo tanto $(ab, c) = 1$.-
+
+                    \end{SmallIndentation}  
 
             \end{itemize}
 
@@ -1810,6 +1823,8 @@
 
                     \end{SmallIndentation}
 
+                \clearpage
+
 
                 \item Si $LCM(a,b) = |ab|$ implica que $(a,b) = 1$
 
@@ -1820,6 +1835,26 @@
                         Si $LCM(a,b) = |ab|$ recuerda que $GCD(a,b) \cdot LCM(a,b) = |ab|$
                         Entonces $GCD(a,b) = \frac{|ab|}{LCM(a,b)}$ que ya dijimos que 
                         $GCD(a,b) = \frac{|ab|}{|ab|} = 1$.
+
+                    \end{SmallIndentation}
+
+
+                \item Si $LCM(ma,mb) = |m|LCM(a, b)$
+
+                    % ======== DEMOSTRACION ========
+                    \begin{SmallIndentation}[1em]
+                        \textbf{Demostración}:
+
+                        Vamos a demostrarlo usando que ya sabemos que $GCD(ma, mb) = |m|GCD(a, b)$
+                        Recuerda que $LCM(ma, mb) \; GCD(ma, mb) = |ma \cdot mb|$
+                        por lo tanto:
+                        \begin{MultiLineEquation*}{3}
+                            LCM(ma, mb) 
+                                &= \dfrac{|m||m||ab|}{|m| GCD(a, b)}  
+                                &= \dfrac{|m||ab|}{GCD(a, b)}
+                                &= |m|\dfrac{|ab|}{GCD(a, b)}
+                                &= |m| LCM(a, b)
+                        \end{MultiLineEquation*}
 
                     \end{SmallIndentation}
 
@@ -2685,12 +2720,79 @@
             Hablaremos de ellas más adelante.
 
 
-
         % ==================================
-        % ======    PROPIEDADES      =======
+        % =====      A % B = MODULO   ======
         % ==================================
         \clearpage
-        \subsection{Propiedades}
+        \subsection{Módulo: $A \% B$}
+
+            Recuerda las 2 proposición demostrada allá arriba:
+
+            \begin{itemize}
+                \item $a,b \in \Integers$ son congruentes módulo $n$,
+                    esto es $a \equiv b \pmod{n}$, si y sólo si $a$ y $b$
+                    dejan el mismo residuo al ser divididos por $n$.
+
+                \item $a \equiv r \pmod{n}$ si y solo si podemos escribir
+                    a $a$ como $a=nq+r$ para alguna $q$.
+             \end{itemize} 
+
+            Por esta razón el residuo de un número $a$ cuando es divido por $n$
+            (que es el mismo número el residuo que deja $b$ al dividirlo entre $n$)
+            lo solemos llamar $a \% b$.
+
+
+            Por lo tanto $a \% b = r$ donde $a =bq+r$ y $0 \leq r < b$.
+
+
+        % ==================================
+        % ====  SISTEMAS DE RESIDUOS   =====
+        % ==================================
+        \subsection{Sistema de Residuos}
+
+            Definimos a $\Set{r_1, r_2, r_3, \cdots, r_n}$ como un sistema
+            de residuos.
+
+            \begin{itemize}
+                \item Decimos que es un \textbf{Sistema Completo de Residuos}
+                    si y solo si es que cumple que:
+                    \begin{equation*}
+                        \forall k \in \Integers, \; \exists r_i, k \equiv r_i \pmod{n} 
+                        \Also
+                        r_i \equiv r_j \text{ solo si } i = j 
+                    \end{equation*}
+
+                \item Decimos que es un \textbf{Sistema Reducido de Residuos}
+                    si y solo si es que cumple que:
+                    \begin{equation*}
+                        \forall k \in \Naturals \text{ y } GCD(k, n), \; 
+                            \exists r_i, k \equiv r_i \pmod{n} 
+                        \Also
+                        r_i \equiv r_j \text{ solo si } i = j 
+                    \end{equation*}
+            \end{itemize}
+
+            Es decir para un número $n$ decimos que el conjunto completo de residuos
+            son por ejemplo todos los naturales (incluyendo al cero) menores que el.
+
+            Mientras que un conjunto reducido de residuos son por ejemplo el conjunto
+            de todos los coprimos de $n$ menores a $n$s.
+
+
+
+
+
+    % =====================================================
+    % ==   TEOREMAS IMPORTANTES SOBRE CONGRUENCIAS      ===
+    % =====================================================
+    \clearpage
+    \section{Propiedades y Teoremas Importantes}
+
+
+        % =====================================================
+        % ================    PROPIEDADES      ================
+        % =====================================================
+        \subsection{Propiedades Básicas}
 
             \begin{itemize}
 
@@ -2866,6 +2968,274 @@
 
 
         % =====================================================
+        % =====  TEOREMA DE GENERALIZADO DE EULER    ==========
+        % =====================================================
+        \clearpage
+        \subsection{Teorema Generalizado de Fermat por Euler}
+
+
+            Si $GCD(a, n) = 1$ entonces $a^{\phi(n)} \equiv 1 \pmod{n}$
+
+            % ======== DEMOSTRACION ========
+            \begin{SmallIndentation}[1em]
+                \textbf{Demostración}:
+
+                Resulta que esto es más sencillo de lo que crees.
+
+                Sea $\Set{r_1, r_2, \dots, r_{\phi(n)}}$ un sistema reducido
+                de residuos, ahora, gracias a que es un sistema reducido y a 
+                que $GCD(a, n)$ entonces tenemos que:
+                $\Set{ar_1, ar_2, \dots, ar_{\phi(n)}}$
+
+                Por lo tanto tenemos que:
+                \begin{equation*}
+                    (ar_1)(ar_2)\dots(ar_{\phi(n)})
+                    \equiv
+                    r_1 r_2 \dots r_{\phi(n)} \pmod{n}
+                \end{equation*}
+
+                Por lo tanto
+                \begin{equation*}
+                    a^{\phi(n)}(r_1)(r_2)\dots(r_{\phi(n)})
+                    \equiv
+                    r_1 r_2 \dots r_{\phi(n)} \pmod{n}
+                \end{equation*}
+
+                Y ya que $GCD(n, \prod_{i=1}^{\phi(n)} r_i) = 1$
+
+                $a^{\phi(n)} \equiv 1 \pmod{n}$
+
+            \end{SmallIndentation} 
+
+
+            Gracias a este Teorema podemos encontrar que el inverso de
+            $a \pmod{n}$ es $a^{\phi(n) -1)}$ pues:
+            $a^{\phi(n)} \equiv a(a^{\phi(n)-1}) \equiv 1 \pmod{n}$        
+
+
+
+        % =====================================================
+        % ========       TEOREMA DE WILSON            =========
+        % =====================================================
+        \clearpage
+        \subsection{Teorema de Wilson}
+
+            Este hermoso teorema lo podemos escribir como:
+            \begin{equation}
+                \text{Si $p$ es primo entonces } (p-1)! \equiv -1 \pmod{p}
+            \end{equation}
+
+
+            % ======== DEMOSTRACION ========
+            \begin{SmallIndentation}[1em]
+                \textbf{Demostración}:
+
+                Esto tiene muchas interpretaciones como que multiplicar todos los residuos
+                posibles de dividir entre un primo son congruentes con $p-1 \pmod{p}$.
+
+                Pero dejando de lado las intepretaciones, veamos como demostrarlo.
+                El truco aquí esta en los inversos:
+
+                \begin{itemize}
+                    \item $1, p-1$ son inversos de si mismos, es decir
+                        $(1)(1) \equiv (p-1)(p-1) \equiv 1 \pmod{p}$
+
+                    \item Si hablamos de los enteros $2 \leq i \leq p-2$ vemos que 
+                        nunca se cumple que $i^2 \equiv 1 \pmod{p}$
+
+                        Esto es muy fácil de demostrar, pues por contradicción tenemos
+                        que: $i^2 \equiv 1 \pmod{p}$ implica que $i^2 - 1\equiv 0 \pmod{p}$
+                        es decir $(i+1)(i-1) \equiv 0 \pmod{p}$ pero esto implicaría que
+                        $p | (i+1)(i-1)$ pero esto no se puede pues $p$ es primo y 
+                        $i+1, i-1$ son residuos módulo $p$ :o ¡Contradicción!
+
+                \end{itemize}
+
+
+                Ahora veamos que todos los i del producto $(p-1)!$ que cumplen
+                con $2 \leq i \leq p-2$ tienen que tener inverso.
+
+                Esto de deduce del Pequeño Teorema de Fermat, donde tenemos
+                que $(i, p) = 1$ implica que $i^{\phi(p)-1}$ es el inverso de $i$.
+
+                Así que de que existen, existen.
+                Ahora, ya que $\Set{1, 2, \dots, p-1}$ es un sistema completo y reducido
+                de residuos tenemos que $\exists j \in \Set{1, 2, \dots, p-1}$ donde
+                $i^{\phi(p)-1} \equiv j \pmod{p}$ y $i \neq j$.
+
+                Por lo tanto vemos que $(p-1)!$ se puede escribir de manera muy bonita donde
+                todos los productos se cancelan menos $p-1$ y 1:
+                \begin{equation}
+                    (p-1)!
+                        \equiv (1)[(i_1)(i_1)^{-1}][(i_2)(i_2)^{-1}] \cdots
+                            \Brackets{(i_{\frac{p-3}{2}})(i_{\frac{p-3}{2}})^{-1}}(p-1)
+                        \equiv p-1
+                        \equiv 1
+                        \pmod{p}           
+                \end{equation}
+
+                Esto se puede hacer pues $p$ es impar, por lo tanto $\frac{p-3}{2}$ es un 
+                entero.
+
+                Y con esto hemos demostrado este hermoso teorema :')
+
+            \end{SmallIndentation}   
+
+
+
+
+        % =====================================================
+        % ========      TEOREMA CHINO DEL RESIDUO      ========
+        % =====================================================
+        \clearpage
+        \subsection{Teorema Chino del Residuo}
+
+            Si $m_1, \dots, m_r$ son enteros positivos primos relativos entre
+            si, y $a_1, \dots, a_r$ son enteros cuales quiera, entonces el
+            sistema de congruencias:
+            \begin{MultiLineEquation*}{3}
+                x \equiv a_1 \pmod{m_1}     \\
+                x \equiv a_2 \pmod{m_2}     \\
+                \cdots                      \\
+                x \equiv a_r \pmod{m_r}     
+            \end{MultiLineEquation*}
+                
+
+
+
+
+
+
+        % =====================================================
+        % ========         EXPONENCIACION MODULAR     =========
+        % =====================================================
+        \clearpage
+        \subsection{Exponenciación Modular: $b^e \equiv s \pmod {n}$}
+
+            Es muy común usar congruencias para encontrar el residuo $s$ de 
+            un númerotote (generalmente denotado de la forma $b^e$) al
+            divirlo entre alguna $n$, donde $0 \leq c < n$.
+
+            Usamos $b$ de base, $e$ de expontente y $s$ de solución.
+
+            La idea se basa en la propiedad que ya demostramos de congruencias:
+            \Quote{$a \equiv b \pmod{n}$ si y solo si ambos $a,b$ dejan el mismo
+            residio al ser dividido por $n$}.
+
+            Este proceso, de encontrar $s$ dado un número $b^e$ y un módulo $n$
+            es bastante fácil y rápido, incluso cuando el número es endemoniadamente
+            grande, pero el proceso inverso, encontrar $e$ dado una base $b$ y un
+            módulo $n$. Esto lo hace perfecto para la criptografía.
+
+
+
+
+            % =======================================
+            % ======    METODO EXP BINARIA      =====
+            % =======================================
+            \subsection*{Método 1: Exponenciación Binaria}
+
+                Este método es bastante sencillo y se basa en la exponenciación binaria, digo
+                literalmente es el mismo algoritmo, lo único diferente es que hablamos de congruencias
+
+                \begin{SmallIndentation}[1em]
+                    
+                    \begin{itemize}
+                        \item   Inicializa tu respuesta a ser 0
+                        \item   Inicializa tu auxiliar a ser b
+                        \item   Convierte el exponente en base 2
+
+                        \item Para cada digito del exponente en base 2 (Iniciando con
+                              el menos significativo):
+                            
+                            \begin{itemize}
+                                \item Si es 1:
+                                        Nueva Respuesta = Respuesta * Auxiliar (mod n) y Nuevo Auxiliar = Auxiliar$^2$ (mod n)
+                                \item Si es 0:
+                                        Nuevo Auxiliar = Auxiliar$^2$ (mod n)
+                            \end{itemize}
+                    \end{itemize}
+
+                \end{SmallIndentation}
+
+
+            % =======================================
+            % =====     METODO 2: ALTERNO       =====
+            % =======================================
+            \clearpage
+            \subsection*{Método 2: Alterno}
+
+                Este método es bastante sencillo:
+
+                \begin{SmallIndentation}[1em]
+                    
+                    \begin{itemize}
+                        \item Aplica el algoritmo de la división y llega a $b=nq+r$, de aquí tienes
+                            la proposición $b \equiv r \pmod{n}$
+
+                        \item Empieza a elevar proposición anterior hasta llegar a:
+
+                            $b^k \equiv r^k \pmod{n}$ donde $r^k \equiv 1 \pmod{n}$
+
+
+                        \item Ya que sabemos que $1^n=1$ entonces ya nos podremos acerca mucho más,
+                            ¿Pero cuanto?
+
+                            Aplica el algoritmo de la división y llega a $e = kq' + r'$, por lo
+                            tanto puedes escribir la proposición $b^{kq'} \equiv 1 \pmod{n}$
+
+                        \item Finalmente puedes también decir que $b^{r'} \equiv r^{r'} \pmod{n}$,
+                            por lo tanto si multiplicas las ultimas dos congruencias tenemos que
+                            $b^{kq'}b^{r'} \equiv (1)(r^{r'})$ esto es lo mismo que
+                            $b^{kq'+r'} \equiv r^{r'} \pmod{n}$
+
+                            Por lo tanto $b^e \equiv r^{r'} \pmod{n}$. Donde $r^{r'} \pmod {n}$ es 
+                            nuestra respuesta.
+                    \end{itemize}
+
+                \end{SmallIndentation}
+
+
+            % =======================================
+            % ========        EJEMPLOS      =========
+            % =======================================
+            \subsubsection*{Ejemplo Método 2}
+
+                    \begin{itemize}
+                        \item \large{Ejemplo 1:}
+                            Encontrar el residuo de dividir $17^{341}$ entre 5
+
+                            % ======== SOLUCIÓN ========
+                            \begin{SmallIndentation}[1em]
+                                \textbf{Solución}:
+                                \begin{alignat*}{3}
+                                    &\text{Sabemos que: }  
+                                    && 17 \equiv 2                  && \pmod{5} \\
+                                    &\text{Por lo que: }
+                                    && 17^2 \equiv 2^2 = 4          && \pmod{5} \\
+                                    &\text{y al cuadrado da: }
+                                    && 17^4 \equiv 4^2 = 16         && \pmod{5} \\
+                                    &\text{y recuerda que: }
+                                    && 16 \equiv 1                  && \pmod{5} \\
+                                    &\text{por lo tanto: }
+                                    && 17^4 \equiv 1                && \pmod{5} \\
+                                    &\text{y ya que $1^k=1$: }
+                                    && (17^4)^{85} = 7^{4*85}\equiv 1^{85} =1   && \pmod{5} \\
+                                    &\text{que es lo mismo que: }
+                                    && 17^{340} \equiv 1            && \pmod{5} \\
+                                    &\text{y multiplicando por la $1^a$ congruencia: }\Space
+                                    && (17^{340})(17) \equiv 1(2)   && \pmod{5} \\
+                                    &\text{que es lo mismo que: }
+                                    && 17^{341} \equiv 2            && \pmod{5} 
+                                \end{alignat*}
+
+                                Por lo tanto $17^{341}$ y $2$ dejan el mismo residuo al divirlos entre 5
+                            \end{SmallIndentation}
+
+                    \end{itemize}
+
+
+        % =====================================================
         % ========   CONGRUENCIAS Y DIVISIBILIDAD     =========
         % =====================================================
         \clearpage
@@ -2950,367 +3320,6 @@
 
 
 
-        % ==================================
-        % =====      A % B = MODULO   ======
-        % ==================================
-        \clearpage
-        \subsection{Módulo: $A \% B$}
-
-            Recuerda las 2 proposición demostrada allá arriba:
-
-            \begin{itemize}
-                \item $a,b \in \Integers$ son congruentes módulo $n$,
-                    esto es $a \equiv b \pmod{n}$, si y sólo si $a$ y $b$
-                    dejan el mismo residuo al ser divididos por $n$.
-
-                \item $a \equiv r \pmod{n}$ si y solo si podemos escribir
-                    a $a$ como $a=nq+r$ para alguna $q$.
-             \end{itemize} 
-
-            Por esta razón el residuo de un número $a$ cuando es divido por $n$
-            (que es el mismo número el residuo que deja $b$ al dividirlo entre $n$)
-            lo solemos llamar $a \% b$.
-
-
-            Por lo tanto $a \% b = r$ donde $a =bq+r$ y $0 \leq r < b$.
-
-
-        % ==================================
-        % ====  SISTEMAS DE RESIDUOS   =====
-        % ==================================
-        \clearpage
-        \subsection{Sistema de Residuos}
-
-            Definimos a $\Set{r_1, r_2, r_3, \cdots, r_n}$ como un sistema
-            de residuos.
-
-            \begin{itemize}
-                \item Decimos que es un \textbf{Sistema Completo de Residuos}
-                    si y solo si es que cumple que:
-                    \begin{equation*}
-                        \forall k \in \Integers, \; \exists r_i, k \equiv r_i \pmod{n} 
-                        \Also
-                        r_i \equiv r_j \text{ solo si } i = j 
-                    \end{equation*}
-
-                \item Decimos que es un \textbf{Sistema Reducido de Residuos}
-                    si y solo si es que cumple que:
-                    \begin{equation*}
-                        \forall k \in \Naturals \text{ y } GCD(k, n), \; 
-                            \exists r_i, k \equiv r_i \pmod{n} 
-                        \Also
-                        r_i \equiv r_j \text{ solo si } i = j 
-                    \end{equation*}
-            \end{itemize}
-
-            Es decir para un número $n$ decimos que el conjunto completo de residuos
-            son por ejemplo todos los naturales (incluyendo al cero) menores que el.
-
-            Mientras que un conjunto reducido de residuos son por ejemplo el conjunto
-            de todos los coprimos de $n$ menores a $n$s.
-
-
-            Usando estas ideas podemos demostrar algunas ideas bien geniales:
-
-            \begin{itemize}
-
-                \item \textbf{Teorema Generalizado de Fermat por Euler}:
-
-                    Si $GCD(a, n) = 1$ entonces
-                    $a^{\phi(n)} \equiv 1 \pmod{n}$
-
-                    % ======== DEMOSTRACION ========
-                    \begin{SmallIndentation}[1em]
-                        \textbf{Demostración}:
-
-                        Resulta que esto es más sencillo de lo que crees.
-
-                        Sea $\Set{r_1, r_2, \dots, r_{\phi(n)}}$ un sistema reducido
-                        de residuos, ahora, gracias a que es un sistema reducido y a 
-                        que $GCD(a, n)$ entonces tenemos que:
-                        $\Set{ar_1, ar_2, \dots, ar_{\phi(n)}}$
-
-                        Por lo tanto tenemos que:
-                        \begin{equation*}
-                            (ar_1)(ar_2)\dots(ar_{\phi(n)})
-                            \equiv
-                            r_1 r_2 \dots r_{\phi(n)} \pmod{n}
-                        \end{equation*}
-
-                        Por lo tanto
-                        \begin{equation*}
-                            a^{\phi(n)}(r_1)(r_2)\dots(r_{\phi(n)})
-                            \equiv
-                            r_1 r_2 \dots r_{\phi(n)} \pmod{n}
-                        \end{equation*}
-
-                        Y ya que $GCD(n, \prod_{i=1}^{\phi(n)} r_i) = 1$
-
-                        $a^{\phi(n)} \equiv 1 \pmod{n}$
-
-                    \end{SmallIndentation}            
-
-                \end{itemize}
-
-
-
-
-    % =====================================================
-    % ========         EXPONENCIACION MODULAR     =========
-    % =====================================================
-    \section{Exponenciación Modular: $b^e \equiv s \pmod {n}$}
-
-        Es muy común usar congruencias para encontrar el residuo $s$ de 
-        un númerotote (generalmente denotado de la forma $b^e$) al
-        divirlo entre alguna $n$, donde $0 \leq c < n$.
-
-        Usamos $b$ de base, $e$ de expontente y $s$ de solución.
-
-        La idea se basa en la propiedad que ya demostramos de congruencias:
-        \Quote{$a \equiv b \pmod{n}$ si y solo si ambos $a,b$ dejan el mismo
-        residio al ser dividido por $n$}.
-
-        Este proceso, de encontrar $s$ dado un número $b^e$ y un módulo $n$
-        es bastante fácil y rápido, incluso cuando el número es endemoniadamente
-        grande, pero el proceso inverso, encontrar $e$ dado una base $b$ y un
-        módulo $n$. Esto lo hace perfecto para la criptografía.
-
-
-
-
-        % =======================================
-        % ======    METODO EXP BINARIA      =====
-        % =======================================
-        \subsection*{Método 1: Exponenciación Binaria}
-
-            Este método es bastante sencillo y se basa en la exponenciación binaria, digo
-            literalmente es el mismo algoritmo, lo único diferente es que hablamos de congruencias
-
-            \begin{SmallIndentation}[1em]
-                
-                \begin{itemize}
-                    \item   Inicializa tu respuesta a ser 0
-                    \item   Inicializa tu auxiliar a ser b
-                    \item   Convierte el exponente en base 2
-
-                    \item Para cada digito del exponente en base 2 (Iniciando con
-                          el menos significativo):
-                        
-                        \begin{itemize}
-                            \item Si es 1:
-                                    Nueva Respuesta = Respuesta * Auxiliar (mod n) y Nuevo Auxiliar = Auxiliar$^2$ (mod n)
-                            \item Si es 0:
-                                    Nuevo Auxiliar = Auxiliar$^2$ (mod n)
-                        \end{itemize}
-                \end{itemize}
-
-            \end{SmallIndentation}
-
-
-        % =======================================
-        % =====     METODO 2: ALTERNO       =====
-        % =======================================
-        \clearpage
-        \subsection*{Método 2: Alterno}
-
-            Este método es bastante sencillo:
-
-            \begin{SmallIndentation}[1em]
-                
-                \begin{itemize}
-                    \item Aplica el algoritmo de la división y llega a $b=nq+r$, de aquí tienes
-                        la proposición $b \equiv r \pmod{n}$
-
-                    \item Empieza a elevar proposición anterior hasta llegar a:
-
-                        $b^k \equiv r^k \pmod{n}$ donde $r^k \equiv 1 \pmod{n}$
-
-
-                    \item Ya que sabemos que $1^n=1$ entonces ya nos podremos acerca mucho más,
-                        ¿Pero cuanto?
-
-                        Aplica el algoritmo de la división y llega a $e = kq' + r'$, por lo
-                        tanto puedes escribir la proposición $b^{kq'} \equiv 1 \pmod{n}$
-
-                    \item Finalmente puedes también decir que $b^{r'} \equiv r^{r'} \pmod{n}$,
-                        por lo tanto si multiplicas las ultimas dos congruencias tenemos que
-                        $b^{kq'}b^{r'} \equiv (1)(r^{r'})$ esto es lo mismo que
-                        $b^{kq'+r'} \equiv r^{r'} \pmod{n}$
-
-                        Por lo tanto $b^e \equiv r^{r'} \pmod{n}$. Donde $r^{r'} \pmod {n}$ es 
-                        nuestra respuesta.
-                \end{itemize}
-
-            \end{SmallIndentation}
-
-
-        % =======================================
-        % ========        EJEMPLOS      =========
-        % =======================================
-        \subsubsection*{Ejemplo Método 2}
-
-                \begin{itemize}
-                    \item \large{Ejemplo 1:}
-                        Encontrar el residuo de dividir $17^{341}$ entre 5
-
-                        % ======== SOLUCIÓN ========
-                        \begin{SmallIndentation}[1em]
-                            \textbf{Solución}:
-                            \begin{alignat*}{3}
-                                &\text{Sabemos que: }  
-                                && 17 \equiv 2                  && \pmod{5} \\
-                                &\text{Por lo que: }
-                                && 17^2 \equiv 2^2 = 4          && \pmod{5} \\
-                                &\text{y al cuadrado da: }
-                                && 17^4 \equiv 4^2 = 16         && \pmod{5} \\
-                                &\text{y recuerda que: }
-                                && 16 \equiv 1                  && \pmod{5} \\
-                                &\text{por lo tanto: }
-                                && 17^4 \equiv 1                && \pmod{5} \\
-                                &\text{y ya que $1^k=1$: }
-                                && (17^4)^{85} = 7^{4*85}\equiv 1^{85} =1   && \pmod{5} \\
-                                &\text{que es lo mismo que: }
-                                && 17^{340} \equiv 1            && \pmod{5} \\
-                                &\text{y multiplicando por la $1^a$ congruencia: }\Space
-                                && (17^{340})(17) \equiv 1(2)   && \pmod{5} \\
-                                &\text{que es lo mismo que: }
-                                && 17^{341} \equiv 2            && \pmod{5} 
-                            \end{alignat*}
-
-                            Por lo tanto $17^{341}$ y $2$ dejan el mismo residuo al divirlos entre 5
-                        \end{SmallIndentation}
-
-                \end{itemize}
-
-
-
-
-    % =====================================================
-    % ========       TEOREMA DE WILSON            =========
-    % =====================================================
-    \clearpage
-    \section{Teorema de Wilson}
-
-        Este hermoso teorema lo podemos escribir como:
-        \begin{equation}
-            \text{Si $p$ es primo entonces } (p-1)! \equiv -1 \pmod{p}
-        \end{equation}
-
-
-        % ======== DEMOSTRACION ========
-        \begin{SmallIndentation}[1em]
-            \textbf{Demostración}:
-
-            Esto tiene muchas interpretaciones como que multiplicar todos los residuos
-            posibles de dividir entre un primo son congruentes con $p-1 \pmod{p}$.
-
-            Pero dejando de lado las intepretaciones, veamos como demostrarlo.
-            El truco aquí esta en los inversos:
-
-            \begin{itemize}
-                \item $1, p-1$ son inversos de si mismos, es decir
-                    $(1)(1) \equiv (p-1)(p-1) \equiv 1 \pmod{p}$
-
-                \item Si hablamos de los enteros $2 \leq i \leq p-2$ vemos que 
-                    nunca se cumple que $i^2 \equiv 1 \pmod{p}$
-
-                    Esto es muy fácil de demostrar, pues por contradicción tenemos
-                    que: $i^2 \equiv 1 \pmod{p}$ implica que $i^2 - 1\equiv 0 \pmod{p}$
-                    es decir $(i+1)(i-1) \equiv 0 \pmod{p}$ pero esto implicaría que
-                    $p | (i+1)(i-1)$ pero esto no se puede pues $p$ es primo y 
-                    $i+1, i-1$ son residuos módulo $p$ :o ¡Contradicción!
-
-            \end{itemize}
-
-
-            Ahora veamos que todos los i del producto $(p-1)!$ que cumplen
-            con $2 \leq i \leq p-2$ tienen que tener inverso.
-
-            Esto de deduce del Pequeño Teorema de Fermat, donde tenemos
-            que $(i, p) = 1$ implica que $i^{\phi(p)-1}$ es el inverso de $i$.
-
-            Así que de que existen, existen.
-            Ahora, ya que $\Set{1, 2, \dots, p-1}$ es un sistema completo y reducido
-            de residuos tenemos que $\exists j \in \Set{1, 2, \dots, p-1}$ donde
-            $i^{\phi(p)-1} \equiv j \pmod{p}$ y $i \neq j$.
-
-            Por lo tanto vemos que $(p-1)!$ se puede escribir de manera muy bonita donde
-            todos los productos se cancelan menos $p-1$ y 1:
-            \begin{equation}
-                (p-1)!
-                    \equiv (1)[(i_1)(i_1)^{-1}][(i_2)(i_2)^{-1}] \cdots
-                        \Brackets{(i_{\frac{p-3}{2}})(i_{\frac{p-3}{2}})^{-1}}(p-1)
-                    \equiv p-1
-                    \equiv 1
-                    \pmod{p}           
-            \end{equation}
-
-            Esto se puede hacer pues $p$ es impar, por lo tanto $\frac{p-3}{2}$ es un 
-            entero.
-
-            Y con esto hemos demostrado este hermoso teorema :')
-
-        \end{SmallIndentation}   
-
-
-
-
-
-    % ============================================
-    % ========        PROPIEDADES        =========
-    % ============================================
-    \clearpage
-    \subsection{Propiedades}
-
-        \begin{itemize}
-            \item $x^2 \equiv -1 \pmod{p}$ si y solo si $p=4k+1$
-
-             % ======== DEMOSTRACION ========
-            \begin{SmallIndentation}[1em]
-                \textbf{Demostración}:
-
-                Esto parece más difícil de lo que es, simplemente tendremos
-                que ver que tenemos que podemos el teorema anterior en forma
-                de cuadrado, el enunciado anterior es $(p-1)! \equiv -1 \pmod{p}$
-
-                Para hacerlo tendremos que usar la idea de que:
-                \begin{MultiLineEquation*}{3}
-                    (j)(p-j)                        
-                        &\equiv jp - j^2         &&\pmod{p}    \\
-                        &\equiv 0 - j^2          &&\pmod{p}    \\
-                        &\equiv  - j^2           &&\pmod{p}
-                \end{MultiLineEquation*}
-
-                Usaremos ese truco para poner a nuestro producto de la forma:
-                \begin{MultiLineEquation*}{3}
-                    (p-1)!
-                        &\equiv [(1)(p-1)][(2)(p-2)]\dots
-                        \Brackets{(\frac{p-1}{2})(p-\frac{p-1}{2})} &&\pmod{p}    \\
-                        &\equiv \prod_{i=2}^{\frac{p-1}{2}} i (p-i) &&\pmod{p}    \\
-                        &\equiv \prod_{i=2}^{\frac{p-1}{2}} ip-i^2  &&\pmod{p}    \\
-                        &\equiv \prod_{i=2}^{\frac{p-1}{2}} 0 -i^2  &&\pmod{p}    \\
-                        &\equiv \prod_{i=2}^{\frac{p-1}{2}}   -i^2  &&\pmod{p}    \\
-                        &\equiv (-1)^{\frac{p-1}{2}}
-                            \prod_{i=2}^{\frac{p-1}{2}}    i^2      &&\pmod{p}    \\
-                        &\equiv (-1)^{\frac{p-1}{2}}
-                            \Wrap{\prod_{i=2}^{\frac{p-1}{2}} i}^2  &&\pmod{p}    \\ 
-                        &\equiv -1                                  &&\pmod{p}    \\
-                \end{MultiLineEquation*}
-
-                Por lo tanto lo anterior lo podemos simplificar a 
-                $x^2 \equiv -1 \pmod{p}$ si y solo si 
-                $(-1)^{\frac{p-1}{2}} = 1$, es decir si $\frac{p-1}{2}$ es par
-                es decir: $\frac{p-1}{2} = 2k$ despejando tenemos que 
-                $p=4k+1$.
-
-
-                Y es más, gracias a esta demostración vemos que la $x$ que estamos
-                buscando es $\prod_{i=2}^{\frac{p-1}{2}} i$
-                
-                Yo llamo a esto una buena demostración.
-
-            \end{SmallIndentation}
-        \end{itemize}
 
 
 
@@ -3433,53 +3442,103 @@
     % ========       CONGRUENCIAS DE X GRADO       ========
     % =====================================================
     \clearpage
-    \section{Congruencias de Grado Uno}
-
-        La congruencia $ax \equiv b \pmod{m}$ tiene solución si y solo si 
-        $GCD(a, m) | b$.
-
-        % ======== DEMOSTRACION ========
-        \begin{SmallIndentation}[1em]
-            \textbf{Demostración}:
-
-            Podemos demostrarlo facilmente si vemos que $ax \equiv b \pmod{m}$ quiere decir
-            que $m|ax -b$, es decir $ax-b=mq$, es decir $b=ax-mq$ y esto solo se puede hacer
-            si es que $b$ pertenece al conjunto Combinaciones de $a,m$, por lo tanto
-            $GCD(a, m)|b$ 
-        \end{SmallIndentation}
+    \section{Ecuaciones y Polínomios en Congruencias}
 
 
-        \subsection{Soluciones Generales}
+        % ============================================
+        % ========        PROPIEDADES        =========
+        % ============================================
+        \subsection{Propiedades Interesantes}
 
-            Las soluciones genrales son de la forma:
-            \begin{equation}
-                x = \pfrac{a}{GCD(a, m)}^{-1} \; \dfrac{b}{GCD(a, m)} + q\dfrac{m}{GCD(a, m)} 
-            \end{equation}
+            \begin{itemize}
+                \item $x^2 \equiv -1 \pmod{p}$ si y solo si $p=4k+1$
 
-            Con $q=0, \dots, g-1$.
+                 % ======== DEMOSTRACION ========
+                \begin{SmallIndentation}[1em]
+                    \textbf{Demostración}:
 
-            Por lo tanto tenemos $|\Set{0, \dots, g-1}|$ soluciones
+                    Esto parece más difícil de lo que es, simplemente tendremos
+                    que ver que tenemos que podemos el teorema anterior en forma
+                    de cuadrado, el enunciado anterior es $(p-1)! \equiv -1 \pmod{p}$
+
+                    Para hacerlo tendremos que usar la idea de que:
+                    \begin{MultiLineEquation*}{3}
+                        (j)(p-j)                        
+                            &\equiv jp - j^2         &&\pmod{p}    \\
+                            &\equiv 0 - j^2          &&\pmod{p}    \\
+                            &\equiv  - j^2           &&\pmod{p}
+                    \end{MultiLineEquation*}
+
+                    Usaremos ese truco para poner a nuestro producto de la forma:
+                    \begin{MultiLineEquation*}{3}
+                        (p-1)!
+                            &\equiv [(1)(p-1)][(2)(p-2)]\dots
+                            \Brackets{(\frac{p-1}{2})(p-\frac{p-1}{2})} &&\pmod{p}    \\
+                            &\equiv \prod_{i=2}^{\frac{p-1}{2}} i (p-i) &&\pmod{p}    \\
+                            &\equiv \prod_{i=2}^{\frac{p-1}{2}} ip-i^2  &&\pmod{p}    \\
+                            &\equiv \prod_{i=2}^{\frac{p-1}{2}} 0 -i^2  &&\pmod{p}    \\
+                            &\equiv \prod_{i=2}^{\frac{p-1}{2}}   -i^2  &&\pmod{p}    \\
+                            &\equiv (-1)^{\frac{p-1}{2}}
+                                \prod_{i=2}^{\frac{p-1}{2}}    i^2      &&\pmod{p}    \\
+                            &\equiv (-1)^{\frac{p-1}{2}}
+                                \Wrap{\prod_{i=2}^{\frac{p-1}{2}} i}^2  &&\pmod{p}    \\ 
+                            &\equiv -1                                  &&\pmod{p}    \\
+                    \end{MultiLineEquation*}
+
+                    Por lo tanto lo anterior lo podemos simplificar a 
+                    $x^2 \equiv -1 \pmod{p}$ si y solo si 
+                    $(-1)^{\frac{p-1}{2}} = 1$, es decir si $\frac{p-1}{2}$ es par
+                    es decir: $\frac{p-1}{2} = 2k$ despejando tenemos que 
+                    $p=4k+1$.
+
+
+                    Y es más, gracias a esta demostración vemos que la $x$ que estamos
+                    buscando es $\prod_{i=2}^{\frac{p-1}{2}} i$
+                    
+                    Yo llamo a esto una buena demostración.
+
+                \end{SmallIndentation}
+            \end{itemize}
 
 
 
+        %============================================
+        % ========  CONGRUENCIAS DE 1 GRADO   =======
+        % ===========================================
+        \clearpage
+        \subsection{De Primer Grado}
+
+            La congruencia $ax \equiv b \pmod{m}$ tiene solución si y solo si 
+            $GCD(a, m) | b$.
+
+            % ======== DEMOSTRACION ========
+            \begin{SmallIndentation}[1em]
+                \textbf{Demostración}:
+
+                Podemos demostrarlo facilmente si vemos que $ax \equiv b \pmod{m}$ quiere decir
+                que $m|ax -b$, es decir $ax-b=mq$, es decir $b=ax-mq$ y esto solo se puede hacer
+                si es que $b$ pertenece al conjunto Combinaciones de $a,m$, por lo tanto
+                $GCD(a, m)|b$ 
+            \end{SmallIndentation}
 
 
-    % =====================================================
-    % ========      TEOREMA CHINO DEL RESIDUO      ========
-    % =====================================================
-    \clearpage
-    \section{Teorema Chino del Residuo}
+            % ===============================================
+            % ========       SOLUCIONES GENERALES     =======
+            % ===============================================
+            \subsubsection{Soluciones Generales}
 
-        Si $m_1, \dots, m_r$ son enteros positivos primos relativos entre si, y $a_1, \dots, a_r$
-        son enteros cuales quiera, entonces el sistema de congruencias:
-        \begin{MultiLineEquation*}{3}
-            x \equiv a_1 \pmod{m_1}     \\
-            x \equiv a_2 \pmod{m_2}     \\
-            \cdots                      \\
-            x \equiv a_r \pmod{m_r}     
-        \end{MultiLineEquation*}
-            
+                Las soluciones genrales son de la forma:
+                \begin{equation}
+                    x = \pfrac{a}{GCD(a, m)}^{-1} \; \dfrac{b}{GCD(a, m)} + q\dfrac{m}{GCD(a, m)} 
+                \end{equation}
 
+                Con $q=0, \dots, g-1$.
+
+                Por lo tanto tenemos $|\Set{0, \dots, g-1}|$ soluciones
+
+
+
+        
 
 
 

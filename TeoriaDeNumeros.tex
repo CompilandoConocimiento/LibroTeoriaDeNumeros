@@ -94,7 +94,7 @@
     \DeclareMathOperator \Space {\quad}                             %Use: \Space for a cool mega space
     \DeclareMathOperator \MiniSpace {\;}                            %Use: \Space for a cool mini space
     \newcommand \Such {\MiniSpace|\MiniSpace}                       %Use: \Such like in sets
-    \newcommand \Also {\Space \text{y} \Space}                      %Use: \Also so it's look cool
+    \newcommand \Also {\MiniSpace \text{y} \MiniSpace}              %Use: \Also so it's look cool
     \newcommand \Remember[1]{\Space\text{\scriptsize{#1}}}          %Use: \Remember so it's look cool
 
     \newtheorem{Theorem}{Teorema}[section]                          %Use: \begin{Theorem}[Name]\label{Nombre}...
@@ -912,57 +912,43 @@
 
                     \end{SmallIndentation}
 
-
-
-
-            \end{itemize}
-
-
-
-        % =====================================================
-        % ========   CONGRUENCIAS Y DIVISIBILIDAD     =========
-        % =====================================================
-        \clearpage
-        \subsection{Criterios de Divisibilidad}
-
-            Gracias a las congruencias podemos ver mcuho más fácil si un $n$ enorme
-            es divisible.
-
-            Antes que nada vamos a trabajar con los dígitos de $n$ como en base 10,
-            así que antes vamos a explicar que son los dígitos siendo rigurosos matematicamente
-            hablando:
-
-            \begin{equation}
-            \begin{split}
-                n &= a_0(10^0) + a_1(10^1) + a_2(10^2) + \dots + a_k(10^k)          \\
-                n &= \sum_{i=0}^{k} a_i 10^i \Space \text{ con } 0 \leq a_i \leq 9
-            \end{split}
-            \end{equation}
-
-
-            \begin{itemize}
-
-                \item Un número $n \in \Integers$ es divisible entre 3 si y solo si
-                    la suma de digitos (en base 10) de $n$ es divisible entre 3.
+                \item Para cualquier entero $n$, se tiene que: 
+                    $a - 1 |a^n -1$
 
                     % ======== DEMOSTRACION ========
                     \begin{SmallIndentation}[1em]
                         \textbf{Demostración}:
 
-                        Antes que nada, recuerda que a $n$ lo puedes escribir como
-                        $n = a_0(10^0) + a_1(10^1) + a_2(10^2) + \dots + a_k(10^k)$.
+                        Es muy obvio esto si $n=1$, pues $a-1|a-1$ y con $n=2$, pues $a-1|a^2-1$
+                        ya que gracias a la diferencia de cuadrados tenemos que:
+                        $a-1|(a+1)(a-1)$.
 
-                        Ahora, también recuerda que $10 \equiv 1 \pmod{3}$.
+                        Con una $n$ par es también muy fácil pues basta con ver que podemos siempre
+                        factorizar un $a-1$, pero también podemos hacer lo mismo con un $n$ impar, 
+                        basta con ver la descomposición del polinomio.
 
-                        Ahora $3|n$ si y solo si $n \equiv 0 \pmod{3}$ y recuerda
-                        que podemos poner a $n$ escrito de otra forma:
-                        $a_0(10^0) + a_1(10^1) + a_2(10^2) + \dots + a_k(10^k) \equiv 0 \pmod{3}$
-                        y como recuerdas ($10 \equiv 1 \pmod{3}$) tenemos que esto ocurre
-                        si y solo si:  $a_0 + a_1 +\dots +a_k \equiv 0 \pmod{3}$, esto es lo mismo que
-                        $3|a_0+a_1+a_2+\dots$.
+                    \end{SmallIndentation}
 
-                        Es decir, un número $n \in \Integers$ es divisble entre 3 si y solo si
-                        la suma de digitos de $n$ es divisible entre 3.
+                \item De manera más general tenemos que $a - b |a^n - b^n$
+
+                    % ======== DEMOSTRACION ========
+                    \begin{SmallIndentation}[1em]
+                        \textbf{Demostración}:
+
+                        Para que fuera cierto teniamos que encontrar
+                        $a^n - b^n = a-b(q)$ podemos proponer entonces que:
+                        \begin{MultiLineEquation*}{3}
+                            (a-b) \sum_{k=0}^{n-1} a^k b^{n-1-k}
+                                &= (a-b) \sum_{k=0}^{n-1} a^k b^{n-1-k}         \\
+                                &= \sum_{k=0}^{n-1} a^{k+1} b^{n-1-k} 
+                                   -
+                                   \sum_{k=0}^{n-1} a^k b^{n-k}                 \\
+                                &= a^n + \sum_{k=1}^{n-1} a^{k} b^{n-k} 
+                                   -
+                                   \sum_{k=1}^{n-1} a^k b^{n-k} 
+                                   -b^n                                         \\
+                                &= a^n - b^n                                    
+                        \end{MultiLineEquation*}
 
                     \end{SmallIndentation}
 
@@ -1237,8 +1223,9 @@
                     \end{SmallIndentation} 
 
 
-                \item El conjunto $Combinaciones = \{ am+bn \Such m, n \in \Integers, \MiniSpace am+bn > 0 \}$.
-                es precisamente el conjunto de múltiplos de $GCD(a,b)$.
+                \item El conjunto 
+                    $Combinaciones = \{ am+bn \Such m, n \in \Integers, \MiniSpace am+bn > 0 \}$.
+                    Es precisamente el conjunto de múltiplos de $GCD(a,b)$.
 
                     % ======== DEMOSTRACION ========
                     \begin{SmallIndentation}[1em]
@@ -1275,6 +1262,8 @@
 
                     \end{SmallIndentation} 
 
+                \clearpage
+
 
                 \item Supón $GCD(a,b) = 1$ y que $a|bc$, entonces $a|c$.
 
@@ -1296,7 +1285,6 @@
 
                     \end{SmallIndentation} 
 
-                \clearpage
 
                 \item $GCD(ka, kb) = |k|GCD(a,b)$
 
@@ -1868,20 +1856,19 @@
         % ==================================
         \subsection{Soluciones}
 
-            La ecuación $ax+by = c$ tiene solución si y sólo si, $GCD(a,b)|c$, es decir
+            La ecuación $ax + by = c$ tiene solución si y sólo si, $GCD(a,b)|c$, es decir
             si $\frac{c}{GCD(a,b)} \in \Integers$.
 
             % ======== DEMOSTRACION ========
             \begin{SmallIndentation}[1em]
                 \textbf{Demostración}:
 
-                En efecto, habíamos visto que un corolario de la demostración la identidad
-                de Bezut, es que
-                $Combinaciones = \{ am+bn \Such m, n \in \Integers, \MiniSpace am+bn > 0 \}$.
+                En efecto, habíamos visto que un corolario de la demostración la identidad de Bezut, es qu
+                $Combinaciones = \{ am+bn \Such m, n \in \Integers, \MiniSpace am+bn > 0 \}$
                 es precisamente el conjunto de múltiplos de $GCD(a,b)$.
 
-                Ahora sabemos que $d$ es el menor elemento de ese conjunto, y más aún,
-                que gracias a ese colorario que $d$ divide a cualquier elemento del conjunto.
+                Ahora sabemos que $d$ es el menor elemento de ese conjunto, y más aún, por la naturaleza
+                del mínimo común múltiplo $d$ divide a cualquier elemento del conjunto.
 
             \end{SmallIndentation}
 
@@ -1893,14 +1880,13 @@
         \subsection{Soluciones Generales}
 
             Supón que $x_0, y_0$ es \textbf{una} solución a la ecuación $ax+ by = c$,
-            entonces todas las demás soluciones estarán dadas por:
+            donde $t \in \Integers$ y $d=GCD(a,b)$ entonces todas las demás soluciones
+            estarán dadas por:
 
             \begin{itemize}
                 \item $x = x_0 + \dfrac{b}{d}t$
                 \item $y = y_0 - \dfrac{a}{d}t$
             \end{itemize}
-
-            Donde $t \in \Integers$ y $d=GCD(a,b)$
 
 
             % ======== DEMOSTRACION ========
@@ -1965,12 +1951,9 @@
     \section{Función Phi de Euler: $\phi$ }
 
         Para un número $n \in \Naturals$ tenemos que:
-
         \begin{equation}
             \phi(n) = 
-                \big|
-                    \Set{ x \in \Naturals \Such GCD(n, x) = 1 \text{ y } x \leq n }
-                \big|
+                | \Set{ x \in \Naturals \Such GCD(n, x) = 1 \Also x \leq n } |
         \end{equation}
  
         Es decir, $\phi(n)$ es la cantidad de naturales que son menores o iguales a
@@ -2011,7 +1994,7 @@
 
             \begin{itemize}
 
-                \item Si $k > 1$ entonces $\phi(k) < k$
+                \item Si $1 < k$ entonces $\phi(k) < k$
                 
                     % ======== DEMOSTRACION ========
                     \begin{SmallIndentation}[1em]
@@ -2039,24 +2022,71 @@
                         Por otro lado si $p>1$ y $\phi(p) = p-1$ entonces $p$
                         tiene que ser primo pues de lo contrario $p$ tiene
                         un divisor $d$ tal que $1<d<p$ y entonces
-                        $\phi(n) \leq n-2$.
+                        $\phi(n) \leq n-2$ por lo que no sería primo.
 
                     \end{SmallIndentation}
 
-                \item Esta función es multiplicativa, es decir:
-                    $\phi(m n) =
-                        \phi(n)\phi(m) \dfrac{{\scriptstyle gcd(m,n)}}{\phi({\scriptstyle gcd(m,n)})}$
 
-                \item Para un primo $p \in \Primes$, $\phi(p) = p - 1$
+                \item Si $p$ es primo y $k > 0$ entonces
+                    $\phi(p^k) = p^k - p^{k-1} = p^k\Wrap{1 - \dfrac{1}{p}}$
 
                     % ======== DEMOSTRACION ========
                     \begin{SmallIndentation}[1em]
-                        \textbf{Ideas}:
+                        \textbf{Demostración}:
 
-                        Sabemos de la definición de primo, que son aquellos naturales que solo tienen
-                        a si mismos (y a uno) como divisores comunes, por lo tanto, todos los demás
-                        naturales menores son coprimos con cualquier primo, por lo tanto $\phi(p) = p - 1$
+                        Dado que $p$ es un número primo, los únicos valores posibles de
+                        $GCD(p^k, n)$ son $1, p, p^2, \dots, p^k$ y la única manera de que
+                        $GCD(p^k, n) \neq 1$ es que $m$ sea un múltiplo de $p$.
+
+                        Los múltiplos de p que son menores o iguales a $p^k$ son:
+                        $p, 2p, 3p, \dots , (p^{k-1})p$, pues $(p^{k-1})p = p^k$
+                        y hay $p^k -1$ de ellos.
+                        Por lo tanto, los otros números son relativamente primos a $p^k$.
+
                     \end{SmallIndentation}
+
+
+                \item Esta función es multiplicativa, es decir:
+                    $\phi(m n) =
+                        \phi(n)\phi(m)
+                        \dfrac{{\scriptstyle GCD(m,n)}}{\phi({\scriptstyle GCD(m,n)})}
+                    $
+
+                \item Una forma muy genial de calcular esta función dado $p \in \Primes$
+                    tenemos que:\\
+                    $\phi(n) = n \; \prod_{p|n} \Wrap{1 - \dfrac{1}{p}}$
+
+                    % ======== DEMOSTRACION ========
+                    \begin{SmallIndentation}[1em]
+                        \textbf{Demostración}:
+
+                        Usando la idea de que esta función es multiplicativa y que
+                        $\phi(p^k) = p^k - p^{k-1} = p^k\Wrap{1 - \dfrac{1}{p}}$
+                        tenemos que:
+                        \begin{MultiLineEquation*}{3}
+                            \phi(n) 
+                                &= \phi\Wrap{p_1^{e_1}p_2^{e_2} \dots p_r^{e_r}}
+                                    &&\Space\text{Usando la factorización prima}            \\
+                                &= \phi\Wrap{p_1^{e_1}}\dots \phi \Wrap{p_r^{e_r}}
+                                    &&\Space\text{Usando que es una fn multiplicativa}      \\
+                                &= p_1^{e_1} \Wrap{1 - \dfrac{1}{p_1}}
+                                   \dots
+                                   p_r^{e_r} \Wrap{1 - \dfrac{1}{p_r}}
+                                    &&\Space\text{Usando la propiedad de arriba}            \\
+                                &= p_1^{e_1} \dots p_r^{e_r}
+                                    \Wrap{1 - \dfrac{1}{p_1}} \dots \Wrap{1 - \dfrac{1}{p_r}}
+                                    &&\Space\text{Reordenamos}                              \\
+                                &= n
+                                    \prod_{p|n} \Wrap{1 - \dfrac{1}{p}}
+                                    &&\Space\text{Finalmente}                               \\
+                        \end{MultiLineEquation*}
+
+                    \end{SmallIndentation}
+
+
+
+
+
 
                 \item $\sum_{d | n} \phi(d) =n$
                     % ======== DEMOSTRACION ========
@@ -2082,38 +2112,9 @@
 
                 \item $\phi(n^m) = n^{m-1} \phi(n)$
 
-
-                \item Si $n$ y $a$ son coprimos entonces $a^{\phi(n)} \equiv 1 \pmod{n}$
-
                 \clearpage
 
-                \item Una forma muy genial de calcular esta función en programación es:\\
-                    $\phi(n) = n \cdot \prod_{p|n} \Wrap{1 - \dfrac{1}{p}}$
-
-                    % ======== DEMOSTRACION ========
-                    \begin{SmallIndentation}[1em]
-                        \textbf{Demostración}:
-
-                        Esto nos dice que podemos encontar a $\phi(n)$ simplemente multiplicando
-                        $\Wrap{1 - \dfrac{1}{p}}$ donde $p$ es cada uno de los factores primos
-                        de $n$ de la forma y finalmente multiplicarlo por $n$.
-
-                        Recuerda que para un primo $p \in \Primes$, $\phi(p) = p - 1$ y que además
-                        Esta función es multiplicativa, es decir:
-                        $\phi(m \cdot n) = \phi(n)\phi(m) \cdot 
-                            \dfrac{{\scriptstyle gcd(m,n)}}{\phi({\scriptstyle gcd(m,n)})}$.
-
-                        Supón un $p \in \Primes$, entonces:
-                        $\phi(p^e) = p^e - p^{e-1} = p^e\Wrap{1 - \dfrac{1}{p}}$
-
-                        Por lo tanto:
-                        \begin{MultiLineEquation*}{2}
-                            \phi(n) &= \phi\Wrap{p_1^{e_1} \dots p_k^{e_k} }                        \\
-                                    &= \phi\Wrap{p_1^{e_1}} \dots \phi\Wrap{p_k^{e_k}}              \\
-                                    &= n \Wrap{1 - \dfrac{1}{p_1}} \dots \Wrap{1 - \dfrac{1}{p_k}}
-                        \end{MultiLineEquation*}
-
-                    \end{SmallIndentation}
+                
 
             \end{itemize}
 
@@ -2281,6 +2282,28 @@
 
                     \end{SmallIndentation}
 
+
+                \item Si $2^k+1$ es primo entonces $k = 2^n$
+
+                    % ======== DEMOSTRACION ========
+                    \begin{SmallIndentation}[1em]
+
+                        \textbf{Demostración}:
+
+                        Ya que $k$ no es de la forma $2^n$ podemos
+                        decir que en su descomposición prima hay mínimo un factor
+                        impar, el único caso en el que no pasa esto es cuando $k=2^n$
+                        podemos decir entonces que $k=rs$ con $s$ impar.
+
+                        Ya que tenemos que $a-b|a^m -b^m$ entonces podemos decir que
+                        $(2^r - (-1))|(2^r)^s - (-1)^s$, pero como $s$ es impar
+                        $(2^r - (-1))|(2^r)^s - (-1)$, es decir
+                        $(2^r + 1)|2^{rs} + 1$, es decir, por lo tanto $2^k +1$ tiene un 
+                        factor, el $(2^r + 1)$, por lo que no es primo.
+
+                    \end{SmallIndentation}
+
+
         \end{itemize}
 
 
@@ -2393,7 +2416,7 @@
             \begin{equation}
                 n = p_1^{\alpha_1}p_2^{\alpha_2} \dots p_s^{\alpha_s}
                 \Space
-                \text{ donde}
+                \text{ donde }
                 \alpha_i \geq 0 \text{, y también } p_1 < p_2 < \dots < p_s
             \end{equation}
 
@@ -2842,6 +2865,90 @@
 
 
 
+        % =====================================================
+        % ========   CONGRUENCIAS Y DIVISIBILIDAD     =========
+        % =====================================================
+        \clearpage
+        \subsection{Criterios de Divisibilidad}
+
+            Gracias a las congruencias podemos ver mcuho más fácil si un $n$ enorme
+            es divisible.
+
+            Antes que nada vamos a trabajar con los dígitos de $n$ como en base 10,
+            así que antes vamos a explicar que son los dígitos siendo rigurosos matematicamente
+            hablando:
+
+            \begin{equation}
+            \begin{split}
+                n &= a_0(10^0) + a_1(10^1) + a_2(10^2) + \dots + a_k(10^k)          \\
+                n &= \sum_{i=0}^{k} a_i 10^i \Space \text{ con } 0 \leq a_i \leq 9
+            \end{split}
+            \end{equation}
+
+
+            \begin{itemize}
+
+                \item Un número $n \in \Integers$ es divisible entre 3 si y solo si
+                    la suma de digitos (en base 10) de $n$ es divisible entre 3.
+
+                    % ======== DEMOSTRACION ========
+                    \begin{SmallIndentation}[1em]
+                        \textbf{Demostración}:
+
+                        Antes que nada, recuerda que a $n$ lo puedes escribir como
+                        $n = a_0(10^0) + a_1(10^1) + a_2(10^2) + \dots + a_k(10^k)$.
+
+                        Ahora, también recuerda que $10 \equiv 1 \pmod{3}$.
+
+                        Ahora $3|n$ si y solo si $n \equiv 0 \pmod{3}$ y recuerda
+                        que podemos poner a $n$ escrito de otra forma:
+                        $a_0(10^0) + a_1(10^1) + a_2(10^2) + \dots + a_k(10^k) \equiv 0 \pmod{3}$
+                        y como recuerdas ($10 \equiv 1 \pmod{3}$) tenemos que esto ocurre
+                        si y solo si:  $a_0 + a_1 +\dots +a_k \equiv 0 \pmod{3}$, esto es lo mismo que
+                        $3|a_0+a_1+a_2+\dots$.
+
+                        Es decir, un número $n \in \Integers$ es divisble entre 3 si y solo si
+                        la suma de digitos de $n$ es divisible entre 3.
+
+                    \end{SmallIndentation}
+
+
+                \item Un número $n \in \Integers$ es divisible entre 8 si y solo si
+                    la suma de digitos (en base 10) de los últimos 3 digitos de $n$ es divisible
+                    entre 8.
+
+                    % ======== DEMOSTRACION ========
+                    \begin{SmallIndentation}[1em]
+                        \textbf{Demostración}:
+
+                        Antes que nada, recuerda que a $n$ lo puedes escribir como
+                        $n = a_0(10^0) + a_1(10^1) + a_2(10^2) + \dots + a_k(10^k)$.
+
+                        Ahora, también recuerda que $8 |10^k$ con $k<2$.
+                        Para demostrar esto basta con ver que $1000/8 = 125$, 
+                        $10000/8 = 1250$ (creo que la demostración formal por inducción
+                        es más que obvia), y para cualquier $k$ mayor se cumplirá,
+                        pero para $k=0$, $k=1$ o $k=2$, esto no es cierto.
+
+                        Ahora $8|n$ si y solo si $n \equiv 0 \pmod{8}$ y recuerda
+                        que podemos poner a $n$ escrito de otra forma:
+                        $a_0(10^0) + a_1(10^1) + a_2(10^2) + \dots + a_k(10^k) \equiv 0 \pmod{8}$
+                        y como vimos por la propiedad anterior para potencias de 10 mayores que
+                        2 tenemos que son congruentes con $0 \pmod{8}$, por lo tanto la
+                        expresión de arriba se puede reducir a $8|n$ si y solo si: 
+                        $a_0(10^0) + a_1(10^1) + a_2(10^2) \equiv 0 \pmod{8}$.
+
+                        Es decir si el el número formado por sus últimos 3 dígitos es divisible
+                        entre 8.
+
+                    \end{SmallIndentation}
+
+            \end{itemize}
+
+
+
+
+
 
         % ==================================
         % =====      A % B = MODULO   ======
@@ -3079,7 +3186,7 @@
 
 
     % =====================================================
-    % ========       ARITMETICA MODULAR           =========
+    % ========       TEOREMA DE WILSON            =========
     % =====================================================
     \clearpage
     \section{Teorema de Wilson}
@@ -3320,6 +3427,58 @@
                 Así que ahí esta tu inverso, es $a^{\phi(n)-1}$
 
 
+
+
+    % =====================================================
+    % ========       CONGRUENCIAS DE X GRADO       ========
+    % =====================================================
+    \clearpage
+    \section{Congruencias de Grado Uno}
+
+        La congruencia $ax \equiv b \pmod{m}$ tiene solución si y solo si 
+        $GCD(a, m) | b$.
+
+        % ======== DEMOSTRACION ========
+        \begin{SmallIndentation}[1em]
+            \textbf{Demostración}:
+
+            Podemos demostrarlo facilmente si vemos que $ax \equiv b \pmod{m}$ quiere decir
+            que $m|ax -b$, es decir $ax-b=mq$, es decir $b=ax-mq$ y esto solo se puede hacer
+            si es que $b$ pertenece al conjunto Combinaciones de $a,m$, por lo tanto
+            $GCD(a, m)|b$ 
+        \end{SmallIndentation}
+
+
+        \subsection{Soluciones Generales}
+
+            Las soluciones genrales son de la forma:
+            \begin{equation}
+                x = \pfrac{a}{GCD(a, m)}^{-1} \; \dfrac{b}{GCD(a, m)} + q\dfrac{m}{GCD(a, m)} 
+            \end{equation}
+
+            Con $q=0, \dots, g-1$.
+
+            Por lo tanto tenemos $|\Set{0, \dots, g-1}|$ soluciones
+
+
+
+
+
+    % =====================================================
+    % ========      TEOREMA CHINO DEL RESIDUO      ========
+    % =====================================================
+    \clearpage
+    \section{Teorema Chino del Residuo}
+
+        Si $m_1, \dots, m_r$ son enteros positivos primos relativos entre si, y $a_1, \dots, a_r$
+        son enteros cuales quiera, entonces el sistema de congruencias:
+        \begin{MultiLineEquation*}{3}
+            x \equiv a_1 \pmod{m_1}     \\
+            x \equiv a_2 \pmod{m_2}     \\
+            \cdots                      \\
+            x \equiv a_r \pmod{m_r}     
+        \end{MultiLineEquation*}
+            
 
 
 

@@ -300,7 +300,7 @@
             Así que $GCD(1109, 4999) = 1$\\
 
     \clearpage
-    \subsection{Problema 2}
+    \subsection{Problema 3}
     \subsection*{Algoritmo de Euclides Extendido y Coeficientes de Bezut}
 
             Encontremos los coeficientes de $243x + 198y = 9$
@@ -445,7 +445,7 @@
 
 
     \clearpage
-    \subsection{Problema 3}
+    \subsection{Problema 5}
     \subsection*{¿Cuantos enteros hay entre 100 y 1000 que sean divisibles entre 7?}
 
         Empecemos porque el primero es 105, de ahi hay 127 más, pues 105 + (127 * 7) = 994.
@@ -455,6 +455,12 @@
         Otro truco es aplicar el algoritmo de la división y ver que 
         $1000 = 7(142) + 6$ y $100 = 7(14) + 2$ y $142-14 = 128$.
 
+
+    \subsection{Problema 7}
+    \subsection*{Mostrar 3 enteros que son relativos, pero no primos relativos a pares}
+
+        Esto simplemente no se puede, si un conjunto es primo relativo, entonces lo será cada
+        par de sus elementos.
 
 
     \subsection{Problema 9}
@@ -468,6 +474,22 @@
 
             Si $bc|ac$ entonces $ac = q(bc)$, por lo tanto ya que estamos en los
             enteros podemos cancelar y ver que $a = bq$ es decir $b|a$.
+
+        \end{SmallIndentation}
+
+     \subsection{Problema 11}
+    \subsection*{Nunca se cumple que $4|n^2 +2$}
+
+        % ======== DEMOSTRACION ========
+        \begin{SmallIndentation}[1em]
+            \textbf{Demostración}:
+
+            Suponga que $n$ es par, por lo tanto tenemos que:
+            $(2k)^2+2$ se puede expresar como $4k^2 + 2$, por lo tanto no es divisible entre
+            cuatro.
+
+            Si $n$ es impar, tenemos que $(2k+1)^+2$ se puede expresar como $4k^2 + 4k + 1 + 2$
+            es decir $4(k^2+k) +3$, por lo tanto tampoco es divisible entre cuatro.
 
         \end{SmallIndentation}
 
@@ -495,6 +517,29 @@
             a la penúltima línea es vemos que no puede ser divisible entre 4
                 
 
+        \end{SmallIndentation}
+
+    \subsection{Problema 17}
+    \subsection*{$GCD(n, n+1) = 1$}
+
+        % ======== DEMOSTRACION ========
+        \begin{SmallIndentation}[1em]
+            \textbf{Demostración}:
+
+            Sea $d = GCD(n, n+1)$, ahora tenemos que $d|n$ y $d|n+1$, por lo tanto
+            divide a cualquier combinación lineal como por ejempo $d|(-1)n +1(n+1)$
+            entonces $d|1$ por lo tanto solo le queda a $d$ ser uno.
+        \end{SmallIndentation}
+
+    \subsection{Problema 17.1}
+    \subsection*{$LCM(n, n+1) = |n(n+1)|$}
+
+        % ======== DEMOSTRACION ========
+        \begin{SmallIndentation}[1em]
+            \textbf{Demostración}:
+
+            Ya sabemos que $GCD(n, n+1) = 1$ por lo tanto 
+            $1 LCM(n, n+1) = |n(n+1)|$
         \end{SmallIndentation}
 
 
@@ -597,6 +642,52 @@
         \end{SmallIndentation}
 
 
+    \subsection{Problema 29}
+    \subsection*{$a, b \in \Integers$ existen enteros $x, y$ tal que
+        $GCD(x, y) = b$  y $LCM(x, y) = a$ si y solo si $b|a$}
+
+        % ======== DEMOSTRACION ========
+        \begin{SmallIndentation}[1em]
+            \textbf{Demostración}:
+
+            Probemos por doble condicional.
+
+            Empecemos de ida:
+            
+            Dado $GCD(x, y) = b$ por lo tanto $b|x$ y dado $LCM(x, y) = a$ por lo tanto $x|a$
+            y ya que la divisibilidad es transicitva tenemos por lo tanto que $b|a$.
+
+
+            Primero empecemos de regreso:
+
+            Si $b|a$, entonces $a = bq$.
+            Podemos decir que $GCD(b, a) = GCD(b, bq) = b \cdot GCD(1, q)$.
+            Podemos decir que $MCL(b, a) = MCL(b, bq) = bq = a$.
+
+            Por lo tanto propongamos que $x=a$ y a $y=b$ entonces tenemos que 
+            se cumple la propiedad.
+
+        \end{SmallIndentation}
+
+
+    \subsection{Problema 31}
+    \subsection*{$a - 1 |a^n -1$}
+
+        % ======== DEMOSTRACION ========
+        \begin{SmallIndentation}[1em]
+            \textbf{Demostración}:
+
+            Es muy obvio esto si $n=1$, pues $a-1|a-1$ y con $n=2$, pues $a-1|a^2-1$
+            ya que gracias a la diferencia de cuadrados tenemos que:
+            $a-1|(a+1)(a-1)$.
+
+            Con una $n$ par es también muy fácil pues basta con ver que podemos siempre
+            factorizar un $a-1$, pero también podemos hacer lo mismo con un $n$ impar, 
+            basta con ver la descomposición del polinomio.
+
+        \end{SmallIndentation}
+
+
     \clearpage
     \subsection{Problema 33}
     \subsection*{GCD(a,b,c) = GCD((a, b), c)}
@@ -624,6 +715,21 @@
         \end{SmallIndentation}
 
 
+    \subsection{Problema 35}
+    \subsection*{Si $GCD(b, c) = 1$ y $r|b$ entonces $GCD(r, c) = 1$}
+
+        % ======== DEMOSTRACION ========
+        \begin{SmallIndentation}[1em]
+            \textbf{Demostración}:
+
+            Usando la Identidad de Bezut esto esta regalado pues tenemos que
+            $bx + cy = 1$ y $b = rq$ entonces 
+            $r(qx) + cy = 1$ por lo tanto $GCD(r, c) = 1$. Que facil son ciertas
+            demostraciones. 
+
+        \end{SmallIndentation}
+
+
 
 
 
@@ -633,8 +739,34 @@
 \clearpage
 \section{Primos}
 
+    \subsection{Problema 2}
+    \subsection*{Un número $n \in \Integers$ es divisible entre 3 si y solo si
+        la suma de digitos (en base 10) de $n$ es divisible entre 3}
 
-    \subsection{Problema 9}
+        % ======== DEMOSTRACION ========
+        \begin{SmallIndentation}[1em]
+            \textbf{Demostración}:
+
+            Antes que nada, recuerda que a $n$ lo puedes escribir como
+            $n = a_0(10^0) + a_1(10^1) + a_2(10^2) + \dots + a_k(10^k)$.
+
+            Ahora, también recuerda que $10 \equiv 1 \pmod{3}$.
+
+            Ahora $3|n$ si y solo si $n \equiv 0 \pmod{3}$ y recuerda
+            que podemos poner a $n$ escrito de otra forma:
+            $a_0(10^0) + a_1(10^1) + a_2(10^2) + \dots + a_k(10^k) \equiv 0 \pmod{3}$
+            y como recuerdas ($10 \equiv 1 \pmod{3}$) tenemos que esto ocurre
+            si y solo si:  $a_0 + a_1 +\dots +a_k \equiv 0 \pmod{3}$, esto es lo mismo que
+            $3|a_0+a_1+a_2+\dots$.
+
+            Es decir, un número $n \in \Integers$ es divisble entre 3 si y solo si
+            la suma de digitos de $n$ es divisible entre 3.
+
+        \end{SmallIndentation}
+
+
+
+    \subsection{Problema 3}
     \subsection*{Cualquier número es divisible entre 11 si y solo si la diferencia de la suma
         de los dígitos impares y los dígitos pares son divisibles entre 11}
 
@@ -666,38 +798,38 @@
 
 
         \subsection{Problema 10}
-    \subsection*{Si $x, y$ son impares entonces $x^2 + y^2$ no puede ser un cuadrado
+        \subsection*{Si $x, y$ son impares entonces $x^2 + y^2$ no puede ser un cuadrado
         perfecto}
 
-        % ======== DEMOSTRACION ========
-        \begin{SmallIndentation}[1em]
-            \textbf{Demostración}:
+            % ======== DEMOSTRACION ========
+            \begin{SmallIndentation}[1em]
+                \textbf{Demostración}:
 
-            Esta demostración se deduce de manera inmediata del siguiente problema, pero ya 
-            que lo estoy haciendo en \LaTeX es tal fácil como un copy paste :D
+                Esta demostración se deduce de manera inmediata del siguiente problema, pero ya 
+                que lo estoy haciendo en \LaTeX es tal fácil como un copy paste :D
 
-            Antes que nada recuerda que un cuadrado perfecto, lo podemos expresar como:
-            \begin{itemize}
-                \item $(3k+0)^2 = 9k^2 = 3(3k^2)$
-                \item $(3k+1)^2 = 9k^2 + 6k + 1 = 3(3k^2 + 2k) + 1$
-                \item $(3k+2)^2 = 9k^2 + 12k + 3 +1 = 3(3k^2 + 4k + 1) + 1$
-            \end{itemize}
+                Antes que nada recuerda que un cuadrado perfecto, lo podemos expresar como:
+                \begin{itemize}
+                    \item $(3k+0)^2 = 9k^2 = 3(3k^2)$
+                    \item $(3k+1)^2 = 9k^2 + 6k + 1 = 3(3k^2 + 2k) + 1$
+                    \item $(3k+2)^2 = 9k^2 + 12k + 3 +1 = 3(3k^2 + 4k + 1) + 1$
+                \end{itemize}
 
-            Es decir, todo cuadrado perfecto o es divisible entre 3 o es de la forma
-            $3k+1$.
+                Es decir, todo cuadrado perfecto o es divisible entre 3 o es de la forma
+                $3k+1$.
 
-            Dado esto tenemos que:
-            \begin{MultiLineEquation*}{3}
-                (3k_1+1)^2 + (3k_2+1)^2
-                    &= 9k_1^2 + 6k_1 + 1  +  9k_2^2 + 6k_2 + 1      \\
-                    &= 9k_1^2 + 6k_1 + 9k_2^2 + 6k_2 + 2            \\
-                    &= 9k_1^2 + 6k_1 + 9k_2^2 + 6k_2 + 2            \\
-                    &= 3(3k_1^2 + 2k_1 + 3k_2^2 + 2k_2) + 2            
-            \end{MultiLineEquation*}
+                Dado esto tenemos que:
+                \begin{MultiLineEquation*}{3}
+                    (3k_1+1)^2 + (3k_2+1)^2
+                        &= 9k_1^2 + 6k_1 + 1  +  9k_2^2 + 6k_2 + 1      \\
+                        &= 9k_1^2 + 6k_1 + 9k_2^2 + 6k_2 + 2            \\
+                        &= 9k_1^2 + 6k_1 + 9k_2^2 + 6k_2 + 2            \\
+                        &= 3(3k_1^2 + 2k_1 + 3k_2^2 + 2k_2) + 2            
+                \end{MultiLineEquation*}
 
-            Por lo tanto no puede ser un cuadrado perfecto.
+                Por lo tanto no puede ser un cuadrado perfecto.
 
-        \end{SmallIndentation}
+            \end{SmallIndentation}
 
 
 
@@ -760,6 +892,38 @@
                     Por lo tanto no puede ser un cuadrado perfecto.
             \end{itemize}
 
+
+        \end{SmallIndentation}
+
+
+
+    \subsection{Problema 28}
+    \subsection*{Todo número compuesto $n$ tiene un divisor $a$ tal que $a \leq \sqrt{n}$}
+
+        % ======== DEMOSTRACION ========
+        \begin{SmallIndentation}[1em]
+
+            Dado un entero particular, ¿Cómo podemos saber si es primo o no?
+
+            Si el número es compuesto, ¿Cómo podemos encontrar un divisor no trivial?
+
+            La primera idea es verificar si todos los enteros menores son
+            divisores, si los únicos divisores son el 1 y el -1 entonces
+            el número será primo.
+
+            Este método es simple pero costoso en términos de cómputo. Sin
+            embargo la propiedad de arriba nos podría facilitar el cálculo.\\
+
+            \textbf{Demostración}:
+
+            En efecto, como n es compuesto, $n = ab$.
+
+            Si $a = b$, es decir si es un cuadrado perfecto entonces
+            $a = b = a^2 = \sqrt{n}$.
+
+            En caso contrario podemos suponer, que $a<b$, si multiplicamos
+            por $a$ tenemos que $a^2<ab$. Por lo tanto $a^2 < n$.
+            Por lo que $a < \sqrt{n}$.
 
         \end{SmallIndentation}
 

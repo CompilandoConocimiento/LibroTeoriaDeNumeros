@@ -1,5 +1,5 @@
 % ****************************************************************************************
-% ************************     	RELACIONES Y FUNCIONES   	  ****************************
+% ************************        TEORIA DE NUMEROS      	  ****************************
 % ****************************************************************************************
 
 
@@ -255,6 +255,7 @@
         % =====================================================
         % ========    CONSTRUCCION DE LOS ENTEROS       =======
         % =====================================================
+        \clearpage
         \section{Operaciones entre los Enteros}
 
             Ya hemos visto que en el fondo podemos abstraer a los enteros como elementos del
@@ -292,13 +293,12 @@
             % ===============================
             % ========  CANCELACION   =======
             % ===============================
-            \clearpage
-            \subsection{Cancelación}
+            \subsection*{Cancelación}
 
                 Algo que también pasa con los enteros es que admiten cancelación, es decir:
                 \begin{itemize}
                     \item
-                        Si  $[(a,b)] + [(c,d)] = [(a,b)] + [(e,f)]$ entonces tenemos qu
+                        Si  $[(a,b)] + [(c,d)] = [(a,b)] + [(e,f)]$ entonces tenemos que
                         $[(c,d)] = [(e,f)]$
 
                     \item
@@ -1930,8 +1930,11 @@
         % ==================================
         \subsection*{Definición Formal}
 
-            Una ecuación diofantinas es una ecuación del a forma $ax+by=c$ con
-            $a,b,c \in \Integers$.
+            Una ecuación diofantinas es una ecuación donde $a,b,c \in \Integers$ de
+            la forma:
+            \begin{equation}
+                ax + by = c
+            \end{equation}
 
             Una solución de esta ecuación es un par de enteros $x_0, y_0$
             que satisfacen la ecuación.
@@ -1940,7 +1943,8 @@
         % ==================================
         % ===    COMO ES UNA SOLUCION  =====
         % ==================================
-        \subsection{Soluciones}
+        \vspace{3.5em}
+        \subsection{Existencia de Soluciones}
 
             La ecuación $ax + by = c$ tiene solución si y sólo si, $GCD(a,b)|c$, es decir
             si $\frac{c}{GCD(a,b)} \in \Integers$.
@@ -1949,12 +1953,14 @@
             \begin{SmallIndentation}[1em]
                 \textbf{Demostración}:
 
-                En efecto, habíamos visto que un corolario de la demostración la identidad de Bezut, es qu
+                En efecto, habíamos visto que un corolario de la demostración la identidad de Bezut,
+                es que el conjunto llamado
                 $Combinaciones = \{ am+bn \Such m, n \in \Integers, \MiniSpace am+bn > 0 \}$
-                es precisamente el conjunto de múltiplos de $GCD(a,b)$.
+                es exactamente el conjunto de múltiplos de $GCD(a, b)$.
 
-                Ahora sabemos que $d$ es el menor elemento de ese conjunto, y más aún, por la naturaleza
-                del mínimo común múltiplo $d$ divide a cualquier elemento del conjunto.
+                Ahora sabemos que $d$ es el menor elemento de ese conjunto, y más aún,
+                por la naturaleza del mínimo común múltiplo $d$ divide a cualquier
+                elemento del conjunto.
 
             \end{SmallIndentation}
 
@@ -2034,7 +2040,7 @@
     % ==============    PHI DE EULER    ===================
     % =====================================================
     \clearpage
-    \section{Función Phi de Euler: $\phi$ }
+    \section{Función Phi de Euler: $\phi(n)$}
 
         Para un número $n \in \Naturals$ tenemos que:
         \begin{equation}
@@ -2105,7 +2111,7 @@
                         que $p$ es primo relativo con con $p$, así que 
                         $\phi(p) = p-1$.
 
-                        Por otro lado si $p>1$ y $\phi(p) = p-1$ entonces $p$
+                        Por otro lado si $p > 1$ y $\phi(p) = p-1$ entonces $p$
                         tiene que ser primo pues de lo contrario $p$ tiene
                         un divisor $d$ tal que $1<d<p$ y entonces
                         $\phi(n) \leq n-2$ por lo que no sería primo.
@@ -2132,15 +2138,84 @@
                     \end{SmallIndentation}
 
 
+                \item $\sum\limits_{d | n} \phi(d) = n$
+                    % ======== DEMOSTRACION ========
+                    \begin{SmallIndentation}[1em]
+                        \textbf{Demostración}:
+
+                        Esto nos dice que la suma de las phi's de todos los divisores
+                        de $n$ es la misma $n$.
+
+                        Para un divisor $d$ de $n$, sea el conjunto:
+                        \begin{equation*}
+                            S_d = \Set{ a \in \Set{1, \dots, n} \Such GCD(a, n) = \dfrac{n}{d}}  
+                        \end{equation*}
+
+                        Entonces $S_d$ consiste de todos los elementos de la forma:
+                        $b \cdot \dfrac{n}{d}$ donde $0 \leq b \leq d$, y $GCD(b,d) = 1$,
+                        entonces $S_d$ contiene $\phi(d)$ elementos.
+
+                        También, es claro que cada entero entre 1 y n pertenece a un único 
+                        $S_d$. El resultado entonces sigue de sumar sobre todos los divisores
+                        $d$ de $n$.
+
+                    \end{SmallIndentation}
+
+
+                \clearpage
                 \item Esta función es multiplicativa, es decir:
                     $\phi(m n) =
                         \phi(n)\phi(m)
                         \dfrac{{\scriptstyle GCD(m,n)}}{\phi({\scriptstyle GCD(m,n)})}
                     $
 
-                \item Una forma muy genial de calcular esta función dado $p \in \Primes$
-                    tenemos que:\\
-                    $\phi(n) = n \; \prod_{p|n} \Wrap{1 - \dfrac{1}{p}}$
+                    % ======== DEMOSTRACION ========
+                    \begin{SmallIndentation}[1em]
+                        \textbf{Demostración Debíl}:
+                        
+                        Tenemos que demostrar que $\phi(nm) = \phi(n)\phi(m)$ siempre que
+                        $(n, m) = 1$.
+                        Si alguno de los dos $m$ ó $n$ son uno 1 entonces como $\phi(1) = 1$
+                        el resultado es claro.
+
+                        Asumamos pues que $n, m > 1$.
+                        Podemos acomodar a todos los enteros positivos menores o iguales a $mn$
+                        en filas de la forma:
+
+                        \begin{MultiLineEquation*}{20}
+                            1 &, 2 &, \dots &, r &, \dots &, m          \\
+                            m+1 &, m+2 &, \dots &, m+r &, \dots &, 2m   \\
+                            \cdots                                      \\
+                            (n-1)m+1 &, (n-1)m+2 &, \dots &, (n-1)m+r &, \dots &, nm
+                        \end{MultiLineEquation*}
+                            
+                        Y como $\phi(mn)$ es el número de enteros en el arreglo anterior
+                        que son primos relativos con $mn$. Vamos que esto es equivalente a
+                        encontrar a los números que son primos relativos tanto con $m$ como con $n$.
+
+                        Nota que $(km+r, m) = (r, m)$ por lo que en cada renglon hay exactamente
+                        $\phi(m)$ enteros que son primos relativos con $m$ y de hecho si en una
+                        columna hay un entero primo relativo con $m$, todos los elementos de la
+                        columna son primos relativos con $m$, es decir hay exactamente $\phi(m)$
+                        columnas formadas por enteros primos relativos con $m$.
+
+                        Ahora si suponemos que la columna $r$ está formada por enteros primos relativos
+                        con $m$ afirmamos que en esta columna hay exactamente $\phi(n)$ enteros primo
+                        relativos con $n$ pues todos estos enteros son distintos y $n$ no divide a la
+                        diferencia entre cualequiera dos de ellos, esto es, el residuo de cada uno de
+                        estos números al ser dividido entre $n$ es distinto 
+                        (nota que $(m, n) = 1$ y por lo tanto los residuos de esta columna son los
+                        enteros $0, 1, 2, 3, \dots, n-1$ en distinto orden.
+
+                        Por lo tanto en la tabla habrá exactamente $\phi(n)\phi(m)$ números que son
+                        primos relativos tanto a $n$ como a $m$ y por lo tanto
+                        $\phi(mn) = \phi(m)\phi(n)$ es decir $\phi$ es multiplicativa.
+                    
+                    \end{SmallIndentation}
+                        
+
+                \item Usando la factorización prima podemos calcular $\phi(n)$ como:\\
+                    $\phi(n) = n \; \prod_{p|n} \Wrap{1 - \frac{1}{p}}$
 
                     % ======== DEMOSTRACION ========
                     \begin{SmallIndentation}[1em]
@@ -2172,21 +2247,29 @@
 
 
 
-
-
-                \item $\sum_{d | n} \phi(d) =n$
+                \clearpage
+                \item Para $n > 2$ se tiene que $\phi(n)$ es un número par
+                
                     % ======== DEMOSTRACION ========
                     \begin{SmallIndentation}[1em]
-                        \textbf{Ideas}:
+                        \textbf{Demostración}:
 
-                        Esto nos dice que la multiplicación de las phi's de todos
-                        los divisores de $n$ es la misma $n$.
+                        El caso $n = 2^k$ con $k > 1$ se sigue con facilidad
+
+                        Si $n$ no es una potencia de 2, entonces lo divide un
+                        primo impar p y entonces $n = p^\alpha m$ con $(p^\alpha, m) = 1$
+                        por lo que:
+                        $\phi(n) = \phi(p^\alpha)\phi(m)$ y como
+                        $\phi(p^\alpha) = p^{\alpha-1}(p-1)$ y $(p-1)$ es par, el resultado se sigue.
 
                     \end{SmallIndentation}
 
 
 
-                \item $\sum_{gcd(i, n) \text{ y } i < n} i = \dfrac{n}{2} \phi(n)$
+
+
+
+                \item $\sum\limits_{GCD(i, n) = 1 \text{ y } i < n} i = \dfrac{n}{2} \phi(n)$
                     % ======== DEMOSTRACION ========
                     \begin{SmallIndentation}[1em]
                         \textbf{Ideas}:
@@ -3024,8 +3107,11 @@
         \clearpage
         \subsection{Teorema Generalizado de Fermat por Euler}
 
-
-            Si $GCD(a, n) = 1$ entonces $a^{\phi(n)} \equiv 1 \pmod{n}$
+            \begin{equation}
+                \text{Si } GCD(a, n) = 1
+                \text{ entonces }
+                a^{\phi(n)} \equiv 1 \pmod{n}
+            \end{equation}
 
             % ======== DEMOSTRACION ========
             \begin{SmallIndentation}[1em]
@@ -3066,6 +3152,40 @@
 
 
         % =====================================================
+        % =====       PEQUEÑO TEOREMA DE FERMAT      ==========
+        % =====================================================
+        \clearpage
+        \subsection{Pequeño Teorema de Fermat}
+
+
+            Llamamos al Teorema anterior \Quote{Teorema Generalizado de Fermat por Euler}
+            porque generaliza un Teorema conocido como el pequeño Teorema de Fermat.
+
+            Este se enuncia como:
+            \begin{equation}
+                p | n^p - n \Space \forall n
+            \end{equation}
+
+            % ======== DEMOSTRACION ========
+            \begin{SmallIndentation}[1em]
+                \textbf{Demostración}:
+                
+                Usemos lo que ya sabemos, $a^{\phi(n)} \equiv 1 \pmod{n}$.
+
+                Ahora, sabemos que si $n$ es un primo, tenemos que
+                $a^{\phi(p)} \equiv 1 \pmod{p}$, pero ya también sabemos que como
+                $p$ es un primo $\phi(p) = p - 1$, por lo tanto $a^{p-1} \equiv 1 \pmod{p}$.
+
+                Si multiplicamos todo por $a$ tenemos que $a^p \equiv a \pmod{p}$.
+
+                Recuerda la definición formal de las congruencias, por lo que tenemos que
+                $p |a^p - a$, y cambiando un el nombre de una variable llegamos a que
+                $p |n^p - n$.
+            
+            \end{SmallIndentation}
+                
+
+        % =====================================================
         % ========       TEOREMA DE WILSON            =========
         % =====================================================
         \clearpage
@@ -3081,10 +3201,6 @@
             \begin{SmallIndentation}[1em]
                 \textbf{Demostración}:
 
-                Esto tiene muchas interpretaciones como que multiplicar todos los residuos
-                posibles de dividir entre un primo son congruentes con $p-1 \pmod{p}$.
-
-                Pero dejando de lado las intepretaciones, veamos como demostrarlo.
                 El truco aquí esta en los inversos:
 
                 \begin{itemize}
@@ -3365,17 +3481,6 @@
                     \end{SmallIndentation}
 
             \end{itemize}
-
-
-
-
-
-
-
-
-
-
-
 
 
 

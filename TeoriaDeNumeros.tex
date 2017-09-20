@@ -917,7 +917,7 @@
 
                     % ======== DEMOSTRACION ========
                     \begin{SmallIndentation}[1em]
-                        \textbf{Demostración}:
+                        \textbf{Ideas}:
 
                         Es muy obvio esto si $n=1$, pues $a-1|a-1$ y con $n=2$, pues $a-1|a^2-1$
                         ya que gracias a la diferencia de cuadrados tenemos que:
@@ -925,7 +925,31 @@
 
                         Con una $n$ par es también muy fácil pues basta con ver que podemos siempre
                         factorizar un $a-1$, pero también podemos hacer lo mismo con un $n$ impar, 
-                        basta con ver la descomposición del polinomio.
+                        basta con ver la descomposición del polinomio.\\
+
+
+                        \textbf{Demostracion}:
+
+                        Recuerdas la serie geométrica, sino no te preocupes, pues tenemos que:
+                        \begin{MultiLineEquation*}{3}
+                            a + ar + ar^2 + ar^3 + \cdots + ar^{n-1}
+                                &= \sum_{k=0}^{n-1} ar^k
+                                &= a\dfrac{1-r^n}{1-r}
+                                &= a\dfrac{(-1)(r^n - 1)}{(-1)r-1}
+                                &= a\dfrac{r^n - 1}{r-1}
+                        \end{MultiLineEquation*}
+
+                        Por lo tanto si pones a $a=1$ y $r=a$ tienes que:
+                        \begin{MultiLineEquation*}{3}
+                            1 + a + a^2 + a^3 + \cdots + a^{n-1}
+                                &= \sum_{k=0}^{n-1} a^k
+                                &= \dfrac{1-a^n}{1-a}
+                                &= \dfrac{(-1)(a^n - 1)}{(-1)a-1}
+                                &= \dfrac{a^n - 1}{a-1}
+                        \end{MultiLineEquation*}
+
+                        Por lo tanto ya que solo estamos sumando enteros o potencias de enteros 
+                        $\dfrac{a^n - 1}{a-1}$ debe ser un entero, es decir $a - 1 |a^n -1$.
 
                     \end{SmallIndentation}
 
@@ -1006,18 +1030,45 @@
         % ==================================
         \subsection*{Definición Alterna}
 
-            Podemos también podemos decir que si
-            $a = p_1^{e_1} p_2^{e_2} \dots p_k^{e_k}$
-            $b = p_1^{f_1} p_2^{f_2} \dots p_k^{f_k}$
+            Podemos también podemos decir que dados dos enteros escritos en 
+            su factorización prima tenemos que:
+            \begin{itemize}
+                \item $a = p_1^{e_1} p_2^{e_2} \dots p_k^{e_k}$
+                \item $b = p_1^{f_1} p_2^{f_2} \dots p_k^{f_k}$
+            \end{itemize}
 
-            Entonces $GCD(a, b) = p_1^{min(e_1, f_1)} p_1^{min(e_2, f_2)} \dots p_k^{min(e_k, f_k)}$
+            Entonces podemos definir al máximo común divisor como:
+            \begin{equation}
+                GCD(a, b) = p_1^{min(e_1, f_1)} p_1^{min(e_2, f_2)} \dots p_k^{min(e_k, f_k)}
+            \end{equation}
 
 
-            Por ejemplo si $a = 5 = 2^0 \cdot 3^0 \cdot 5^1$ y
-            $b = 15 = 2^0 \cdot 3^1 \cdot 5^1 \cdot 7^0 \cdot 11^0 \cdot 13^0$
+            % ======== DEMOSTRACION ========
+            \begin{SmallIndentation}[2em]
+                \textbf{\\Ejemplo}:
+                
+                Por ejemplo si:
+                $a = 5 = 2^0 \cdot 3^0 \cdot 5^1
+                    \Also
+                b = 15 = 2^0 \cdot 3^1 \cdot 5^1 \cdot 7^0 \cdot 11^0 \cdot 13^0$
 
-            Entonces $GCD(5, 15) = 2^{min(0,0)} \cdot 3^{min(0,1)} \cdot 5^{min(1,1)} 
-                        \cdot 7^{min(0,0)} \cdot 11^{min(0,0)} \cdot 13^{min(0,0)} = 5^1 = 5$
+                Entonces:
+                \begin{MultiLineEquation*}{3}
+                    GCD(5, 15) 
+                        &= 2^{min(0,0)}         \cdot 3^{min(0,1)}
+                            \cdot 5^{min(1,1)}  \cdot 7^{min(0,0)}
+                            \cdot 11^{min(0,0)} \cdot 13^{min(0,0)}     \\
+                        &= 2^0         \cdot 3^0
+                            \cdot 5^1  \cdot 7^0
+                            \cdot 11^0 \cdot 13^0                       
+                            = 5^1 = 5
+                \end{MultiLineEquation*}
+            
+            \end{SmallIndentation}
+                
+
+
+            
 
 
         % ==================================

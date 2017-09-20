@@ -737,6 +737,50 @@
         \end{SmallIndentation}
 
 
+
+    \subsection{Problema 31.1}
+    \subsection*{$a - 1 |a^n -1$}
+
+        % ======== DEMOSTRACION ========
+        \begin{SmallIndentation}[1em]
+            \textbf{Ideas}:
+
+            Es muy obvio esto si $n=1$, pues $a-1|a-1$ y con $n=2$, pues $a-1|a^2-1$
+            ya que gracias a la diferencia de cuadrados tenemos que:
+            $a-1|(a+1)(a-1)$.
+
+            Con una $n$ par es también muy fácil pues basta con ver que podemos siempre
+            factorizar un $a-1$, pero también podemos hacer lo mismo con un $n$ impar, 
+            basta con ver la descomposición del polinomio.\\
+
+
+            \textbf{Demostracion}:
+
+            Recuerdas la serie geométrica, sino no te preocupes, pues tenemos que:
+            \begin{MultiLineEquation*}{3}
+                a + ar + ar^2 + ar^3 + \cdots + ar^{n-1}
+                    &= \sum_{k=0}^{n-1} ar^k
+                    &= a\dfrac{1-r^n}{1-r}
+                    &= a\dfrac{(-1)(r^n - 1)}{(-1)r-1}
+                    &= a\dfrac{r^n - 1}{r-1}
+            \end{MultiLineEquation*}
+
+            Por lo tanto si pones a $a=1$ y $r=a$ tienes que:
+            \begin{MultiLineEquation*}{3}
+                1 + a + a^2 + a^3 + \cdots + a^{n-1}
+                    &= \sum_{k=0}^{n-1} a^k
+                    &= \dfrac{1-a^n}{1-a}
+                    &= \dfrac{(-1)(a^n - 1)}{(-1)a-1}
+                    &= \dfrac{a^n - 1}{a-1}
+            \end{MultiLineEquation*}
+
+            Por lo tanto ya que solo estamos sumando enteros o potencias de enteros 
+            $\dfrac{a^n - 1}{a-1}$ debe ser un entero, es decir $a - 1 |a^n -1$.
+
+        \end{SmallIndentation}
+
+
+    \clearpage
     \subsection{Problema 33}
     \subsection*{GCD(a,b,c) = GCD((a, b), c)}
 

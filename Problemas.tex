@@ -579,12 +579,12 @@
             \textbf{Demostración}:
 
             Ya sabemos que $GCD(n, n+1) = 1$ por lo tanto 
-            $1 LCM(n, n+1) = |n(n+1)|$
+            $(1)LCM(n, n+1) = |n(n+1)|$
         \end{SmallIndentation}
 
 
     \subsection{Problema 19}
-    \subsection*{Cualquier conjunto de números primos pares, son primos relativos}
+    \subsection*{Cualquier conjunto de números primos a pares, son primos relativos}
 
 
         % ======== DEMOSTRACION ========
@@ -682,6 +682,35 @@
         \end{SmallIndentation}
 
     \clearpage
+
+    \subsection{Problema 27}
+    \subsection*{Encuentre los enteros que cumple con que $(a,b) = 10$ y $[a,b] = 100$}
+
+        % ======== DEMOSTRACION ========
+        \begin{SmallIndentation}[1em]
+            \textbf{Demostración}:
+
+            Empecemos por enunciar a más detalle las restricciones que nos estan dando
+            como $(a, b) = 10$, entonces tenemos que 
+            $10|a$ y $10|b$ por lo tanto $10 \leq a, b$.
+
+            Y como $[a, b] = 100$ entonces $a|100$ y $b|100$, por lo tanto $a, b \leq 100$.
+
+            Con lo cual sabemos que dichos enteros tiene que estar entre 10 y 100, ahora
+            podemos ocupar que $(a, b) = 10$ y ver que tenemos que:
+
+            $a = 10q_1$ y $b = 10q_2$ con $(q_1, q_2) = 1$.
+
+            Ademas $(a,b)[a,b] = 1000$. Por lo tanto dichas parejas son:
+
+            \begin{itemize}
+                \item $(100, 10)$
+                \item $(20, 50)$
+            \end{itemize}
+
+        \end{SmallIndentation}
+
+
     \subsection{Problema 29}
     \subsection*{$a, b \in \Integers$ existen enteros $x, y$ tal que
         $GCD(x, y) = b$  y $LCM(x, y) = a$ si y solo si $b|a$}
@@ -922,7 +951,7 @@
             \end{SmallIndentation}
 
 
-
+    \clearpage
     \subsection{Problema 11}
     \subsection*{Si $x, y$ son coprimos con 3 entonces $x^2 + y^2$ no puede ser un cuadrado
         perfecto}
@@ -986,7 +1015,7 @@
         \end{SmallIndentation}
 
 
-
+    \clearpage
     \subsection{Problema 28}
     \subsection*{Todo número compuesto $n$ tiene un divisor $a$ tal que $a \leq \sqrt{n}$}
 

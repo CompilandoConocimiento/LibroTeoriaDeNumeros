@@ -915,6 +915,25 @@
         \end{SmallIndentation}
 
 
+    \subsection{Problema 8}
+    \subsection*{Un primo de la forma $3k+1$ es de la forma $6k+1$}
+
+        % ======== DEMOSTRACION ========
+        \begin{SmallIndentation}[1em]
+            \textbf{Demostración}:
+
+            Sabemos que $p = 3k-1$ por lo tanto $p-1 = 3k$ es decir $p-1$ es divisible entre
+            3, por lo tanto $p-1 = 6k$.
+            ¿Porque?
+
+            Porque supongamos que $p-1=3k_0$ pero no $p-1=6k_1$ (osea $p-1=3(2k_1)$), por lo
+            tanto tendrá que ser de la forma $p-1=3(2k_1+1)$ es decir impar, pero eso
+            implicaría que $p$ sea par. Cosa que no puede ser.
+
+            Así $p-1$ si es de la forma $p-1=6k$ por lo tanto $p = 6k+1$. 
+
+        \end{SmallIndentation}
+
 
         \subsection{Problema 10}
         \subsection*{Si $x, y$ son impares entonces $x^2 + y^2$ no puede ser un cuadrado
@@ -1011,6 +1030,200 @@
                     Por lo tanto no puede ser un cuadrado perfecto.
             \end{itemize}
 
+
+        \end{SmallIndentation}
+
+
+
+
+
+
+
+
+
+    \subsection{Problema 24.1}
+    \subsection*{Si $a,b$ son naturales diferentes entonces
+    $(a,c) = (a,b)$ implica que $[a,b] \neq [a,c]$}
+
+    % ======== DEMOSTRACION ========
+    \begin{SmallIndentation}[1em]
+        \textbf{Demostración}:
+        
+        Ahora, si fuera el caso tendriamos que:
+        $(a,b) \; [a,b] = ab$ y $(a,c) \; [a,c] = ac$
+        por lo tanto $ac=ab$ pero dijimos que $b \neq c$.
+        Contradicción.
+    
+    \end{SmallIndentation}
+
+
+    \subsection{Problema 24.4}
+    \subsection*{Si $p$ es un primo y $p|a$ además que $p|(a^2+b^2)$
+        implica que $p|b$}
+
+    % ======== DEMOSTRACION ========
+    \begin{SmallIndentation}[1em]
+        \textbf{Demostración}:
+        
+        Sea $p|a$ por lo tanto $p|a^2$ y podemos decir que $p$ divide
+        a cualquier combinación lineal, por ejemplo $p|(-1)(a^2)+(1)(a^2+b^2)$
+        por lo tanto $p|b^2$ pero como sabemos que $p$ es un primo la unica
+        forma de que divida a $b$. Por lo tanto $p|b$.
+
+    \end{SmallIndentation}
+
+
+    \subsection{Problema 24.5}
+    \subsection*{Si $p$ es un primo y $p|a^n$ entonces $p|a$}
+
+    % ======== DEMOSTRACION ========
+    \begin{SmallIndentation}[1em]
+        \textbf{Demostración}:
+        
+        Tenemos la factorización prima de $a$, el hecho de elevar
+        $a$ al cuadrado no crea o elimina factores primos, por lo tanto
+        $p|a$ si y solo si $p|a^n$.
+
+    \end{SmallIndentation}
+
+
+    \subsection{Problema 24.9}
+    \subsection*{Si $p$ es un primo y $p|(a^2+b^2)$
+        y $p|(b^2+c^2)$ entonces $p|(a^2-c^2)$}
+
+    % ======== DEMOSTRACION ========
+    \begin{SmallIndentation}[1em]
+        \textbf{Demostración}:
+        
+        Esto sale en un paso, pues $p$ divide a cualquier combinación lineal
+        de sus multiplos, es decir $p|(a^2+b^2)-(b^2+c^2)$, es decir
+        $p|a^2-c^2$
+
+    \end{SmallIndentation}
+
+
+    \subsection{Problema 24.11}
+    \subsection*{Si $(a,b)=1$ entonces $(a^2, ab, b^2)$}
+
+    % ======== DEMOSTRACION ========
+    \begin{SmallIndentation}[1em]
+        \textbf{Demostración}:
+        
+        Si $(a,b)=1$ no comparten primos en común.
+
+        Recuerda:
+
+        Podemos también podemos decir que dados dos enteros escritos en 
+        su factorización prima tenemos que:
+        \begin{itemize}
+            \item $a = p_1^{e_1} p_2^{e_2} \dots p_k^{e_k}$
+            \item $b = p_1^{f_1} p_2^{f_2} \dots p_k^{f_k}$
+        \end{itemize}
+
+        Entonces podemos definir al máximo común divisor como:
+        \begin{equation}
+            GCD(a, b) = p_1^{min(e_1, f_1)} p_2^{min(e_2, f_2)} \dots p_k^{min(e_k, f_k)}
+        \end{equation}
+
+        Por lo tanto $a^2, b^2, ab$ ninguno creará primos en común
+        que no existian en $a, b$. Por lo tanto $(a^2, ab, b^2)$
+
+    \end{SmallIndentation}
+
+    \subsection{Problema 24.13}
+    \subsection*{Contraejemplo: Si $b|(a^2+1)$ entonces $b|(a^4+1)$}
+
+    % ======== DEMOSTRACION ========
+    \begin{SmallIndentation}[1em]
+        \textbf{Demostración}:
+        
+        Suponga $b=5$ y $a=2$, entonces $5|(4+1)$ pero no es cierto que
+        $5|(16+1)$.
+    \end{SmallIndentation}
+
+
+
+    \subsection{Problema 24.15}
+    \subsection*{$(a,b,c) = ((a,b),(a,c))$}
+
+    % ======== DEMOSTRACION ========
+    \begin{SmallIndentation}[1em]
+        \textbf{Demostración}:
+        
+        Podemos también podemos decir que dados dos enteros escritos en 
+        su factorización prima tenemos que:
+        \begin{itemize}
+            \item $a = p_1^{e_1} p_2^{e_2} \dots p_k^{e_k}$
+            \item $b = p_1^{f_1} p_2^{f_2} \dots p_k^{f_k}$
+            \item $c = p_1^{g_1} p_2^{g_2} \dots p_k^{g_k}$
+        \end{itemize}
+
+        Por lo tanto:
+        \begin{MultiLineEquation*}{3}
+            GCD(a, b, c) 
+                &= p_1^{min(e_1, f_1, g_1)} \dots p_k^{min(e_k, f_k, g_k)}      \\
+                &= p_1^{min(min(e_1, f_1), min(e_1,g_1))} \dots p_k^{min(min(e_k, f_k), min(e_k,g_k))}            \\
+                &= GCD(GCD(a,b), GCD(b,c))
+        \end{MultiLineEquation*}
+            
+    \end{SmallIndentation}
+        
+
+
+
+
+
+
+
+
+
+    \subsection{Problema 25}
+    \subsection*{¿Para que enteros $\dfrac{n(n+1)}{2} | n! $}
+
+        % ======== DEMOSTRACION ========
+        \begin{SmallIndentation}[1em]
+            \textbf{Demostración}:
+
+            $\dfrac{n(n+1)}{2} | n!$ si y solo si $\dfrac{n!}{\dfrac{n(n+1)}{2}}$
+            pertenece a los enteros.
+
+            Por lo tanto $\dfrac{(n-1)!}{\dfrac{n+1}{2}}$ es decir
+            si $\dfrac{2(n-1)!}{n+1}$.
+
+            Eso no pertenece a los enteros si $n$ fuera par, pues $2(n-1)!$ son elementos
+            pares y $n+1$ (al $n$ ser par) es impar, por lo tanto es imposible encontrar
+            factores para cancelarlo.
+
+            Si $n$ fuera impar entonces el tenemos que la expansión de terminos de
+            $2(n-1)!$ tiene un número par de factores, veamos el termino de enmedio más
+            uno (por ejemplo el 3 en $(1)(2)(3)(4)$), aquel número en esa posción en la 
+            expansión $(n-1)!$ tendrá un valor de $\dfrac{n+1}{2}$ pero al multiplicarlo
+            por dos tenemos justo un $n+1$ por lo tanto se cancela y dicho número será
+            un entero.
+
+            $\dfrac{n(n+1)}{2} | n! $ si y solo si $n$ es impar.
+
+            Quiza el último párrafo no quedará tan claro, así que unos ejemplos aquí:
+
+            \begin{itemize}
+                \item 
+                    $\dfrac{2(5-1)!}{6} 
+                        = \dfrac{2[(1)(2)(3)(4)]}{6} 
+                        = \dfrac{(1)(2)(6)(4)}{6}
+                        = (1)(2)(4)$
+
+                \item 
+                    $\dfrac{2(9-1)!}{10} 
+                        = \dfrac{2[(1)(2)(3)(4)(5)(6)(7)(8)]}{10} 
+                        = \dfrac{(1)(2)(3)(4)(10)(6)(7)(8)}{10} 
+                        = (1)(2)(3)(4)(6)(7)(8)$
+
+                \item 
+                    $\dfrac{2(7-1)!}{8} 
+                        = \dfrac{2[(1)(2)(3)(4)(5)(6)]}{8} 
+                        = \dfrac{(1)(2)(3)(8)(5)(6)}{8} 
+                        = (1)(2)(3)(5)(6)$ 
+            \end{itemize}
 
         \end{SmallIndentation}
 

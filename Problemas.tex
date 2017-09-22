@@ -1043,7 +1043,7 @@
 
     \subsection{Problema 24.1}
     \subsection*{Si $a,b$ son naturales diferentes entonces
-    $(a,c) = (a,b)$ implica que $[a,b] \neq [a,c]$}
+    $(a,b) = (a,c)$ implica que $[a,b] \neq [a,c]$}
 
     % ======== DEMOSTRACION ========
     \begin{SmallIndentation}[1em]
@@ -1057,6 +1057,47 @@
     \end{SmallIndentation}
 
 
+    \subsection{Problema 24.2}
+    \subsection*{Si $a,b$ son naturales diferentes entonces
+    $(a,b) = (a,c)$ implica que $(a^2, b^2) = (a^2, c^2)$}
+
+    % ======== DEMOSTRACION ========
+    \begin{SmallIndentation}[1em]
+        \textbf{Demostración}:
+        
+        Sabemos que $(a^2, b^2) = (a, b)^2$.
+
+        Demostrar esto es muy sencillo pues:
+        \begin{equation*}
+            \prod_{i=1}{n} p_i^{min(2e_i, 2f_i)}
+            = \prod_{i=1}{n} 2p_i^{min(e_i, f_i)}   
+            = \Wrap{\prod_{i=1}{n} p_i^{min(e_i, f_i)}}^2   
+        \end{equation*}
+
+        Por lo tanto $(a^2,b^2)=(a,b)^2=(c,d)^2=(c^2,d^2)$.
+        Demostrado.
+    
+    \end{SmallIndentation}
+
+
+    \subsection{Problema 24.3}
+    \subsection*{Si $a,b$ son naturales diferentes entonces
+    $(a,b) = (a,c)$ implica que $(a, b) = (a, b, c)$}
+
+    % ======== DEMOSTRACION ========
+    \begin{SmallIndentation}[1em]
+        \textbf{Demostración}:
+        
+        Supongamos lo contrario, si no son iguales por la definición
+        del GCD tenemos un primo que tiene un exponente menor en $c$ a
+        comparación de $a, b$. Por lo tanto tendríamos que $(a, c) = (a,b,c)$
+        Pero vemos que $(a,b)=(a,c)$. Por lo tanto contradicción.
+
+    
+    \end{SmallIndentation}
+
+
+    \clearpage
     \subsection{Problema 24.4}
     \subsection*{Si $p$ es un primo y $p|a$ además que $p|(a^2+b^2)$
         implica que $p|b$}
@@ -1087,6 +1128,61 @@
     \end{SmallIndentation}
 
 
+    \clearpage
+    \subsection{Problema 24.6-24.8}
+    \subsection*{$b|a$ si y solo si $b^n|a^n$}
+
+    % ======== DEMOSTRACION ========
+    \begin{SmallIndentation}[1em]
+        \textbf{Demostración}:
+        
+        Creo que probar que si $b|a$ entonces $b^n|a^n$ es muy sencillo,
+        pero el otro lado es más interesante.
+
+
+        Ve la factorización prima de ambos, si $b^n|a^n$ entonces todos los primos
+        de $a^n$ aparecen en $b^n$ con un exponente igual o menor, por lo tanto
+        ya que elevar o sacar la enésima raíz no elimina ni crea factores primos
+        solo queda deducir que todos los factores primos de $b$ aparecen en $a$.
+
+        Por lo tanto $b|a$
+
+        Otra prueba es que $b^n|a^n$ si y solo si $\dfrac{a^n}{b^n}$ esta en los enteros.
+        Y esto ocurre si y solo si $\pfrac{a}{b}^n$ esta en los enteros y 
+        esto ocurre si y solos si $\dfrac{a}{b}$ esta en los enteros, es decir
+        si $b|a$.
+
+    \end{SmallIndentation}
+
+
+    Por lo tanto $a^3|c^3$ implica $a|c$.
+
+    Si $a^2|c^3$ implica que $a|c$
+
+    % ======== DEMOSTRACION ========
+    \begin{SmallIndentation}[1em]
+        \textbf{Demostración}:
+        
+        Si $a^2|c^3$ entonces $\dfrac{c^3}{a^2}$ es un entero
+        y esto ocurre si y solo si $\dfrac{c^2}{a^2} c$ es un entero
+        y esto solo ocurre si $\dfrac{c^2}{a^2}$ o $a^2|c^2$ o $a|c$.
+    
+    \end{SmallIndentation}
+        
+
+    Y $a^3|c^2$ implica $a|c$
+
+    % ======== DEMOSTRACION ========
+    \begin{SmallIndentation}[1em]
+        \textbf{Demostración}:
+        
+        Si $a^3|c^2$ entonces todos los factores primos de $a^3$, es decir de
+        a estan en $c^2$, es decir c, 
+        por lo tanto $a|c$.
+    
+    \end{SmallIndentation}
+        
+
     \subsection{Problema 24.9}
     \subsection*{Si $p$ es un primo y $p|(a^2+b^2)$
         y $p|(b^2+c^2)$ entonces $p|(a^2-c^2)$}
@@ -1098,6 +1194,21 @@
         Esto sale en un paso, pues $p$ divide a cualquier combinación lineal
         de sus multiplos, es decir $p|(a^2+b^2)-(b^2+c^2)$, es decir
         $p|a^2-c^2$
+
+    \end{SmallIndentation}
+
+
+    \clearpage
+    \subsection{Problema 24.10}
+    \subsection*{Contraejemplo: Si $p$ es un primo y $p|(a^2+b^2)$
+        y $p|(b^2+c^2)$ entonces $p|(a^2+c^2)$}
+
+    % ======== DEMOSTRACION ========
+    \begin{SmallIndentation}[1em]
+        \textbf{Demostración}:
+        
+        Sea $p=5$, $a=4$, $b=3$ y $c=16$, entonces $5|4^2+3^2=25$, y
+        $5|3^2 + 16^2 =265$ pero no es cierto que $5|4^2+16^2=272$
 
     \end{SmallIndentation}
 
@@ -1130,6 +1241,22 @@
 
     \end{SmallIndentation}
 
+    \subsection{Problema 24.12}
+    \subsection*{$[a^2, ab, b^2] = [a^2, b^2]$}
+
+    % ======== DEMOSTRACION ========
+    \begin{SmallIndentation}[1em]
+        \textbf{Demostración}:
+        
+        Si esto fuera falso entonces tendría que haber un factor primo con un
+        exponente mayor en $ab$ a comparación del mismo factor primo en $a^2$ y
+        $b^2$. Pero recuerda que $ab$ no crea o elimina factores primos, pero
+        $ab$ nunca crece más rápido que $a^2$ o $b^2$.
+
+        Por lo tanto, contradicción.
+    \end{SmallIndentation}
+
+
     \subsection{Problema 24.13}
     \subsection*{Contraejemplo: Si $b|(a^2+1)$ entonces $b|(a^4+1)$}
 
@@ -1139,6 +1266,19 @@
         
         Suponga $b=5$ y $a=2$, entonces $5|(4+1)$ pero no es cierto que
         $5|(16+1)$.
+    \end{SmallIndentation}
+
+    \subsection{Problema 24.14}
+    \subsection*{Si $b|(a^2-1)$ entonces $b|(a^4-1)$}
+
+    % ======== DEMOSTRACION ========
+    \begin{SmallIndentation}[1em]
+        \textbf{Demostración}:
+        
+
+        Veamos que $\dfrac{a^2-1}{b}$ pertenece a los enteros entonces
+        $\dfrac{a^2-1}{b}(a^2+1)$ pertence a los enteros, es decir
+        $\dfrac{a^4-1}{b}$ pertenece a los enteros, es decir $b|(a^4-1)$
     \end{SmallIndentation}
 
 
@@ -1173,10 +1313,7 @@
 
 
 
-
-
-
-
+    \clearpage
     \subsection{Problema 25}
     \subsection*{¿Para que enteros $\dfrac{n(n+1)}{2} | n! $}
 
@@ -1235,17 +1372,6 @@
         % ======== DEMOSTRACION ========
         \begin{SmallIndentation}[1em]
 
-            Dado un entero particular, ¿Cómo podemos saber si es primo o no?
-
-            Si el número es compuesto, ¿Cómo podemos encontrar un divisor no trivial?
-
-            La primera idea es verificar si todos los enteros menores son
-            divisores, si los únicos divisores son el 1 y el -1 entonces
-            el número será primo.
-
-            Este método es simple pero costoso en términos de cómputo. Sin
-            embargo la propiedad de arriba nos podría facilitar el cálculo.\\
-
             \textbf{Demostración}:
 
             En efecto, como n es compuesto, $n = ab$.
@@ -1256,6 +1382,80 @@
             En caso contrario podemos suponer, que $a<b$, si multiplicamos
             por $a$ tenemos que $a^2<ab$. Por lo tanto $a^2 < n$.
             Por lo que $a < \sqrt{n}$.
+
+        \end{SmallIndentation}
+
+
+    \subsection{Problema 44.01}
+    \subsection*{Si $x, y$ son primos relativos tenemos que $(x+y, x-y) < 3$}
+
+        % ======== DEMOSTRACION ========
+        \begin{SmallIndentation}[1em]
+            \textbf{Demostración}:
+            
+            Esto se demuestra fácil, pues como son primos relativos:
+            $sx + ty = 1$, por lo tanto:
+
+            \begin{MultiLineEquation*}{4}
+                &(2s)x &&+ (2t)y &&&= 2                                     \\
+                &(2sx)   &&+ (2ty)    &&&= 2                                \\
+                &(sx + ty)   &&+ (sx + ty)    &&&= 2                        \\
+                &(sx + sy + tx + ty)   &&+ (sx - sy - tx + ty)    &&&= 2    \\
+                &(s+t)(x+y)   &&+ (s-t)(x-y)    &&&= 2                  
+            \end{MultiLineEquation*}
+
+            Y como pudimos expresar en combinación lineal a $(x+y)$ y $(x-y)$
+            o 2 es el GCD o es 1.
+            Por lo tanto $GCD((x+y), (x-y)) < 3$.
+        
+        \end{SmallIndentation}
+        
+
+    \clearpage
+    \subsection{Problema 44}
+    \subsection*{No existen naturales diferentes tales que $(a^n-b^n)|(a^n+b^n)$}
+
+        % ======== DEMOSTRACION ========
+        \begin{SmallIndentation}[1em]
+
+            \textbf{Demostración}:
+
+
+            Esta demostración esta bien intensa, así que vamos a agarrar nuestros
+            cinturones.
+
+            Recuerda que ya demostramos que si $x, y$ son primos relativos tenemos
+            que $(x+y, x-y) < 3$
+
+            Supongamos que existen dichos enteros, por lo tanto:
+            $(a^n-b^n) = Q(a^n+b^n)$.
+            Dividiendo todo entre el $GCD$ o $d$ tenemos que
+            $\pfrac{a}{d}^n-\pfrac{b}{d}^n = Q\Wrap{\pfrac{a}{d}^n+\pfrac{b}{d}^n}$
+            
+            Entonces esto pasa si y solo existen dichos enteros
+            $\pfrac{a}{d}, \pfrac{b}{d}$ que son primos relativos y que cumplen
+            que $(a^n-b^n)|(a^n+b^n)$.
+
+            Ahora renombremos nuestras variables $a = \dfrac{a}{d}$, y $b = \dfrac{b}{d}$.
+
+            Ahora, como sabemos que estas nuevas $a, b$ son primos relativos, se cumple que
+            $(a^n) -(b^n) = GCD\Wrap{(a^n -b^n),(a^n + b^n)}$.
+
+            Esto se cumple pues $GCD(a, ka) = a$ y estamos suponiendo que
+            $(a^n-b^n)|(a^n+b^n)$, pero además por el lema que demostramos
+            $GCD\Wrap{(a^n -b^n),(a^n + b^n)} < 3$.
+
+            Ahora como son diferentes $(a-b)\geq 1$. Pero tenemos que:
+            $a^n-b^n = (a-b)(a^{n-1} + \dots + b^{n-1})$
+            y al ser naturales $(a^{n-1} + \dots + b^{n-1}) \geq 3$.
+
+            Por lo tanto $a^n-b^n = (a-b)(a^{n-1} + \dots + b^{n-1}) \geq 3$.
+
+            Pero esto no puede ser pues dijimos que
+            $(a^n) -(b^n)$ es igual al $GCD\Wrap{(a^n -b^n),(a^n + b^n)}$ que por el
+            lema tiene que ser menor que 3.
+
+            ¡Contradicción!
 
         \end{SmallIndentation}
 

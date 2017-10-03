@@ -3380,15 +3380,133 @@
         \clearpage
         \subsection{Teorema Chino del Residuo}
 
-            Si $m_1, \dots, m_r$ son enteros positivos primos relativos entre
-            si, y $a_1, \dots, a_r$ son enteros cuales quiera, entonces el
-            sistema de congruencias:
+            Supongamos que tenemos $r$ congruencias donde $n_1, \dots, n_r$
+            son enteros positivos primos relativos entre si, y $a_1, \dots, a_r$
+            son enteros cualesquiera, entonces el sistema de congruencias:
             \begin{MultiLineEquation*}{3}
-                x \equiv a_1 \pmod{m_1}     \\
-                x \equiv a_2 \pmod{m_2}     \\
-                \cdots                      \\
-                x \equiv a_r \pmod{m_r}     
+                x &\equiv a_1 \pmod{n_1}     \\
+                x &\equiv a_2 \pmod{n_2}     \\
+                  &\cdots                    \\
+                x &\equiv a_r \pmod{n_r}     
             \end{MultiLineEquation*}
+
+            Tiene solución. Y más aún cualquier solución será congruente
+            módulo $\prod_{i=1}^k n_i$.
+
+            Y te lo voy a demostrar diciendote cual es la solución.
+
+            % ======== DEMOSTRACION ========
+            \begin{SmallIndentation}[1em]
+                \textbf{Demostración}:
+
+                Sea $N = \prod_{i=1}^k n_i$ y $N_i = \dfrac{N}{n_i}$.
+
+                Ahora, lo primero importante es entender que esta pasando.
+                $N$ no es más que el producto de todos las $n$, mientras que
+                $N_i$ es el producto de todas las $n$, excepto $n_i$.
+
+                Debido a esto podemos decir $GCD(N,n_i)=1$ por lo tanto existe
+                el inverso de $N_i \pmod{n_i}$, es decir la congruencia
+                $N_i \; c_i \equiv a_i \pmod{n_i}$ tiene solución.
+
+                Encontremos el valor de $c_i$. Encontremos el valor de todas las $c_i$
+
+                Ahora vamos a proponer una solución
+                \begin{MultiLineEquation*}{3}
+                    x_0 
+                        &= \sum_{i=0}^r a_iN_ic_i
+                        &= a_1N_1c_1 + a_2N_2c_2 + \dots + a_rN_rc_r  
+                \end{MultiLineEquation*}
+                    
+                Ahora \textbf{¿Porqué funciona?}
+
+                Nota que $N_i \equiv 0 \pmod{n_j}$ si $i \neq j$. Esta es la clave de como
+                es que creamos esta solución. Creamos a las $N_i$ para que se cumple
+                esta propiedad.
+
+                Por lo tanto al momento de colocar $x_0$ en cada uno de las congruencias
+                se reduce a $a_iN_ic_i \equiv a_i \pmod{n_i}$ y ya que $N_i$ y $c_i$
+                son inversos entonces se reduce a $a_i \equiv a_i \pmod{n_i}$ lo 
+                cual es obvio que es cierto.
+
+                Ahora, suponiendo que $y$ es otra solución entonces 
+                $x \equiv a_i \equiv y \pmod{n_i}$ por lo tanto $x \equiv y \pmod{n_i}$
+                por lo tanto $x \equiv y \pmod{\prod_{i=1}^r n_i}$
+
+            \end{SmallIndentation}
+
+
+
+            % ========================
+            % ======   EJEMPLO  ======
+            % ========================
+            \clearpage
+            \subsubsection{Ejemplo}
+
+                % ======== DEMOSTRACION ========
+                \begin{SmallIndentation}[1em]
+                    
+                    Supón el siguiente sistema:
+                    \begin{MultiLineEquation*}{3}
+                        x \equiv 2 \pmod{3}     \\
+                        x \equiv 3 \pmod{4}     \\
+                        x \equiv 1 \pmod{5}     
+                    \end{MultiLineEquation*}
+
+                    Entonces $N = (3)(4)(5)$ y $N_1=(4)(5)$, $N_2=(4)(5)$, $N_3=(3)(4)$
+                    por lo tanto ahora vamos a resolver las congruencias del estilo
+                    $c_i \; N_i \equiv a_i \pmod{n_i}$.
+
+                    \begin{itemize}
+                        \item Encontremos a $c_1$
+                            \begin{MultiLineEquation*}{3}
+                                c_1 (4)(5)                  &\equiv 1 &&\pmod{3}    \\
+                                c_1 (20)                    &\equiv 1 &&\pmod{3}    \\
+                                c_1 (2)                     &\equiv 1 &&\pmod{3}    \\
+                                c_1                         &\equiv 2 &&\pmod{3}   
+                            \end{MultiLineEquation*}
+
+                        \item Encontremos a $c_2$
+                            \begin{MultiLineEquation*}{3}
+                                c_2 (3)(5)                  &\equiv 1 &&\pmod{4}    \\
+                                c_2 (15)                    &\equiv 1 &&\pmod{4}    \\
+                                c_2 (3)                     &\equiv 1 &&\pmod{4}    \\
+                                c_2                         &\equiv 3 &&\pmod{4}    
+                            \end{MultiLineEquation*}
+
+
+                        \item Encontremos a $c_3$
+                            \begin{MultiLineEquation*}{3}
+                                c_3 (3)(4)                  &\equiv 1 &&\pmod{5}    \\
+                                c_3 (12)                    &\equiv 1 &&\pmod{5}    \\
+                                c_3 (2)                     &\equiv 1 &&\pmod{5}    \\
+                                c_3                         &\equiv 3 &&\pmod{5}        
+                            \end{MultiLineEquation*}
+
+
+                        Por lo tanto una solución $x_0$ es:
+                        \begin{MultiLineEquation*}{3}
+                            x_0 
+                                &= \sum_{i=0}^r a_iN_ic_i                       \\
+                                &= a_1N_1c_1 + a_2N_2c_2 + a_3N_3c_3            \\
+                                &= 2([4][5])2 + 3([3][5])3 + 1([3][4])3         \\
+                                &= 251                                          \\
+                                &= 11 \pmod {(3)(4)(5)}                         \\
+                                &= 11 \pmod {60}                                
+                        \end{MultiLineEquation*}
+
+                        Ahora, todas las soluciones van a ser módulo $(3)(4)(5)$ es decir
+                        $251 \pmod{60}$.
+
+                        Por lo tanto tenemos soluciones que son congruentes módulo 60,
+                        es decir $11, 71, \dots 60k + 11$
+
+                    \end{itemize}
+
+
+
+                \end{SmallIndentation}
+
                 
 
         % =====================================================

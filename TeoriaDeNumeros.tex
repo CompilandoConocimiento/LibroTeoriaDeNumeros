@@ -2267,8 +2267,6 @@
 
 
 
-
-
                 \item $\sum\limits_{GCD(i, n) = 1 \text{ y } i < n} i = \dfrac{n}{2} \phi(n)$
                     % ======== DEMOSTRACION ========
                     \begin{SmallIndentation}[1em]
@@ -2764,7 +2762,7 @@
         % ==================================
         \subsection*{Definición Formal}
 
-            Si tenemos dos elementos $a, b \in \Integers$ y $n \in \Naturals$
+            Si tenemos dos elementos $a, b \in \Integers$ y $n \in \Naturals - \Set{1}$
             entonces decirmos que $a$ es \textbf{congruente} a $b$ \textbf{modulo n}
             que escribimos como:
             \begin{equation}
@@ -2899,7 +2897,7 @@
                 \item Decimos que es un \textbf{Sistema Reducido de Residuos}
                     si y solo si es que cumple que:
                     \begin{equation*}
-                        \forall k \in \Naturals \text{ y } GCD(k, n), \; 
+                        \forall k \in \Naturals \text{ y } GCD(k, n) = 1, \; 
                             \exists r_i, k \equiv r_i \pmod{n} 
                         \Also
                         r_i \equiv r_j \text{ solo si } i = j 
@@ -2914,13 +2912,11 @@
 
 
 
-
-
     % =====================================================
-    % ==   TEOREMAS IMPORTANTES SOBRE CONGRUENCIAS      ===
+    % ========      ARITMETICA CON MODULOS        =========
     % =====================================================
     \clearpage
-    \section{Propiedades y Teoremas Importantes}
+    \section{Aritmética con Modulo n}
 
 
         % =====================================================
@@ -2930,21 +2926,7 @@
 
             \begin{itemize}
 
-                \item $a \equiv b \pmod{n}$ si y solo si $b \equiv a \pmod{n}$
-
-                    % ======== DEMOSTRACION ========
-                    \begin{SmallIndentation}[1em]
-                        \textbf{Demostración}:
-
-                        Si $a \equiv b \pmod{n}$ entonces $n | a - b$, por lo tanto
-                        $n | -(a - b)$, es decir $n|b-a$, por lo tanto $b \equiv a \pmod{n}$
-
-                        Y Si $b \equiv a \pmod{n}$ entonces $n | b - a$, por lo tanto
-                        $n | -(b - a)$, es decir $n|a-b$, por lo tanto $a \equiv b \pmod{n}$
-
-                    \end{SmallIndentation}
-
-                \item Para cualesquiera dos enteros $a,b$ son congruentes módulo 1
+                \item Cualquiera 2 enteros $a,b$ tenemos $a \equiv b \pmod{1}$
 
                     % ======== DEMOSTRACION ========
                     \begin{SmallIndentation}[1em]
@@ -2955,19 +2937,14 @@
 
                     \end{SmallIndentation}
 
-                \item $a \equiv r \pmod{n}$ si y solo si podemos escribir a $a$ como $a=nq+r$
-                    para alguna $q$.
-
-                    Es decir, todo entero es congruente a su residuo $r$ al ser dividido por $n$
-                    (módulo $n$).
-
-                    Otra forma común de encontrarlo es que
-                    $a=nq+b \lequal a \equiv b \pmod{n}$ 
-
+                \item $a \equiv r \pmod{n}$ si y solo si usando el algoritmo de la división $a=nq+r$
 
                     % ======== DEMOSTRACION ========
                     \begin{SmallIndentation}[1em]
                         \textbf{Demostración}:
+
+                        Es decir, todo entero es congruente a su residuo $r$ al ser dividido por $n$
+                        (módulo $n$).
 
                         $a \equiv r \pmod{n}$ si y solo si $n|a-r$ que es lo mismo
                         que decir $a-r = kn = nq$ que es lo mismo que decir $a=nq+r$.
@@ -2992,8 +2969,51 @@
                     \end{SmallIndentation}
 
 
-                \item Si $a \equiv b \pmod{n}$ y $c \equiv d \pmod{n}$ entonces
-                        $a+c \equiv b+d \pmod{n}$
+                \item Si $a \equiv b \pmod{n}$, entonces $a \equiv b + kn \pmod{n}$
+                donde $k \in \Naturals$.
+
+                    % ======== DEMOSTRACION ========
+                    \begin{SmallIndentation}[1em]
+                        \textbf{Demostración}:
+
+                        Si $a \equiv b \pmod{n}$ entonces $n |(a - b)$.
+                        Pero también tenemos que $n |(a - b) + kn$ por lo tanto
+                        podemos decir que $n | (a - (b + kn))$ por lo tanto
+                        por definición $a \equiv b + kn \pmod{n}$ 
+
+                    \end{SmallIndentation}
+
+                \item Si $a \equiv b \pmod{n}$, entonces $GCD(a, n) = GCD(b, n)$
+
+                    % ======== DEMOSTRACION ========
+                    \begin{SmallIndentation}[1em]
+                        \textbf{Demostración}:
+
+                        Nota que $a \equiv b \pmod{n}$ entonces $n | a-b$, es decir $a-b = nq$
+                        ahora $a = nq + b$ por lo tanto:
+                        $\frac{a}{GCD(a, n)} = \frac{nq+b}{GCD(a, n)}$ de donde podemos
+                        concluir que $GCD(a, n) | b$.
+
+                        Analogamente tenemos que $\frac{b}{GCD(b, n)} = \frac{nq-a}{GCD(b, n)}$
+                        por lo tanto $GCD(b, n) | a$.
+
+                        Por lo tanto tenemos que $GCD(a, n) = GCD(b, n)$
+
+                    \end{SmallIndentation}
+
+                \end{itemize}
+
+        % =====================================================
+        % ================    PROPIEDADES      ================
+        % =====================================================
+        \clearpage
+        \subsection{La Aritmética en Congruncias}
+
+            \begin{itemize}
+                \item 
+                    \textbf{Suma:} 
+                    Si $a \equiv b \pmod{n}$ y $c \equiv d \pmod{n}$ entonces
+                    $a+c \equiv b+d \pmod{n}$
 
                     % ======== DEMOSTRACION ========
                     \begin{SmallIndentation}[1em]
@@ -3006,8 +3026,10 @@
 
                     \end{SmallIndentation}
 
-                \item Si $a \equiv b \pmod{n}$ y $c \equiv d \pmod{n}$ entonces
-                        $ac \equiv bd \pmod{n}$
+                \item 
+                    \textbf{Producto:} 
+                    Si $a \equiv b \pmod{n}$ y $c \equiv d \pmod{n}$ entonces
+                    $ac \equiv bd \pmod{n}$
 
                     % ======== DEMOSTRACION ========
                     \begin{SmallIndentation}[1em]
@@ -3021,22 +3043,9 @@
 
                     \end{SmallIndentation}
 
-                \clearpage
-
-                \item Si $GCD(c, n) = 1$ y $ac \equiv bc \pmod{n}$ entonces $a \equiv b \pmod{n}$
-
-                    % ======== DEMOSTRACION ========
-                    \begin{SmallIndentation}[1em]
-                        \textbf{Demostración}:
-
-                        Por definicición tenemos que $n|ac-bc$, es decir $n|c(a-b)$ y recuerda la
-                        propiedad que demostramos (supón $GCD(a, b) = 1$ y que $a|bc$, entonces $a|c$)
-                        por lo tanto $n|a-b$, que es lo mismo que $a \equiv b \pmod{n}$.
-
-                    \end{SmallIndentation}
-
-
-                \item Si $a \equiv b \pmod{n}$ y $c \equiv d \pmod{n}$ entonces
+                \item 
+                    \textbf{Combinación Lineal:} 
+                    Si $a \equiv b \pmod{n}$ y $c \equiv d \pmod{n}$ entonces
                     $ra + sc \equiv rb + sd \pmod{n}$
 
                     % ======== DEMOSTRACION ========
@@ -3051,34 +3060,30 @@
 
                         Por lo tanto $ra + sc \equiv rb + sd \pmod{n}$
 
+                        Los resultados anteriores nos obligan a decir que si $a \equiv b \pmod{n}$
+                        entonces $f(a) \equiv f(b) \pmod{n}$ para cualquier $f(x)$ polinomio de
+                        coeficientes enteros.
+
                     \end{SmallIndentation}
 
-
-                \item Si $a \equiv b \pmod{n}$ y $c \equiv d \pmod{n}$ entonces
-                    $ac \equiv bd \pmod{n}$
+                \item 
+                    \textbf{Cancelación Especial:} 
+                    Si $GCD(c, n) = 1$ y $ac \equiv bc \pmod{n}$ entonces $a \equiv b \pmod{n}$
 
                     % ======== DEMOSTRACION ========
                     \begin{SmallIndentation}[1em]
                         \textbf{Demostración}:
 
-                        Si $a \equiv b \pmod{n}$ entonces $n| a - b$ por lo tanto $m | ca - cb$.
-
-                        Si $c \equiv d \pmod{n}$ entonces $n| c - d$ por lo tanto $m | bc - bd$.
-
-                        Y por lo tanto $n$ divide a cualquier combinación lineal, por ejemplo 
-                        $n | ca - cb + cb - bd$ 
-
-                        Por lo tanto $n | ca - bd$ por lo tanto $ac \equiv bd \pmod{n}$
+                        Por definicición tenemos que $n|ac-bc$, es decir $n|c(a-b)$ y recuerda la
+                        propiedad que demostramos (supón $GCD(a, b) = 1$ y que $a|bc$, entonces $a|c$)
+                        por lo tanto $n|a-b$, que es lo mismo que $a \equiv b \pmod{n}$.
 
                     \end{SmallIndentation}
 
 
-                \item Los resultados anteriores nos obligan a decir que si $a \equiv b \pmod{n}$
-                    entonces $f(a) \equiv f(b) \pmod{n}$ para cualquier $f(x)$ polinomio de
-                    coeficientes enteros.
-
-
-                \item $ac \equiv bc \pmod{n}$ si y solo si $a \equiv b \pmod{\frac{n}{GCD(c,n)}}$
+                \item 
+                    \textbf{Cancelación General:} 
+                    $ac \equiv bc \pmod{n}$ si y solo si $a \equiv b \pmod{\frac{n}{GCD(c,n)}}$
 
                     % ======== DEMOSTRACION ========
                     \begin{SmallIndentation}[1em]
@@ -3097,16 +3102,130 @@
 
                     \end{SmallIndentation}
 
+                \clearpage
+
+                \item 
+                    \textbf{Inversos Multiplicativos:} 
+                    Existe un inverso de $a$ (que será unico), es decir $a \; a^{-1} \equiv 1 \pmod{n}$
+                    si y solo si $GCD(a, n) = 1$
+
+                    % ======== DEMOSTRACION ========
+                    \begin{SmallIndentation}[1em]
+                        \textbf{Demostración}:
+                        
+                        Si $GCD(a, n) = 1$ entonces $xa + ny = 1$ es decir $xa + ny \equiv 1 \pmod{n}$
+                        que es lo mismo que $xa + 0 \equiv 1 \pmod{n}$ es decir $(x)(a) \equiv 1 \pmod{n}$
+                        así que ahí esta tu inverso.
+
+                        Hacer el otro condicional es bastante parecido, así que se deja como ejercicio
+                        al lectoro (jaja, me he convertido en aquello que luché por destruir)
+                    
+                    \end{SmallIndentation}
+                        
+
+
+                \item 
+                    \textbf{Encontrar Inversos Multiplicativos:} 
+                    Existe un inverso de $a$, es decir $a \; a^{-1} \equiv 1 \pmod{n}$ si y solo si
+                    $GCD(a, n) = 1$
+
+                    \begin{itemize}
+                        \item 
+                            Podemos ver que el pequeño teorema de Fermat, ya sabes el que dice que:
+                            Si $(a, m) = 1$ entonces $a^{\phi(n)} \equiv 1 \pmod{n}$.
+
+                            Esto si te das cuenta nos dice que mucho sobre el inverso multiplicativo
+                            pues tendremos que $(a)a^{\phi(n)-1} \equiv 1 \pmod{n}$.
+
+                            Así que ahí esta tu inverso, es $a^{\phi(n)-1}$
+                        
+                        \item
+                            Por otro lado podemos usar Teorema de Euclides Extendido ya que tenemos que:
+                            $ax + by = 1$ entonces podemos escribirlo como: $a(1) + y(a'') \equiv 1 \pmod{n}$
+                            donde estamos.
+
+                    \end{itemize}
+
+
+
             \end{itemize}
 
+
+
+
+    % =====================================================
+    % ========       ARITMETICA MODULAR           =========
+    % =====================================================
+    \clearpage
+    \section{Otra forma de ver Congruencias: $[a]_n$ y $\Integers_n$}
+
+        Recuerda algo muy muy importante (no importa que ya te lo dijera):
+
+        Una relación de equivalencia $R$ (en este caso la Congruencia Módulo N)
+        sobre un conjunto $A$ (en este caso $\Integers$) produce una partición
+        del conjunto en subconjuntos disjuntos, llamados \textbf{Clases de
+        Equivalencia}, cada uno de ellos formados por elementos que están
+        relacionados entre sí.
+
+        Esta partición se representa por $Conjunto \backslash Relacion$ y se llama
+        \textbf{Conjunto Cociente}.
+
+
+        % ==================================
+        % =========   FORMAL     ===========
+        % ==================================
+        \subsection*{Definición Formal}
+
+            \subsubsection*{Clase de Equivalencia: Congruencias Modulo N ($[k]_n$)}
+
+                Una Clase de Equivalencia de Congruencia Modulo N (k) es un conjunto
+                que cumple con:
+                \begin{equation}
+                    [k]_n = \overline{K_n} = \{ x \in \Integers \Such x \equiv k \pmod{n} \}
+                \end{equation}
+
+                Y obviamente elegimos a las $k$ positivas más pequeñas, es decir 
+                $0 \leq k < n$.
+
+                Es decir, es un conjunto que contiene a todos los enteros que con
+                congruentes modulo n con k.
+
+                O dicho más bonito, es el conjunto de todos los enteros que al aplicar
+                el algoritmo de la división ($x = kq+r$) obtienen la misma $r$.\\
+
+            \subsubsection*{Conjunto Cociente: Congruencias Modulo N ($\Integers_n$)}
+
+                El conjunto de Congruencias Modulo N (de verdad a nadie se le ocurrio 
+                un nombre mas bonito)  
+
+                Es  un conjunto que contiene a todos las posibles Clases de Equivalencia
+                (sabemos que serán $n$ clases distintas) puesto que hay $n$ posibles residuos
+                desde $0 \leq r < n$.
+
+                \begin{equation}
+                    \Integers \backslash \text{Congruencias Módulo n} = 
+                        \Integers_n = \{ [0]_n , [1]_n, [2]_n, \dots  [n-1]_n\}
+                \end{equation}
+
+
+
+
+
+
+    % =====================================================
+    % ========      TEOREMAS CON CONGRUENCIAS     =========
+    % =====================================================
+    \clearpage
+    \section{Propiedades y Teoremas Importantes}
 
 
         % =====================================================
         % =====  TEOREMA DE GENERALIZADO DE EULER    ==========
         % =====================================================
-        \clearpage
         \subsection{Teorema Generalizado de Fermat por Euler}
 
+            Este nombre es lo que pasa cuando dos matemáticos son tan importantes
+            y no podemos quitar el nombre de ninguno:
             \begin{equation}
                 \text{Si } GCD(a, n) = 1
                 \text{ entonces }
@@ -3119,11 +3238,13 @@
 
                 Resulta que esto es más sencillo de lo que crees.
 
+                Vamos a crear un sistema reducido para $n$, por la misma definición de $\phi$
+                tenemos que dicho conjunto tiene $\phi(n)$ elementos, por lo tanto decimos:
+                
                 Sea $\Set{r_1, r_2, \dots, r_{\phi(n)}}$ un sistema reducido
                 de residuos, ahora, gracias a que es un sistema reducido y a 
-                que $GCD(a, n)$ entonces tenemos que:
-                $\Set{ar_1, ar_2, \dots, ar_{\phi(n)}}$
-
+                que $GCD(a, n) = 1$ entonces tenemos que:
+                $\Set{ar_1, ar_2, \dots, ar_{\phi(n)}}$es también un sistema reducido
                 Por lo tanto tenemos que:
                 \begin{equation*}
                     (ar_1)(ar_2)\dots(ar_{\phi(n)})
@@ -3161,10 +3282,11 @@
             Llamamos al Teorema anterior \Quote{Teorema Generalizado de Fermat por Euler}
             porque generaliza un Teorema conocido como el pequeño Teorema de Fermat.
 
-            Este se enuncia como:
-            \begin{equation}
-                p | n^p - n \Space \forall n
-            \end{equation}
+            Este se enuncia como que si $a, n \in \Integers$ tenemos entonces que:
+            \begin{MultiLineEquation*}{3}
+                p       &\;|\;    && n^p - n           \Space &&\text{Versión con Divisibilidad} \\
+                a^{p-1} &\equiv \;&& 1 \pmod{p}        \Space &&\text{Versión con Congruencias}
+            \end{MultiLineEquation*}
 
             % ======== DEMOSTRACION ========
             \begin{SmallIndentation}[1em]
@@ -3176,7 +3298,8 @@
                 $a^{\phi(p)} \equiv 1 \pmod{p}$, pero ya también sabemos que como
                 $p$ es un primo $\phi(p) = p - 1$, por lo tanto $a^{p-1} \equiv 1 \pmod{p}$.
 
-                Si multiplicamos todo por $a$ tenemos que $a^p \equiv a \pmod{p}$.
+                Que es una de las versiones del teorema, para llegar a la otro tenemos que 
+                multiplicar todo por $a$, así tenemos que $a^p \equiv a \pmod{p}$.
 
                 Recuerda la definición formal de las congruencias, por lo que tenemos que
                 $p |a^p - a$, y cambiando un el nombre de una variable llegamos a que
@@ -3267,11 +3390,6 @@
                 x \equiv a_r \pmod{m_r}     
             \end{MultiLineEquation*}
                 
-
-
-
-
-
 
         % =====================================================
         % ========         EXPONENCIACION MODULAR     =========
@@ -3489,109 +3607,6 @@
 
 
 
-    % =====================================================
-    % ========       ARITMETICA MODULAR           =========
-    % =====================================================
-    \clearpage
-    \section{Aritmética Modular: Clases $[a]_n$ y $\Integers_n$}
-
-        Recuerda algo muy muy importante (no importa que ya te lo dijera):
-
-        Una relación de equivalencia $R$ (en este caso la Congruencia Módulo N)
-        sobre un conjunto $A$ (en este caso $\Integers$) produce una partición
-        del conjunto en subconjuntos disjuntos, llamados \textbf{Clases de
-        Equivalencia}, cada uno de ellos formados por elementos que están
-        relacionados entre sí.
-
-        Esta partición se representa por $Conjunto \backslash Relacion$ y se llama
-        \textbf{Conjunto Cociente}.
-
-
-        % ==================================
-        % =========   FORMAL     ===========
-        % ==================================
-        \subsection*{Definición Formal}
-
-            \subsubsection*{Clase de Equivalencia: Congruencias Modulo N ($[k]_n$)}
-
-                Una Clase de Equivalencia de Congruencia Modulo N (k) es un conjunto
-                que cumple con:
-                \begin{equation}
-                    [k]_n = \overline{K_n} = \{ x \in \Integers \Such x \equiv k \pmod{n} \}
-                \end{equation}
-
-                Y obviamente elegimos a las $k$ positivas más pequeñas, es decir 
-                $0 \leq k < n$.
-
-                Es decir, es un conjunto que contiene a todos los enteros que con
-                congruentes modulo n con k.
-
-                O dicho más bonito, es el conjunto de todos los enteros que al aplicar
-                el algoritmo de la división ($x = kq+r$) obtienen la misma $r$.\\
-
-            \subsubsection*{Conjunto Cociente: Congruencias Modulo N ($\Integers_n$)}
-
-                El conjunto de Congruencias Modulo N (de verdad a nadie se le ocurrio 
-                un nombre mas bonito)  
-
-                Es  un conjunto que contiene a todos las posibles Clases de Equivalencia
-                (sabemos que serán $n$ clases distintas) puesto que hay $n$ posibles residuos
-                desde $0 \leq r < n$.
-
-                \begin{equation}
-                    \Integers \backslash \text{Congruencias Módulo n} = 
-                        \Integers_n = \{ [0]_n , [1]_n, [2]_n, \dots  [n-1]_n\}
-                \end{equation}
-
-
-
-        % ==================================
-        % =========   FORMAL     ===========
-        % ==================================
-        \clearpage
-        \subsection{Inversos en $Z_n$}
-
-            Sea $Z_n$ y sus conjuntos concientes sean:
-            $\Integers_n = \{ [0]_n , [1]_n, [2]_n, \dots  [n-1]_n\}$
-
-
-            % ==================================
-            % ====   INVERSO ADITIVO     =======
-            % ==================================
-            \subsubsection{Inversos Aditivos}
-
-                Si quieres encontrar el inverso (k') para un elemento $k$ donde $k < n$
-                (O el lo mismo: que $k$ pertenece a la clase $[k]_n$), si queremos encontrar
-                su inverso aditivo, lo que tenemos que hacer es encontrar un número $k' < n$ tal que:
-                \begin{MultiLineEquation}{3}
-                    k + k'         &= 0         &&\Remember{Como elementos}    \\
-                    [k]_n + [k']_n &= [0]_n     &&\Remember{Como campo}
-                \end{MultiLineEquation}
-
-
-            % ==================================
-            % ==  INVERSO MULTIPLICATIVO    ====
-            % ==================================
-            \subsubsection{Inversos Multiplicativo}
-
-                Si quieres encontrar el inverso (k'') para un elemento $k$ donde $k < n$
-                (O el lo mismo: que $k$ pertenece a la clase $[k]_n$), si queremos encontrar
-                su inverso aditivo, lo que tenemos que hacer es encontrar un número $k'' < n$ tal que:
-                \begin{MultiLineEquation}{3}
-                    k \cdot k'          &= 1         &&\Remember{Como elementos}    \\
-                    [k]_n \cdot [k'']_n &= [1]_n     &&\Remember{Como campo}
-                \end{MultiLineEquation}
-
-
-                Podemos ver que el pequeño teorema de Fermat, ya sabes el que dice que:
-                Si $(a, m) = 1$ entonces $a^{\phi(n)} \equiv 1 \pmod{n}$
-
-                Esto si te das cuenta nos dice que mucho sobre el inverso multiplicativo
-                pues tendremos que $(a)a^{\phi(n)-1} \equiv 1 \pmod{n}$.
-
-                Así que ahí esta tu inverso, es $a^{\phi(n)-1}$
-
-
 
 
     % =====================================================
@@ -3661,44 +3676,128 @@
         %============================================
         % ========  CONGRUENCIAS DE 1 GRADO   =======
         % ===========================================
-        \clearpage
-        \subsection{De Primer Grado}
+        \subsection{Congruencias Lineales}
 
-            La congruencia $ax \equiv b \pmod{m}$ tiene solución si y solo si 
-            $GCD(a, m) | b$.
 
-            % ======== DEMOSTRACION ========
-            \begin{SmallIndentation}[1em]
-                \textbf{Demostración}:
+            Una congruencia lineal $ax \equiv b \pmod{n}$ donde $x$ es una incognita,
+            parece muy sencillo pero resulta que el hecho de hablar de modulos n complica
+            bastante la cosa.
 
-                Podemos demostrarlo facilmente si vemos que $ax \equiv b \pmod{m}$ quiere decir
-                que $m|ax -b$, es decir $ax-b=mq$, es decir $b=ax-mq$ y esto solo se puede hacer
-                si es que $b$ pertenece al conjunto Combinaciones de $a,m$, por lo tanto
-                $GCD(a, m)|b$ 
-            \end{SmallIndentation}
+            Así que vamos pregunta por pregunta, pasito a pasito
+
+            %============================================
+            % ========  EXISTENCIA DE SOLUCIONES  =======
+            % ===========================================
+            \subsubsection{¿Existe alguna solución?¿Cuál?}
+                La congruencia $ax \equiv b \pmod{n}$ tiene solución si y solo si 
+                $GCD(a, n) | b$
+
+                Una solución ($x_0$) esta dada por la $x$ en la ecuación 
+                dionfantica
+                \begin{equation*}
+                    ax - ny = b
+                \end{equation*}
+
+                % ======== DEMOSTRACION ========
+                \begin{SmallIndentation}[1em]
+                    \textbf{Demostración}:
+                    Podemos demostrarlo facilmente si vemos que $ax \equiv b \pmod{n}$
+                    quiere decir que $n|ax -b$, es decir $ax-b=nq$ o quizá queda más
+                    claro decir $ax - b = ny$.
+
+                    Es decir tenemos la ecuación Diofantica: $ax - ny = b$ 
+ 
+                    Esta es una ecuación que ya habiamos visto y recordando que podemos definir
+                    el máximo común divisor como la \textbf{mínima} combinación lineal de
+                    $a, n$, por lo tanto el GCD divide a cualquier otra combinación lineal.
+
+                    Por ejemplo esta que tenemos de la forma $ax - ny$.
+                    Por lo tanto $GCD(a, n)| ax - ny$ es decir $GCD(a, n)|b$
+                \end{SmallIndentation}
+
+
+
+            %============================================
+            % ========  EXISTENCIA DE SOLUCIONES  =======
+            % ===========================================
+            \subsubsection{Soluciones Congruentes e Incongruentes entre si}
+
+                Si $ax \equiv b \pmod{n}$ tiene solución entonces hay infinidad
+                de soluciones congruentes entre si módulo $n$ 
+
+                % ======== DEMOSTRACION ========
+                \begin{SmallIndentation}[1em]
+                    \textbf{Ideas}:
+                    
+                    Antes que nada podemos ver que por la misma naturaleza de las congruencias
+                    tenemos que si $ax \equiv b \pmod{n}$ tiene solución entonces
+                    $x + kn$ también será una solución.
+
+                \end{SmallIndentation}
+                    
+                Pero si te das cuenta todas estas soluciones son equivalentes módulo $n$.
+                Es decir, ver que $x=2$ funciona para $2x \equiv 4 \pmod{8}$ así como
+                también lo hara $x=2+8=10$ ó $x=2+2(8)=18$ no es muy interesante, despúes
+                de todo todas estas soluciones son equivalentes:
+                $2 \equiv 10 \equiv 18 \pmod{8}$.
+                
+
+                \textbf{Sería interesante conocer todas las soluciones que no sean
+                congruentes entre si mismas}, por ejemplo $x=6$ tambíen soluciona
+                nuestro problema $2x \equiv 4 \pmod{8}$ y 6 no es equivalente con 2 módulo 8.
 
 
             % ===============================================
             % ========       SOLUCIONES GENERALES     =======
             % ===============================================
-            \subsubsection{Soluciones Generales}
+            \clearpage
+            \subsubsection{¿Cuántas Soluciones incongruentes existen?}
 
-                Las soluciones genrales son de la forma:
-                \begin{equation}
-                    x = \pfrac{a}{GCD(a, m)}^{-1} \; \dfrac{b}{GCD(a, m)} + q\dfrac{m}{GCD(a, m)} 
-                \end{equation}
+                Si la congruencia $ax \equiv b \pmod{n}$ tiene solución entonces
+                existen $GCD(a,n)$ soluciones difererentes (incongruentes entre si) donde
+                si $x_0$ es solución las demás estan dadas por:
+                \begin{equation*}
+                    x = x_0 + \dfrac{n}{GCD(a,n)} t 
+                        \Space\text{donde } t \in \Set{0, 1, \dots, GCD(a,n)-1}
+                \end{equation*} 
 
-                Con $q=0, \dots, g-1$.
+                % ======== DEMOSTRACION ========
+                \begin{SmallIndentation}[1em]
+                    \textbf{Demostración}:
+                    
+                    Recuerda que nuestra congruencia $ax \equiv b \pmod{n}$ puede
+                    ser expresada como una ecuación diofantina: $ax - ny = b$.
 
-                Por lo tanto tenemos $|\Set{0, \dots, g-1}|$ soluciones
+                    Recuerda que si $x_0, y_0$ es \textbf{una} solución a la
+                    ecuación $ax+ by = c$, donde $t \in \Integers$ y $d=GCD(a,b)$
+                    entonces todas las demás soluciones estarán dadas por:
+                    \begin{MultiLineEquation*}{3}
+                        x = x_0 + \dfrac{b}{d}t
+                        \Space\Space
+                        y = y_0 - \dfrac{a}{d}t
+                    \end{MultiLineEquation*}
+
+                    Por lo tanto podemos tomar un una solución para nuestra ecuación
+                    diofantica como:
+                    \begin{MultiLineEquation*}{3}
+                        x = x_0 + \dfrac{n}{d}t
+                        \Space\Space
+                        y = y_0 - \dfrac{a}{d}t
+                    \end{MultiLineEquation*}
+
+                    Recueda que nos importa $x$ por lo tanto podemos ver $x = x_0 + \dfrac{n}{d}t$
+                    como $x \equiv x_0 \pmod{\dfrac{n}{d}}$
+
+                    Por lo tanto para obtener todas las soluciones que son incongruentes entre
+                    ellas podemos hacer variar nuestra $t$ de tal manera que que forme un 
+                    sistema completo de residuos, es decir, $t \in \Set{ 0, 1, 2, \dots, d-1}$.
+                    Por lo mismo podemos decir que tenemos $d$ soluciones diferentes.
+
+                \end{SmallIndentation}
 
 
-
-        
-
-
-
-
+                De aquí podemos rescatar que si $GCD(a, n) = 1$, es decir \textbf{si $a$ y $n$
+                son} primos relativos entonces tendremos una \textbf{única solución}.
 
        
 \end{document}

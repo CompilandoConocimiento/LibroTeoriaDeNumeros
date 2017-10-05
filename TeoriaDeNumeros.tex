@@ -2966,6 +2966,10 @@
                         $b=n(q-k)+r$ con lo que podemos ver que dejan el mismo residuo al 
                         aplicar el algoritmo de la división con $n$.
 
+                        Por otro lado si dejan el mismo residuo tenemos que $a=nq_1+r$
+                        y $b=nq_2+r$ entonces $a-b=nq_1 - n_q2 = n(q_1-q_2)$ por lo tanto
+                        si que $n$ divide a esto. 
+
                     \end{SmallIndentation}
 
 
@@ -2998,6 +3002,38 @@
                         por lo tanto $GCD(b, n) | a$.
 
                         Por lo tanto tenemos que $GCD(a, n) = GCD(b, n)$
+
+                    \end{SmallIndentation}
+
+                \end{itemize}
+
+
+        % =====================================================
+        % ============   PROPIEDADES COOL      ================
+        % =====================================================
+        \subsection{Propiedades Cool}
+
+            \begin{itemize}
+
+                \item Sea $p$ primo entonces $(a+b)^p \equiv a^p + b^p \pmod{p}$
+
+                    % ======== DEMOSTRACION ========
+                    \begin{SmallIndentation}[1em]
+                        \textbf{Demostración}:
+
+                        Usando el binomio de Newton tenemos que:
+                        \begin{MultiLineEquation*}{3}
+                            (a+b)^n
+                                &= \sum_{k=0}^n \binom{n}{k} a^{n-k}b^k
+                                &= \sum_{k=0}^n \dfrac{p!}{k!(n-k)!} a^{n-k}b^k
+                        \end{MultiLineEquation*}
+
+                        Ahora como $p$ es primo la única forma de eliminar a $p$ de
+                        $\dfrac{p!}{k!(n-k)!}$ es cuando $k=0$ o $k=p$ por lo tanto
+                        todos los demás terminos tendrán una $p$ por lo tanto son
+                        congruentes con $0 \pmod{p}$ excepto el primer y último
+                        término, es decir $a^p + b^n$.
+                            
 
                     \end{SmallIndentation}
 

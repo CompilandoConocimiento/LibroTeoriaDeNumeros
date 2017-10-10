@@ -89,7 +89,8 @@
     \newenvironment{SmallIndentation}[1][0.75em]                    %Use: The same that we upper one, just 
     {\begin{adjustwidth}{#1}{}\begin{footnotesize}}                 %footnotesize size of letter by default
     {\end{footnotesize}\end{adjustwidth}}                           %that's it
-        
+
+
     % =====  GENERAL MATH  ==========
     \DeclareMathOperator \Space {\quad}                             %Use: \Space for a cool mega space
     \DeclareMathOperator \MiniSpace {\;}                            %Use: \Space for a cool mini space
@@ -131,6 +132,7 @@
 
     % === LINEAL ALGEBRA & VECTORS ===
     \DeclareMathOperator \LinealTransformation {\mathcal{T}}        %Use: \LinealTransformation for a cool T
+    \newcommand{\Mag}[1]{\left| #1 \right|}                         %Use: \Mag {Info} 
 
     \newcommand{\pVector}[1]{                                       %Use: \pVector {Matrix Notation} use parentesis
         \ensuremath{\begin{pmatrix}#1\end{pmatrix}}                 %Example: \pVector{a\\b\\c} or \pVector{a&b&c} 
@@ -155,12 +157,49 @@
     \makeatother                                                    %WTF! IS THIS
 
     % TRIGONOMETRIC FUNCTIONS
-    \newcommand{\Cos}[1]{\cos\Wrap{#1}}
-    \newcommand{\Sin}[1]{\sin\Wrap{#1}}
+    \newcommand{\Cos}[1]{\cos\Wrap{#1}}                             %Simple wrappers
+    \newcommand{\Sin}[1]{\sin\Wrap{#1}}                             %Simple wrappers
 
     % === COMPLEX ANALYSIS ===
     \newcommand \Cis[1]  {\Cos{#1} + i \Sin{#1}}                    %Use: \Cis for cos(x) + i sin(x)
     \newcommand \pCis[1] {\Wrap{\Cis{#1}}}                          %Use: \pCis for the same ut parantesis
+    \newcommand \bCis[1] {\Brackets{\Cis{#1}}}                      %Use: \bCis for the same to Brackets
+
+    % === CALCULUS ===
+    \newcommand \Partial[2] {\dfrac{\partial #1}{\partial #2}}      %Use: \Partial for simple use
+
+    % =====  GENERAL COLOR  =========
+    \definecolor{IndigoMD}{HTML}{3F51B5}                            %Use: Color :D
+    \definecolor{DeepPurpleMD}{HTML}{673AB7}                        %Use: Color :D
+    \definecolor{TealMD}{HTML}{009688}                              %Use: Color :D        
+    \definecolor{BlueGrey800MD}{HTML}{37474F}                       %Use: Color :D
+    \definecolor{BlueGrey100MD}{HTML}{CFD8DC}                       %Use: Color :D
+    \definecolor{IndigoMD}{HTML}{3F51B5}                            %Use: Color :D
+    \definecolor{Green100MD}{HTML}{DCEDC8}                          %Use: Color :D
+
+    \newenvironment{ColorText}[1]{                                  %Use: \begin{ColorText}
+        \leavevmode\color{#1}\ignorespaces}                         %That's is!
+
+
+    % =====  CODE EDITOR =========
+    \lstdefinestyle{CompilandoStyle} {                              %This is Code Style
+        backgroundcolor=\color{BlueGrey800MD},                      %Background Color  
+        basicstyle=\tiny\color{white},                              %Font color
+        commentstyle=\color{BlueGrey100MD},                         %Comment color
+        stringstyle=\color{TealMD},                                 %String color
+        keywordstyle=\color{Green100MD},                            %keywords color
+        numberstyle=\tiny\color{TealMD},                            %Size of a number
+        frame=shadowbox,                                            %Adds a frame around the code
+        breakatwhitespace=true,                                     %Style                       
+        breaklines=true,                                            %Style                   
+        keepspaces=true,                                            %Style                   
+        numbers=left,                                               %Style                   
+        numbersep=10pt,                                             %Style 
+        xleftmargin=\parindent,                                     %Style 
+        tabsize=4                                                   %Style 
+    }
+ 
+    \lstset{style=CompilandoStyle}                                  %Use this style
 
 
 % =====================================================
@@ -518,7 +557,7 @@
         % ======      EJEMPLOS     =========
         % ==================================
         \clearpage
-        \subsection{Ejemplos}
+        \subsection{Ejemplo sobre que es Divisibilidad}
 
             Supongamos que elegimos la proposición $5|35$.
 
@@ -795,191 +834,6 @@
 
 
 
-        % ==================================
-        % ======   RESULTADOS COOL  ========
-        % ==================================
-        \clearpage
-        \subsection{Propiedades poco Comunes}
-
-            \begin{itemize}
-
-                \item Dado un conjunto de $k$ enteros arbitrarios diferentes (donde $k \in \Naturals$ y $k > 1$ )
-                    siempre se tiene que la diferencia de dos de ellos será divisible por $k$.
-
-
-                    % ======== DEMOSTRACION ========
-                    \begin{SmallIndentation}[1em]
-                        \textbf{Demostración}:
-
-                        Sean $a_1, a_2, a_3, \dots, a_{k+1}$ los $k$ enteros.
-
-                        Apliquemos el algoritmo de la división para todos los elementos del conjunto,
-                        obteniendo algo como:
-
-                        \begin{itemize}
-                            \item $a_1 = b_1 + r_1$
-                            \item $a_2 = b_2 + r_2$
-                            \item $a_3 = b_3 + r_3$
-                            \item \dots
-                        \end{itemize}
-
-                        Ahora, el truco esta en que como tenemos $k$ residuos, pero todos ellos tienen
-                        que cumplir que $0 \geq r_x < b$, pero esto implica que solo puede haber
-                        $k-1$ resudios posibles: $0, 1, \dots, k-1$. Por lo tanto habrá dos residuos iguales.
-
-                        Tomemos ambos enteros que nos dan resudios iguales y saquemos la diferencia:
-
-                        \begin{MultiLineEquation*}{2}
-                            a_i - a_j   &= (bq_i + r_i) - (bq_j + r_j)  \\
-                                        &= (bq_i + r_i) - (bq_j + r_i)  \\ 
-                                        &= (bq_i + r_i) - bq_j - r_i)   \\ 
-                                        &= bq_i - bq_j                  \\ 
-                                        &= b (q_i - q_j) + 0            \\ 
-                                        &= b q_x + 0                    \\ 
-                        \end{MultiLineEquation*}
-
-                        Y bingo, demostrado ;)
-
-                    \end{SmallIndentation}
-
-
-                \item Dados $a, b \in \Integers$ existen enteros $x, y$ tal que:\\
-                    $GCD(x, y) = b$  y $LCM(x, y) = a$ si y solo si $b|a$.
-
-                    % ======== DEMOSTRACION ========
-                    \begin{SmallIndentation}[1em]
-                        \textbf{Demostración}:
-
-                        Probemos por doble condicional.
-
-                        Empecemos de ida:
-                        
-                        Dado $GCD(x, y) = b$ por lo tanto $b|x$ y dado $LCM(x, y) = a$ por lo tanto $x|a$
-                        y ya que la divisibilidad es transicitva tenemos por lo tanto que $b|a$.
-
-
-                        Primero empecemos de regreso:
-
-                        Si $b|a$, entonces $a = bq$.
-                        Podemos decir que $GCD(b, a) = GCD(b, bq) = b \cdot GCD(1, q)$.
-                        Podemos decir que $MCL(b, a) = MCL(b, bq) = bq = a$.
-
-                        Por lo tanto propongamos que $x=a$ y a $y=b$ entonces tenemos que 
-                        se cumple la propiedad.
-
-                    \end{SmallIndentation}
-
-                \clearpage
-
-
-                \item El producto de $n$ números consecutivos será siempre divisible entre
-                    $n!$, es decir $n! | (k)(k+1)(k+2)(k+3)(k+4)\dots(k+n)$
-
-                    % ======== DEMOSTRACION ========
-                    \begin{SmallIndentation}[1em]
-                        \textbf{Demostración}:
-
-                        Esto es muy fácil de demostrar por inducción.
-
-                        Sabemos que $k|0!$ y que $k+1|1!$.
-
-                        Supongamos que $n! | (k)(k+1)(k+2)(k+3)(k+4)\dots(k+n)$.
-
-                        Esto nos dice que:
-                        \begin{itemize}
-                            \item $2 | (k)(k+1)(k+2)(k+3)(k+4)\dots(k+n)$
-                                Pues mínimo alguno de los términos de la suseción será par
-                            \item $3 | (k)(k+1)(k+2)(k+3)(k+4)\dots(k+n)$
-                                Pues mínimo alguno de los términos de la suseción será divisible entre 3,
-                                pues hay mas de 3 enteros consecutivos
-                            \item $4 | (k)(k+1)(k+2)(k+3)(k+4)\dots(k+n)$
-                                Pues mínimo alguno de los términos de la suseción será divisible entre 4,
-                                pues hay mas de 4 enteros consecutivos
-                            \item ...
-                        \end{itemize}
-
-                        Ahora probar que $(n+1)! | (k)(k+1)(k+2)(k+3)(k+4)\dots(k+n)(k+n+1)$ es pan comido
-                        pues al haber $k+1$ elementos consecutivos este número
-                        $(k)(k+1)(k+2)(k+3)(k+4)\dots(k+n)(k+n+1)$
-                        siempre será divisible entre $k+1$.
-
-                        Y ya teniendo que:
-                        $n! | (k)(k+1)(k+2)(k+3)(k+4)\dots(k+n)$, es decir
-                        $(k)(k+1)(k+2)(k+3)(k+4)\dots(k+n) = q_1 n!$.
-                        Por lo tanto $(k)(k+1)(k+2)(k+3)(k+4)\dots(k+n)(k+n+1) = q_2 (k+1)!$.
-
-                        Demostrado por inducción :D
-
-                    \end{SmallIndentation}
-
-                \item Para cualquier entero $n$, se tiene que: 
-                    $a - 1 |a^n -1$
-
-                    % ======== DEMOSTRACION ========
-                    \begin{SmallIndentation}[1em]
-                        \textbf{Ideas}:
-
-                        Es muy obvio esto si $n=1$, pues $a-1|a-1$ y con $n=2$, pues $a-1|a^2-1$
-                        ya que gracias a la diferencia de cuadrados tenemos que:
-                        $a-1|(a+1)(a-1)$.
-
-                        Con una $n$ par es también muy fácil pues basta con ver que podemos siempre
-                        factorizar un $a-1$, pero también podemos hacer lo mismo con un $n$ impar, 
-                        basta con ver la descomposición del polinomio.\\
-
-
-                        \textbf{Demostracion}:
-
-                        Recuerdas la serie geométrica, sino no te preocupes, pues tenemos que:
-                        \begin{MultiLineEquation*}{3}
-                            a + ar + ar^2 + ar^3 + \cdots + ar^{n-1}
-                                &= \sum_{k=0}^{n-1} ar^k
-                                &= a\dfrac{1-r^n}{1-r}
-                                &= a\dfrac{(-1)(r^n - 1)}{(-1)r-1}
-                                &= a\dfrac{r^n - 1}{r-1}
-                        \end{MultiLineEquation*}
-
-                        Por lo tanto si pones a $a=1$ y $r=a$ tienes que:
-                        \begin{MultiLineEquation*}{3}
-                            1 + a + a^2 + a^3 + \cdots + a^{n-1}
-                                &= \sum_{k=0}^{n-1} a^k
-                                &= \dfrac{1-a^n}{1-a}
-                                &= \dfrac{(-1)(a^n - 1)}{(-1)a-1}
-                                &= \dfrac{a^n - 1}{a-1}
-                        \end{MultiLineEquation*}
-
-                        Por lo tanto ya que solo estamos sumando enteros o potencias de enteros 
-                        $\dfrac{a^n - 1}{a-1}$ debe ser un entero, es decir $a - 1 |a^n -1$.
-
-                    \end{SmallIndentation}
-
-                \item De manera más general tenemos que $a - b |a^n - b^n$
-
-                    % ======== DEMOSTRACION ========
-                    \begin{SmallIndentation}[1em]
-                        \textbf{Demostración}:
-
-                        Para que fuera cierto teniamos que encontrar
-                        $a^n - b^n = a-b(q)$ podemos proponer entonces que:
-                        \begin{MultiLineEquation*}{3}
-                            (a-b) \sum_{k=0}^{n-1} a^k b^{n-1-k}
-                                &= (a-b) \sum_{k=0}^{n-1} a^k b^{n-1-k}         \\
-                                &= \sum_{k=0}^{n-1} a^{k+1} b^{n-1-k} 
-                                   -
-                                   \sum_{k=0}^{n-1} a^k b^{n-k}                 \\
-                                &= a^n + \sum_{k=1}^{n-1} a^{k} b^{n-k} 
-                                   -
-                                   \sum_{k=1}^{n-1} a^k b^{n-k} 
-                                   -b^n                                         \\
-                                &= a^n - b^n                                    
-                        \end{MultiLineEquation*}
-
-                    \end{SmallIndentation}
-
-            \end{itemize}
-
-
-
 
     % =====================================================
     % =====    MAXIMO COMUN DIVISOR : GCD /MCD     ========
@@ -1067,8 +921,6 @@
             \end{SmallIndentation}
                 
 
-
-            
 
 
         % ==================================
@@ -1174,10 +1026,41 @@
 
                         Si son el mismo conjunto de divisores naturales, tendrán el mismo máximo elemento.
                         ¡Bingo!
-
-                        
-
                     \end{SmallIndentation} 
+
+                \item El $GCD(n, n+1) = 1$
+
+                    % ======== DEMOSTRACION ========
+                    \begin{SmallIndentation}[1em]
+                        \textbf{Demostración}:
+
+                        Sea $d = GCD(n, n+1)$, ahora tenemos que $d|n$ y $d|n+1$, por lo tanto
+                        divide a cualquier combinación lineal como por ejempo $d|(-1)n +1(n+1)$
+                        entonces $d|1$ por lo tanto solo le queda a $d$ ser uno.
+                    \end{SmallIndentation}
+
+                \item $GCD(a,b,c) = GCD((a, b), c)$
+
+                    % ======== DEMOSTRACION ========
+                    \begin{SmallIndentation}[1em]
+                        \textbf{Demostración}:
+
+                        Usando la factorización de primos tenemos que:
+                        \begin{itemize}
+                            \item $a = \prod_i p^{\alpha_i}$
+                            \item $b = \prod_i p^{\beta_i}$
+                            \item $c = \prod_i p^{\gamma_i}$
+                        \end{itemize}
+
+                        Entonces tenemos que:
+                        \begin{MultiLineEquation*}{2}
+                            GCD(a,b,c)
+                                &= \prod_i p^{min(\alpha_i, \beta_i, \gamma_i)}
+                                &= \prod_i p^{min(min(\alpha_i, \beta_i), \gamma_i))}
+                                &= GCD((a,b),c)
+                        \end{MultiLineEquation*}
+
+                    \end{SmallIndentation}
 
             \end{itemize}
 
@@ -1245,8 +1128,10 @@
             \end{SmallIndentation}
 
 
-            De esta demostración podemos decir algo muy importante \textbf{El mínimo común divisor de $a, b$
-            se puede escribir como la combinación lineal más pequeña positiva con $a, b$}
+            De esta demostración podemos decir algo muy importante.
+
+            \textbf{El mínimo común divisor de $a, b$ se puede escribir como la combinación lineal
+            más pequeña positiva con $a, b$}
 
         % ==================================
         % ======   PROPIEDADES     =========
@@ -1619,7 +1504,7 @@
 
             Recuerda que la Identidad de Bezut nos dice que:
             \begin{equation}
-                GCD(a,b) = am +bn \Space \text{donde} m,n \in \Integers
+                GCD(a,b) = am +bn \Space \text{ donde } m, n \in \Integers
             \end{equation}
 
             Conocemos a $m,n$ como los coeficientes de Bezut.
@@ -1907,6 +1792,17 @@
                                 &= |m| LCM(a, b)
                         \end{MultiLineEquation*}
 
+                    \end{SmallIndentation}
+
+
+                \item $LCM(n, n+1) = |n(n+1)|$
+
+                    % ======== DEMOSTRACION ========
+                    \begin{SmallIndentation}[1em]
+                        \textbf{Demostración}:
+
+                        Ya sabemos que $GCD(n, n+1) = 1$ por lo tanto 
+                        $(1)LCM(n, n+1) = |n(n+1)|$
                     \end{SmallIndentation}
 
             \end{itemize}
@@ -2287,6 +2183,382 @@
 
 
 
+    % =====================================================
+    % ============  EJEMPLOS GENERALES    =================
+    % =====================================================
+    \clearpage
+    \section{Propiedades poco Comunes - Ejemplos Generales}
+
+        \begin{itemize}
+
+            \item Dado un conjunto de $k$ enteros arbitrarios diferentes (donde $k \in \Naturals$ y $k > 1$ )
+                siempre se tiene que la diferencia de dos de ellos será divisible por $k$.
+
+
+                % ======== DEMOSTRACION ========
+                \begin{SmallIndentation}[1em]
+                    \textbf{Demostración}:
+
+                    Sean $a_1, a_2, a_3, \dots, a_{k+1}$ los $k$ enteros.
+
+                    Apliquemos el algoritmo de la división para todos los elementos del conjunto,
+                    obteniendo algo como:
+
+                    \begin{itemize}
+                        \item $a_1 = b_1 + r_1$
+                        \item $a_2 = b_2 + r_2$
+                        \item $a_3 = b_3 + r_3$
+                        \item \dots
+                    \end{itemize}
+
+                    Ahora, el truco esta en que como tenemos $k$ residuos, pero todos ellos tienen
+                    que cumplir que $0 \geq r_x < b$, pero esto implica que solo puede haber
+                    $k-1$ resudios posibles: $0, 1, \dots, k-1$. Por lo tanto habrá dos residuos iguales.
+
+                    Tomemos ambos enteros que nos dan resudios iguales y saquemos la diferencia:
+
+                    \begin{MultiLineEquation*}{2}
+                        a_i - a_j   &= (bq_i + r_i) - (bq_j + r_j)  \\
+                                    &= (bq_i + r_i) - (bq_j + r_i)  \\ 
+                                    &= (bq_i + r_i) - bq_j - r_i)   \\ 
+                                    &= bq_i - bq_j                  \\ 
+                                    &= b (q_i - q_j) + 0            \\ 
+                                    &= b q_x + 0                    \\ 
+                    \end{MultiLineEquation*}
+
+                    Y bingo, demostrado ;)
+
+                \end{SmallIndentation}
+
+            \item Dados $a, b \in \Integers$ existen enteros $x, y$ tal que: 
+                $GCD(x, y) = b$  y $LCM(x, y) = a$ si y solo si $b|a$.
+
+                % ======== DEMOSTRACION ========
+                \begin{SmallIndentation}[1em]
+                    \textbf{Demostración}:
+
+                    Probemos por doble condicional.
+
+                    Empecemos de ida:
+                    
+                    Dado $GCD(x, y) = b$ por lo tanto $b|x$ y dado $LCM(x, y) = a$ por lo tanto $x|a$
+                    y ya que la divisibilidad es transicitva tenemos por lo tanto que $b|a$.
+
+
+                    Primero empecemos de regreso:
+
+                    Si $b|a$, entonces $a = bq$.
+                    Podemos decir que $GCD(b, a) = GCD(b, bq) = b \cdot GCD(1, q)$.
+                    Podemos decir que $MCL(b, a) = MCL(b, bq) = bq = a$.
+
+                    Por lo tanto propongamos que $x=a$ y a $y=b$ entonces tenemos que 
+                    se cumple la propiedad.
+
+                \end{SmallIndentation}
+
+            \clearpage
+
+            \item El producto de $n$ números consecutivos será siempre divisible entre
+                $n!$, es decir $n! | (k)(k+1)(k+2)(k+3)(k+4)\dots(k+n)$
+
+                % ======== DEMOSTRACION ========
+                \begin{SmallIndentation}[1em]
+                    \textbf{Demostración}:
+
+                    Esto es muy fácil de demostrar por inducción.
+
+                    Sabemos que $k|0!$ y que $k+1|1!$.
+
+                    Supongamos que $n! | (k)(k+1)(k+2)(k+3)(k+4)\dots(k+n)$.
+
+                    Esto nos dice que:
+                    \begin{itemize}
+                        \item $2 | (k)(k+1)(k+2)(k+3)(k+4)\dots(k+n)$
+                            Pues mínimo alguno de los términos de la suseción será par
+                        \item $3 | (k)(k+1)(k+2)(k+3)(k+4)\dots(k+n)$
+                            Pues mínimo alguno de los términos de la suseción será divisible entre 3,
+                            pues hay mas de 3 enteros consecutivos
+                        \item $4 | (k)(k+1)(k+2)(k+3)(k+4)\dots(k+n)$
+                            Pues mínimo alguno de los términos de la suseción será divisible entre 4,
+                            pues hay mas de 4 enteros consecutivos
+                        \item ...
+                    \end{itemize}
+
+                    Ahora probar que $(n+1)! | (k)(k+1)(k+2)(k+3)(k+4)\dots(k+n)(k+n+1)$ es pan comido
+                    pues al haber $k+1$ elementos consecutivos este número
+                    $(k)(k+1)(k+2)(k+3)(k+4)\dots(k+n)(k+n+1)$
+                    siempre será divisible entre $k+1$.
+
+                    Y ya teniendo que:
+                    $n! | (k)(k+1)(k+2)(k+3)(k+4)\dots(k+n)$, es decir
+                    $(k)(k+1)(k+2)(k+3)(k+4)\dots(k+n) = q_1 n!$.
+                    Por lo tanto $(k)(k+1)(k+2)(k+3)(k+4)\dots(k+n)(k+n+1) = q_2 (k+1)!$.
+
+                    Demostrado por inducción :D
+
+                \end{SmallIndentation}
+
+            \item Para cualquier entero $n$, se tiene que: 
+                $a - 1 |a^n -1$
+
+                % ======== DEMOSTRACION ========
+                \begin{SmallIndentation}[1em]
+                    \textbf{Ideas}:
+
+                    Es muy obvio esto si $n=1$, pues $a-1|a-1$ y con $n=2$, pues $a-1|a^2-1$
+                    ya que gracias a la diferencia de cuadrados tenemos que:
+                    $a-1|(a+1)(a-1)$.
+
+                    Con una $n$ par es también muy fácil pues basta con ver que podemos siempre
+                    factorizar un $a-1$, pero también podemos hacer lo mismo con un $n$ impar, 
+                    basta con ver la descomposición del polinomio.\\
+
+
+                    \textbf{Demostracion}:
+
+                    Recuerdas la serie geométrica, sino no te preocupes, pues tenemos que:
+                    \begin{MultiLineEquation*}{3}
+                        a + ar + ar^2 + ar^3 + \cdots + ar^{n-1}
+                            &= \sum_{k=0}^{n-1} ar^k
+                            &= a\dfrac{1-r^n}{1-r}
+                            &= a\dfrac{(-1)(r^n - 1)}{(-1)r-1}
+                            &= a\dfrac{r^n - 1}{r-1}
+                    \end{MultiLineEquation*}
+
+                    Por lo tanto si pones a $a=1$ y $r=a$ tienes que:
+                    \begin{MultiLineEquation*}{3}
+                        1 + a + a^2 + a^3 + \cdots + a^{n-1}
+                            &= \sum_{k=0}^{n-1} a^k
+                            &= \dfrac{1-a^n}{1-a}
+                            &= \dfrac{(-1)(a^n - 1)}{(-1)a-1}
+                            &= \dfrac{a^n - 1}{a-1}
+                    \end{MultiLineEquation*}
+
+                    Por lo tanto ya que solo estamos sumando enteros o potencias de enteros 
+                    $\dfrac{a^n - 1}{a-1}$ debe ser un entero, es decir $a - 1 |a^n -1$.
+
+                \end{SmallIndentation}
+
+            \clearpage
+
+            \item De manera más general tenemos que $a - b |a^n - b^n$
+
+                % ======== DEMOSTRACION ========
+                \begin{SmallIndentation}[1em]
+                    \textbf{Demostración}:
+
+                    Para que fuera cierto teniamos que encontrar
+                    $a^n - b^n = a-b(q)$ podemos proponer entonces que:
+                    \begin{MultiLineEquation*}{3}
+                        (a-b) \sum_{k=0}^{n-1} a^k b^{n-1-k}
+                            &= (a-b) \sum_{k=0}^{n-1} a^k b^{n-1-k}         \\
+                            &= \sum_{k=0}^{n-1} a^{k+1} b^{n-1-k} 
+                               -
+                               \sum_{k=0}^{n-1} a^k b^{n-k}                 \\
+                            &= a^n + \sum_{k=1}^{n-1} a^{k} b^{n-k} 
+                               -
+                               \sum_{k=1}^{n-1} a^k b^{n-k} 
+                               -b^n                                         \\
+                            &= a^n - b^n                                    
+                    \end{MultiLineEquation*}
+
+                \end{SmallIndentation}
+
+            \item Nunca se cumple que $4|n^2 +2$
+
+                % ======== DEMOSTRACION ========
+                \begin{SmallIndentation}[1em]
+                    \textbf{Demostración}:
+
+                    Suponga que $n$ es par, por lo tanto tenemos que:
+                    $(2k)^2+2$ se puede expresar como $4k^2 + 2$, por lo tanto no es divisible entre
+                    cuatro.
+
+                    Si $n$ es impar, tenemos que $(2k+1)^+2$ se puede expresar como $4k^2 + 4k + 1 + 2$
+                    es decir $4(k^2+k) +3$, por lo tanto tampoco es divisible entre cuatro.
+
+                \end{SmallIndentation}
+
+            \item Cualquier entero de la forma $6k+5$ es de la forma $3k-1$ pero no de manera inversa
+
+                % ======== DEMOSTRACION ========
+                \begin{SmallIndentation}[1em]
+                    \textbf{Demostración}:
+
+                    Si tenemos un número de la forma $6k+5$ entonces ve que $6k+5 = 3(2k+2)-1$
+
+                    Pero veamos una contraprueba para su inversa:
+                    Dado un número de la forma $3k-1$, por ejemplo 3, tenemos el $3(3)-1=8$ no lo
+                    podemos escribir de la forma $6k+5$, pues implica $6k+5=8$ es decir
+                    $6k=3$, lo cual obviamente no tiene solución en los enteros, por lo tanto
+                    queda demostrado que su inversa no es correcta.
+                    
+                \end{SmallIndentation}
+
+            \item $n^2 = 3k$ ó $n^2 = 3k + 1$
+
+                % ======== DEMOSTRACION ========
+                \begin{SmallIndentation}[1em]
+                    \textbf{Demostración}:
+
+                    Antes que nada recuerda que un cuadrado perfecto, lo podemos expresar como:
+                    \begin{itemize}
+                        \item $(3k+0)^2 = 9k^2 = 3(3k^2)$
+                        \item $(3k+1)^2 = 9k^2 + 6k + 1 = 3(3k^2 + 2k) + 1$
+                        \item $(3k+2)^2 = 9k^2 + 12k + 3 +1 = 3(3k^2 + 4k + 1) + 1$
+                    \end{itemize}
+
+                    Es decir, todo cuadrado perfecto o es divisible entre 3 o es de la forma
+                    $3k+1$.
+                    
+                \end{SmallIndentation}
+
+            \clearpage
+
+            \item Encuentremos los enteros que cumple con que $(a,b) = 10$ y $[a,b] = 100$
+
+                % ======== DEMOSTRACION ========
+                \begin{SmallIndentation}[1em]
+                    \textbf{Demostración}:
+
+                    Empecemos por enunciar a más detalle las restricciones que nos estan dando
+                    como $(a, b) = 10$, entonces tenemos que 
+                    $10|a$ y $10|b$ por lo tanto $10 \leq a, b$.
+
+                    Y como $[a, b] = 100$ entonces $a|100$ y $b|100$, por lo tanto $a, b \leq 100$.
+
+                    Con lo cual sabemos que dichos enteros tiene que estar entre 10 y 100, ahora
+                    podemos ocupar que $(a, b) = 10$ y ver que tenemos que:
+
+                    $a = 10q_1$ y $b = 10q_2$ con $(q_1, q_2) = 1$.
+
+                    Ademas $(a,b)[a,b] = 1000$. Por lo tanto dichas parejas son:
+
+                    \begin{itemize}
+                        \item $(100, 10)$
+                        \item $(20, 50)$
+                    \end{itemize}
+
+                \end{SmallIndentation}
+
+            \item Si $GCD(b, c) = 1$ y $r|b$ entonces $GCD(r, c) = 1$
+
+                % ======== DEMOSTRACION ========
+                \begin{SmallIndentation}[1em]
+                    \textbf{Demostración}:
+
+                    Usando la Identidad de Bezut esto esta regalado pues tenemos que
+                    $bx + cy = 1$ y $b = rq$ entonces 
+                    $r(qx) + cy = 1$ por lo tanto $GCD(r, c) = 1$. Que facil son ciertas
+                    demostraciones. 
+
+                \end{SmallIndentation}
+
+
+            \item Si $x, y$ son impares entonces $x^2 + y^2$ no puede ser un cuadrado
+                perfecto
+
+                % ======== DEMOSTRACION ========
+                \begin{SmallIndentation}[1em]
+                    \textbf{Demostración}:
+
+                    Esta demostración se deduce de manera inmediata del siguiente problema, pero ya 
+                    que lo estoy haciendo en \LaTeX es tal fácil como un copy paste :D
+
+                    Antes que nada recuerda que un cuadrado perfecto, lo podemos expresar como:
+                    \begin{itemize}
+                        \item $(3k+0)^2 = 9k^2 = 3(3k^2)$
+                        \item $(3k+1)^2 = 9k^2 + 6k + 1 = 3(3k^2 + 2k) + 1$
+                        \item $(3k+2)^2 = 9k^2 + 12k + 3 +1 = 3(3k^2 + 4k + 1) + 1$
+                    \end{itemize}
+
+                    Es decir, todo cuadrado perfecto o es divisible entre 3 o es de la forma
+                    $3k+1$.
+
+                    Dado esto tenemos que:
+                    \begin{MultiLineEquation*}{3}
+                        (3k_1+1)^2 + (3k_2+1)^2
+                            &= 9k_1^2 + 6k_1 + 1  +  9k_2^2 + 6k_2 + 1      \\
+                            &= 9k_1^2 + 6k_1 + 9k_2^2 + 6k_2 + 2            \\
+                            &= 9k_1^2 + 6k_1 + 9k_2^2 + 6k_2 + 2            \\
+                            &= 3(3k_1^2 + 2k_1 + 3k_2^2 + 2k_2) + 2            
+                    \end{MultiLineEquation*}
+
+                    Por lo tanto no puede ser un cuadrado perfecto.
+
+                \end{SmallIndentation}
+
+            \clearpage
+
+            \item Si $x, y$ son coprimos con 3 entonces $x^2 + y^2$ no puede ser un cuadrado perfecto
+
+                % ======== DEMOSTRACION ========
+                \begin{SmallIndentation}[1em]
+                    \textbf{Demostración}:
+
+                    Antes que nada recuerda que un cuadrado perfecto, lo podemos expresar como:
+                    \begin{itemize}
+                        \item $(3k+0)^2 = 9k^2 = 3(3k^2)$
+                        \item $(3k+1)^2 = 9k^2 + 6k + 1 = 3(3k^2 + 2k) + 1$
+                        \item $(3k+2)^2 = 9k^2 + 12k + 3 +1 = 3(3k^2 + 4k + 1) + 1$
+                    \end{itemize}
+
+                    Es decir, todo cuadrado perfecto o es divisible entre 3 o es de la forma
+                    $3k+1$.
+
+                    Veamos los casos posibles:
+                    \begin{itemize}
+                        \item $x=3k_1+1$ y $y=3k_2+1$
+
+                            Dado esto tenemos que:
+                            \begin{MultiLineEquation*}{3}
+                                (3k_1+1)^2 + (3k_2+1)^2
+                                    &= 9k_1^2 + 6k_1 + 1  +  9k_2^2 + 6k_2 + 1      \\
+                                    &= 9k_1^2 + 6k_1 + 9k_2^2 + 6k_2 + 2            \\
+                                    &= 9k_1^2 + 6k_1 + 9k_2^2 + 6k_2 + 2            \\
+                                    &= 3(3k_1^2 + 2k_1 + 3k_2^2 + 2k_2) + 2            
+                            \end{MultiLineEquation*}
+
+                            Por lo tanto no puede ser un cuadrado perfecto.
+                                
+                        \item $x=3k_1+1$ y $y=3k_2+2$
+                            
+                            Dado esto tenemos que:
+                            \begin{MultiLineEquation*}{3}
+                                (3k_1+1)^2 + (3k_2+2)^2
+                                    &= 9k_1^2 + 6k_1 + 1 + 9k_2^2 + 12k_2 +3+1      \\
+                                    &= 9k_1^2 + 6k_1 + 3 + 9k_2^2 + 12k_2 + 2       \\
+                                    &= 3(3k_1^2 + 2k_1 + 1 + 3k_2^2 + 4k_2) + 2
+                            \end{MultiLineEquation*}
+
+                            Por lo tanto no puede ser un cuadrado perfecto.
+
+
+                        \item $x=3k_1+2$ y $y=3k_2+2$
+
+                            Dado esto tenemos que:
+                            \begin{MultiLineEquation*}{3}
+                                (3k_1+2)^2 + (3k_2+2)^2
+                                    &= 9k_1^2 + 12k_1 + 3+1  +  9k_2^2 + 12k_2 +3+1 \\
+                                    &= 9k_1^2 + 12k_1 + 6  +  9k_2^2 + 12k_2 + 2    \\
+                                    &= 3(3k_1^2 + 6k_1 + 2 + 3k_2^2 + 6k_2) + 2    
+                            \end{MultiLineEquation*}
+
+                            Por lo tanto no puede ser un cuadrado perfecto.
+                    \end{itemize}
+
+
+                \end{SmallIndentation}
+                \end{itemize}
+
+            \clearpage
+
+
+
+
+
+
+
 
 
 
@@ -2591,7 +2863,71 @@
 
 
 
+    % =====================================================
+    % ============  EJEMPLOS GENERALES    =================
+    % =====================================================
+    \clearpage
+    \section{Propiedades poco Comunes - Ejemplos Generales}
 
+        \begin{itemize}
+            
+            \item Si $k$ es primo entonces el producto de todos los primos menores o
+                iguales que $k$ divide a $n^k - n$
+
+                % ======== DEMOSTRACION ========
+                \begin{SmallIndentation}[1em]
+                    \textbf{Demostración}:
+
+                    Suponga que $k$ es primo, por lo tanto si $k=2$ tenemos que 
+                    $(n^2-n) = n(n-1)$ y como son dos números consecutivos mínimo uno
+                    es par. Por lo tanto $2|n^2 -n$.
+
+                    Si $k \neq 2$ entonces $k$ es impar, veamos que pasa con los primos
+                    primos:
+
+                    Si $k=3$ entonces $(n^3-n)=n(n+1)(n-1)$ es decir 3 números consecutivos
+                    por lo tanto es divisible entre 3 y también entre 2. Por lo tanto 
+                    $2*3|n^3-n$.
+
+                    Si $k=5$ entonces:
+                    \begin{MultiLineEquation*}{3}
+                        (n^5-n) 
+                            &= n(n^4-1)                     \\
+                            &= n(n^2+1)(n^2-1)              \\
+                            &= n(n+1)(n-1)(n^2+1)           \\
+                            &= n(n+1)(n-1)(n-2)(n+2)+5
+                    \end{MultiLineEquation*}
+                    es decir son 5 números consecutivos por lo tanto es divisible entre
+                    5, 3 y también entre 2. Por lo tanto $2*3*5|n^5-n$.
+
+                    De forma más general como $k-1$ es par y tenemos la expresión $n(n^k-1)$
+                    donde podemos expandir este polinomio para tener k números consecutivos
+                    (esto se prueba usando inducción) es decir, será divisible entre el
+                    producto de los primos menores o iguales
+                    que $k$.
+                \end{SmallIndentation}
+
+
+            \item
+                Un primo de la forma $3k+1$ es de la forma $6k+1$
+
+                % ======== DEMOSTRACION ========
+                \begin{SmallIndentation}[1em]
+                    \textbf{Demostración}:
+
+                    Sabemos que $p = 3k-1$ por lo tanto $p-1 = 3k$ es decir $p-1$ es divisible entre
+                    3, por lo tanto $p-1 = 6k$.
+                    ¿Porque?
+
+                    Porque supongamos que $p-1=3k_0$ pero no $p-1=6k_1$ (osea $p-1=3(2k_1)$), por lo
+                    tanto tendrá que ser de la forma $p-1=3(2k_1+1)$ es decir impar, pero eso
+                    implicaría que $p$ sea par. Cosa que no puede ser.
+
+                    Así $p-1$ si es de la forma $p-1=6k$ por lo tanto $p = 6k+1$. 
+
+                \end{SmallIndentation}
+
+        \end{itemize}
 
 
 % ======================================================================================
@@ -3721,6 +4057,39 @@
 
                     \end{SmallIndentation}
 
+                \item Un número $n \in \Integers$ es divisible entre 4 si y solo si
+                    la suma de digitos (en base 10) de los últimos 2 digitos de $n$ es divisible
+                    entre 4.
+
+                    % ======== DEMOSTRACION ========
+                    \begin{SmallIndentation}[1em]
+                        \textbf{Demostración}:
+
+                        Antes que nada, recuerda que a $n$ lo puedes escribir como
+                        $n = a_0(10^0) + a_1(10^1) + a_2(10^2) + \dots + a_k(10^k)$.
+
+                        Ahora, también recuerda que $4 |10^k$ con $k<1$.
+                        Para demostrar esto basta con ver que $100/4 = 25$, 
+                        $1000/4 = 25$ (creo que la demostración formal por inducción
+                        es más que obvia, además todas las demás potencias base diez mayores son
+                        divisibles entre 100 y por transitividad también lo serán con $4$), y para
+                        cualquier $k$ mayor se cumplirá, pero para $k=0$ y $k=1$, esto no es siempre cierto.
+
+                        Ahora $4|n$ si y solo si $n \equiv 0 \pmod{4}$ y recuerda
+                        que podemos poner a $n$ escrito de otra forma:
+                        $a_0(10^0) + a_1(10^1) + a_2(10^2) + \dots + a_k(10^k) \equiv 0 \pmod{4}$
+                        y como vimos por la propiedad anterior para potencias de 10 mayores que
+                        1 tenemos que son congruentes con $0 \pmod{4}$, por lo tanto la
+                        expresión de arriba se puede reducir a $4|n$ si y solo si: 
+                        $a_0(10^0) + a_1(10^1) \equiv 0 \pmod{4}$.
+
+                        Es decir si el el número formado por sus últimos 2 dígitos es divisible
+                        entre 4.
+
+                    \end{SmallIndentation}
+
+
+                \clearpage
 
                 \item Un número $n \in \Integers$ es divisible entre 8 si y solo si
                     la suma de digitos (en base 10) de los últimos 3 digitos de $n$ es divisible
@@ -3737,7 +4106,7 @@
                         Para demostrar esto basta con ver que $1000/8 = 125$, 
                         $10000/8 = 1250$ (creo que la demostración formal por inducción
                         es más que obvia), y para cualquier $k$ mayor se cumplirá,
-                        pero para $k=0$, $k=1$ o $k=2$, esto no es cierto.
+                        pero para $k=0$, $k=1$ o $k=2$, esto no es siempre cierto.
 
                         Ahora $8|n$ si y solo si $n \equiv 0 \pmod{8}$ y recuerda
                         que podemos poner a $n$ escrito de otra forma:
@@ -3749,6 +4118,35 @@
 
                         Es decir si el el número formado por sus últimos 3 dígitos es divisible
                         entre 8.
+
+                    \end{SmallIndentation}
+
+
+                \item Cualquier número es divisible entre 11 si y solo si la diferencia de la suma
+                    de los dígitos impares y los dígitos pares son divisibles entre 11
+
+                    % ======== DEMOSTRACION ========
+                    \begin{SmallIndentation}[1em]
+                        \textbf{Demostración}:
+
+                        Antes que nada, recuerda que a $n$ lo puedes escribir como
+                        $n = a_0(10^0) + a_1(10^1) + a_2(10^2) + \dots + a_k(10^k)$.
+
+                        Ahora, veamos este curioso patrón donde esta la clave:
+                        \begin{itemize}
+                             \item $10 \equiv -1 \pmod{11}$
+                             \item $100 \equiv (10)(10) \equiv (-1)(-1) \equiv 1 \pmod{11}$
+                             \item $1000 \equiv (100)(10)(10) \equiv (-1)(-1)(-1) \equiv -1 \pmod{11}$
+                             \item $\dots$
+                         \end{itemize} 
+
+                        Por lo tanto vemos que que de manera general $10^n \equiv (-1)^n \pmod{11}$
+
+                        Entonces si un número $x$ es divisible entre 11 tendremos que $x \equiv 0 \pmod{11}$
+                        Por lo tanto $(1)a_0 + (10)a_1 + \dots +(10^k)a_k \equiv 0 \pmod{11}$
+                        es decir $(1)a_0 + (-1)a_1 + (1)a_1 +\dots +(-1)^{k-1}a_k \equiv 0 \pmod{11}$
+
+                        Que si te das cuenta, es lo que queriamos demostrar :D
 
                     \end{SmallIndentation}
 

@@ -1,0 +1,400 @@
+% ****************************************************************************************
+% ************************      NAME OF DOCUMENT      ************************************
+% ****************************************************************************************
+
+% =======================================================
+% =======         HEADER FOR DOCUMENT        ============
+% =======================================================
+    % *********   DOCUMENT ITSELF   **************
+    \documentclass[12pt, fleqn]{article}                             %Type of docuemtn and size of font and left eq
+    \usepackage[margin=1.2in]{geometry}                             %Margins and Geometry pacakge
+    \usepackage{ifthen}                                             %Allow simple programming
+    \usepackage{hyperref}                                           %Create MetaData for a PDF and LINKS!
+    \hypersetup{pageanchor=false}                                   %Solve 'double page 1' warnings in build
+    \setlength{\parindent}{0pt}                                     %Eliminate ugly indentation
+    \author{Oscar Andrés Rosas}                                     %Who I am
+
+    % *********   LANGUAJE AND UFT-8   *********
+    \usepackage[spanish]{babel}                                     %Please use spanish
+    \usepackage[utf8]{inputenc}                                     %Please use spanish - UFT
+    \usepackage[T1]{fontenc}                                        %Please use spanish
+    \usepackage{textcmds}                                           %Allow us to use quoutes
+    \usepackage{changepage}                                         %Allow us to use identate paragraphs
+    \usepackage{lipsum}                                             %Allow to put dummy text
+
+    % *********   MATH AND HIS STYLE  *********
+    \usepackage{ntheorem, amsmath, amssymb, amsfonts}               %All fucking math, I want all!
+    \usepackage{mathrsfs, mathtools, empheq}                        %All fucking math, I want all!
+    \usepackage{centernot}                                          %Allow me to negate a symbol
+    \decimalpoint                                                   %Use decimal point
+
+    % *********   GRAPHICS AND IMAGES *********
+    \usepackage{graphicx}                                           %Allow to create graphics
+    \usepackage{wrapfig}                                            %Allow to create images
+    \graphicspath{ {Graphics/} }                                    %Where are the images :D
+
+    % *********   LISTS AND TABLES ***********
+    \usepackage{listings}                                           %We will be using code here
+    \usepackage[inline]{enumitem}                                   %We will need to enumarate
+    \usepackage{tasks}                                              %Horizontal lists
+    \usepackage{longtable}                                          %Lets make tables awesome
+    \usepackage{booktabs}                                           %Lets make tables awesome
+    \usepackage{tabularx}                                           %Lets make tables awesome
+    \usepackage{multirow}                                           %Lets make tables awesome
+    \usepackage{multicol}                                           %Create multicolumns
+
+    % *********   HEADERS AND FOOTERS ********
+    \usepackage{fancyhdr}                                           %Lets make awesome headers/footers
+    \pagestyle{fancy}                                               %Lets make awesome headers/footers
+    \setlength{\headheight}{16pt}                                   %Top line
+    \setlength{\parskip}{0.5em}                                     %Top line
+    \renewcommand{\footrulewidth}{0.5pt}                            %Bottom line
+
+    \lhead{                                                         %Left Header
+        \hyperlink{section.\arabic{section}}                        %Make a link to the current chapter
+        {\normalsize{\textsc{\nouppercase{\leftmark}}}}             %And fot it put the name
+    }
+
+    \rhead{                                                         %Right Header
+        \hyperlink{section.\arabic{section}.\arabic{subsection}}    %Make a link to the current chapter
+            {\footnotesize{\textsc{\nouppercase{\rightmark}}}}      %And fot it put the name
+    }
+
+    \rfoot{\textsc{\small{Examen}}}                                 %This will always be a footer  
+
+    \fancyfoot[L]{                                                  %Algoritm for a changing footer
+        \footnotesize{Grupo 4098}
+    }
+    
+    
+    
+% ========================================
+% ===========   COMMANDS    ==============
+% ========================================
+
+    % =====  GENERAL TEXT  ==========
+    \newcommand \Quote {\qq}                                        %Use: \Quote to use quotes
+    \newcommand \Over {\overline}                                   %Use: \Bar to use just for short
+    \newcommand \ForceNewLine {$\Space$\\}                          %Use it in theorems for example
+    
+    \newenvironment{Indentation}[1][0.75em]                         %Use: \begin{Inde...}[Num]...\end{Inde...}
+    {\begin{adjustwidth}{#1}{}}                                     %If you dont put nothing i will use 0.75 em
+    {\end{adjustwidth}}                                             %This indentate a paragraph
+    \newenvironment{SmallIndentation}[1][0.75em]                    %Use: The same that we upper one, just 
+    {\begin{adjustwidth}{#1}{}\begin{footnotesize}}                 %footnotesize size of letter by default
+    {\end{footnotesize}\end{adjustwidth}}                           %that's it
+        
+    % =====  GENERAL MATH  ==========
+    \DeclareMathOperator \Space {\quad}                             %Use: \Space for a cool mega space
+    \DeclareMathOperator \MiniSpace {\;}                            %Use: \Space for a cool mini space
+    \newcommand \Such {\MiniSpace|\MiniSpace}                       %Use: \Such like in sets
+    \newcommand \Also {\Space \text{y} \Space}                      %Use: \Also so it's look cool
+    \newcommand \Remember[1]{\Space\text{\scriptsize{#1}}}          %Use: \Remember so it's look cool
+
+    \newtheorem{Theorem}{Teorema}[section]                          %Use: \begin{Theorem}[Name]\label{Nombre}...
+    \newtheorem{Corollary}{Colorario}[Theorem]                      %Use: \begin{Corollary}[Name]\label{Nombre}...
+    \newtheorem{Lemma}[Theorem]{Lemma}                              %Use: \begin{Lemma}[Name]\label{Nombre}...
+    \newtheorem{Definition}{Definición}[section]                    %Use: \begin{Definition}[Name]\label{Nombre}...
+
+    \newcommand{\Set}[1]{\left\{ \MiniSpace #1 \MiniSpace \right\}} %Use: \Set {Info}
+    \newcommand{\Brackets}[1]{\left[ #1 \right]}                    %Use: \Brackets {Info} 
+    \newcommand{\Wrap}[1]{\left( #1 \right)}                        %Use: \Wrap {Info} 
+    \newcommand{\pfrac}[2]{\Wrap{\dfrac{#1}{#2}}}                   %Use: Put fractions in parentesis
+
+    \newenvironment{MultiLineEquation}[1]                           %Use: To create MultiLine equations
+        {\begin{equation}\begin{alignedat}{#1}}                     %Use: \begin{Multi..}{Num. de Columnas}
+        {\end{alignedat}\end{equation}}                             %And.. that's it!
+    \newenvironment{MultiLineEquation*}[1]                          %Use: To create MultiLine equations
+        {\begin{equation*}\begin{alignedat}{#1}}                    %Use: \begin{Multi..}{Num. de Columnas}
+        {\end{alignedat}\end{equation*}}                            %And.. that's it!
+
+
+    % =====  LOGIC  ==================
+    \DeclareMathOperator \doublearrow {\leftrightarrow}             %Use: \doublearrow for a double arrow
+    \newcommand \lequal {\MiniSpace \Leftrightarrow \MiniSpace}     %Use: \lequal for a double arrow
+    \newcommand \linfire {\MiniSpace \Rightarrow \MiniSpace}        %Use: \lequal for a double arrow
+    \newcommand \longto {\longrightarrow}                           %Use: \longto for a long arrow
+
+    % =====  NUMBER THEORY  ==========
+    \DeclareMathOperator \Naturals  {\mathbb{N}}                     %Use: \Naturals por Notation
+    \DeclareMathOperator \Primes    {\mathbb{P}}                     %Use: \Naturals por Notation
+    \DeclareMathOperator \Integers  {\mathbb{Z}}                     %Use: \Integers por Notation
+    \DeclareMathOperator \Racionals {\mathbb{Q}}                     %Use: \Racionals por Notation
+    \DeclareMathOperator \Reals     {\mathbb{R}}                     %Use: \Reals por Notation
+    \DeclareMathOperator \Complexs  {\mathbb{C}}                     %Use: \Complex por Notation
+
+    % === LINEAL ALGEBRA & VECTORS ===
+    \DeclareMathOperator \LinealTransformation {\mathcal{T}}        %Use: \LinealTransformation for a cool T
+    \newcommand{\Mag}[1]{\left| #1 \right|}                         %Use: \Mag {Info} 
+
+    \newcommand{\pVector}[1]{                                       %Use: \pVector {Matrix Notation} use parentesis
+        \ensuremath{\begin{pmatrix}#1\end{pmatrix}}                 %Example: \pVector{a\\b\\c} or \pVector{a&b&c} 
+    }
+    \newcommand{\lVector}[1]{                                       %Use: \lVector {Matrix Notation} use a abs 
+        \ensuremath{\begin{vmatrix}#1\end{vmatrix}}                 %Example: \lVector{a\\b\\c} or \lVector{a&b&c} 
+    }
+    \newcommand{\bVector}[1]{                                       %Use: \bVector {Matrix Notation} use a brackets 
+        \ensuremath{\begin{bmatrix}#1\end{bmatrix}}                 %Example: \bVector{a\\b\\c} or \bVector{a&b&c} 
+    }
+    \newcommand{\Vector}[1]{                                        %Use: \Vector {Matrix Notation} no parentesis
+        \ensuremath{\begin{matrix}#1\end{matrix}}                   %Example: \Vector{a\\b\\c} or \Vector{a&b&c}
+    }
+
+    % MATRIX
+    \makeatletter                                                   %Example: \begin{matrix}[cc|c]
+    \renewcommand*\env@matrix[1][*\c@MaxMatrixCols c] {             %WTF! IS THIS
+        \hskip -\arraycolsep                                        %WTF! IS THIS
+        \let\@ifnextchar\new@ifnextchar                             %WTF! IS THIS
+        \array{#1}                                                  %WTF! IS THIS
+    }                                                               %WTF! IS THIS
+    \makeatother                                                    %WTF! IS THIS
+
+    % TRIGONOMETRIC FUNCTIONS
+    \newcommand{\Cos}[1]{\cos\Wrap{#1}}                             %Simple wrappers
+    \newcommand{\Sin}[1]{\sin\Wrap{#1}}                             %Simple wrappers
+
+    % === COMPLEX ANALYSIS ===
+    \newcommand \Cis[1]  {\Cos{#1} + i \Sin{#1}}                    %Use: \Cis for cos(x) + i sin(x)
+    \newcommand \pCis[1] {\Wrap{\Cis{#1}}}                          %Use: \pCis for the same ut parantesis
+    \newcommand \bCis[1] {\Brackets{\Cis{#1}}}                      %Use: \bCis for the same to Brackets
+
+
+
+
+% =====================================================
+% ============        COVER PAGE       ================
+% =====================================================
+\begin{document}
+\begin{titlepage}
+
+    \center
+    % ============ UNIVERSITY NAME AND DATA =========
+    \textsc{\Large Algebra Superior 2}\\[0.5cm] 
+    \textsc{\large Grupo 4098}\\[1.0cm]
+
+    % ============ NAME OF THE DOCUMENT  ============
+    \rule{\linewidth}{0.5mm} \\[1.0cm]
+        { \huge \bfseries Problemas Primer Parcial}\\[1.0cm] 
+    \rule{\linewidth}{0.5mm} \\[1.5cm]
+     
+    % ============  MY INFORMATION  =================
+    \begin{minipage}{0.55\textwidth}
+        \begin{flushleft}
+            \footnotesize{
+            \textbf{\textsc{Alumnos:}}\\
+                \begin{itemize}
+                    \item Rosas Hernandez Oscar Andres
+                \end{itemize}
+            }
+        \end{flushleft}
+    \end{minipage}
+    ~
+    \begin{minipage}{0.4\textwidth}
+        \begin{flushright} \footnotesize
+            \textbf{\textsc{Profesor: }}\\
+            Leonardo Faustinos Morales
+
+            \vspace{2em}
+
+            \textbf{\textsc{Ayudante: }}\\
+            Jonathan López Ruiz
+        \end{flushright}
+    \end{minipage}\\[3,5cm]
+
+    
+    % ====== DATE ================
+    {\large 10 Octubre de 2017}\\[1cm] 
+
+    \vfill
+
+\end{titlepage}
+
+
+
+
+
+
+% ======================================================================================
+% ==================================     PROBLEMAS        ==============================
+% ======================================================================================
+\section{Problemas}
+
+    \begin{itemize}
+        \item 
+            La pareja de $m, n \in \Integers$ llamados coeficientes de Bezout, ya sabes
+            aquella que cumple que $GCD(a,b) = am+bn$, siempre serán coprimos.
+
+                % ======== DEMOSTRACION ========
+                \begin{SmallIndentation}[1em]
+                    \textbf{Demostración}:
+
+                    Sabemos que existen enteros $m,n$ tal que $d = am+bn$ por la
+                    identidad de Bezout, además como $d$ es un divisor común
+                    podemos escribir $a=dq_1$ $b=dq_2$ para algunos enteros $q_1,q_2$.
+
+                    Por lo que $d=am+bn = dmq_1 + dnq_2 = d(mq_1 +nq_2)$, por
+                    lo tanto tenemos que $1= mq_1 + nq_2$.
+
+                    Esto es muy importante, porque nos dice que los enteros $m$ y $n$
+                    son primos relativos (Dos enteros $a,b$ son primos relativos sí y sólo
+                    si,existen enteros $x,y \in \Integers$ tales que $1=am+bn$).
+
+                    Y bingo, ahí esta nuestra pareja de primos relativos.
+
+                \end{SmallIndentation} 
+
+        \item
+            Muestre la identidad de Bezut $GCD(a,b) = am + bn$ donde $a = 25740$
+            y $b = 24633$:
+
+            % ======== DEMOSTRACION ========
+            \begin{SmallIndentation}[1em]
+                \textbf{Ejercicio}:
+                
+                Primero encontremos el GCD:
+                \begin{itemize}
+                    \item $(a:25740) = (b:24633)(q:1) + (r:1107)  $  
+                    \item $(a:24633) = (b:1107)(q:22) + (r:279)   $
+                    \item $(a:1107) = (b:279)(q:3) + (r:270)      $
+                    \item $(a:279) = (b:270)(q:1) + (r:9)         $
+                    \item $(a:270) = (b:9)(q:30) + (r:0)          $ 
+                \end{itemize}
+
+
+                Ahora encontremos los coeficientes de Bezut:
+                \begin{itemize}
+                    \item $(a':25740) = (a':25740)(m:1) + (b':24633)(n:0)$
+                    \item $(b':24633) = (a':25740)(m:0) + (b':24633)(n:1)$
+                \end{itemize}
+
+                \begin{itemize}
+                    \item $(r:1107) = (a:25740) - (b:24633)(1:1)  =  (a':25740)(m:1) + (b':24633)(n:-1) $  
+                    \item $(r:279) = (a:24633) - (b:1107)(1:22)  =  (a':25740)(m:-22) + (b':24633)(n:23)$  
+                    \item $(r:270) = (a:1107) - (b:279)(1:3)  =  (a':25740)(m:67) + (b':24633)(n:-70)   $
+                    \item $(r:9) = (a:279) - (b:270)(1:1)  =  (a':25740)(m:-89) + (b':24633)(n:93)      $ 
+                    \item $(r:0) = (a:270) - (b:9)(1:30)  =  (a':25740)(m:2737) + (b':24633)(n:-2860)   $ 
+                \end{itemize}
+
+                Por lo tanto tenemos que:
+                \begin{itemize}
+                    \item $GCD(25740, 24633) = 9$
+                    \item Los coeficientes de Bezut son $-89, 93$
+                \end{itemize}
+
+                Por lo tanto tenemos que: $(GCD:9) = (a':25740)(m:-89) +(b':24633)(n:93)$ 
+            
+            \end{SmallIndentation}
+
+
+        \clearpage
+
+        \item
+            Si $x, y$ son impares entonces $x^2 + y^2$ no puede ser un cuadrado perfecto
+
+            % ======== DEMOSTRACION ========
+            \begin{SmallIndentation}[1em]
+                \textbf{Demostración}:
+
+                Esta demostración se deduce de manera inmediata del siguiente problema, pero ya 
+                que lo estoy haciendo en \LaTeX es tal fácil como un copy paste :D
+
+                Antes que nada recuerda que un cuadrado perfecto, lo podemos expresar como:
+                \begin{itemize}
+                    \item $(3k+0)^2 = 9k^2 = 3(3k^2)$
+                    \item $(3k+1)^2 = 9k^2 + 6k + 1 = 3(3k^2 + 2k) + 1$
+                    \item $(3k+2)^2 = 9k^2 + 12k + 3 +1 = 3(3k^2 + 4k + 1) + 1$
+                \end{itemize}
+
+                Es decir, todo cuadrado perfecto o es divisible entre 3 o es de la forma
+                $3k+1$.
+
+                Dado esto tenemos que:
+                \begin{MultiLineEquation*}{3}
+                    (3k_1+1)^2 + (3k_2+1)^2
+                        &= 9k_1^2 + 6k_1 + 1  +  9k_2^2 + 6k_2 + 1      \\
+                        &= 9k_1^2 + 6k_1 + 9k_2^2 + 6k_2 + 2            \\
+                        &= 9k_1^2 + 6k_1 + 9k_2^2 + 6k_2 + 2            \\
+                        &= 3(3k_1^2 + 2k_1 + 3k_2^2 + 2k_2) + 2            
+                \end{MultiLineEquation*}
+
+                Por lo tanto no puede ser un cuadrado perfecto.
+
+            \end{SmallIndentation}
+
+
+        \item
+            Sea $p$ un primo, si $p > 3$ y $p + 2$ es un primo también, entonces
+            $12 | 2p + 2$
+
+            % ======== DEMOSTRACION ========
+            \begin{SmallIndentation}[1em]
+                \textbf{Demostración}:
+
+                Para que a un número lo divida 12 tiene que ser divisible entre $4$ y $3$.
+
+                Ahora como $p > 3$ entonces $p$ es impar, por lo tanto $p+1$ es par,
+                además $2p + 2$ es obviamente un par, por lo tanto, si $2p+2$ es par, y $2(p+1)$ es también
+                par entonces $2p+2$ es divisible entre 4.
+
+                Ahora como $p$ es primo y $p+2$ es primero entonces $p$ tiene que ser de la forma $3k+2$, 
+                por lo tanto $2p+2$ lo podemos poner como $6k+6$ es decir $3(2k+2)$ por lo tanto este número 
+                es divisible entre 3 también.
+
+                Finalmente podemos concluir que $12 | 2p + 2$
+
+            \end{SmallIndentation}
+
+        \clearpage
+
+        \item
+
+            Un número $n \in \Integers$ es divisible entre 4 si y solo si
+            la suma de digitos (en base 10) de los últimos 2 digitos de $n$ es divisible
+            entre 4.
+
+            % ======== DEMOSTRACION ========
+            \begin{SmallIndentation}[1em]
+                \textbf{Demostración}:
+
+                Gracias a las congruencias podemos ver mcuho más fácil si un $n$ enorme
+                es divisible.
+
+                Antes que nada vamos a trabajar con los dígitos de $n$ como en base 10,
+                así que antes vamos a explicar que son los dígitos siendo rigurosos matematicamente
+                hablando:
+
+                \begin{equation}
+                \begin{split}
+                    n &= a_0(10^0) + a_1(10^1) + a_2(10^2) + \dots + a_k(10^k)          \\
+                    n &= \sum_{i=0}^{k} a_i 10^i \Space \text{ con } 0 \leq a_i \leq 9
+                \end{split}
+                \end{equation}
+
+                Ahora, también recuerda que $4 |10^k$ con $k<1$.
+                Para demostrar esto basta con ver que $100/4 = 25$, 
+                $1000/4 = 25$ (creo que la demostración formal por inducción
+                es más que obvia, además todas las demás potencias base diez mayores son
+                divisibles entre 100 y por transitividad también lo serán con $4$), y para
+                cualquier $k$ mayor se cumplirá, pero para $k=0$ y $k=1$, esto no es siempre cierto.
+
+                Ahora $4|n$ si y solo si $n \equiv 0 \pmod{4}$ y recuerda
+                que podemos poner a $n$ escrito de otra forma:
+                $a_0(10^0) + a_1(10^1) + a_2(10^2) + \dots + a_k(10^k) \equiv 0 \pmod{4}$
+                y como vimos por la propiedad anterior para potencias de 10 mayores que
+                1 tenemos que son congruentes con $0 \pmod{4}$, por lo tanto la
+                expresión de arriba se puede reducir a $4|n$ si y solo si: 
+                $a_0(10^0) + a_1(10^1) \equiv 0 \pmod{4}$.
+
+                Es decir si el el número formado por sus últimos 2 dígitos es divisible
+                entre 4.
+
+            \end{SmallIndentation}
+
+
+    \end{itemize}
+
+            
+
+
+
+\end{document}

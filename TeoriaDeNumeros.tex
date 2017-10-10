@@ -2374,7 +2374,7 @@
                     $(2k)^2+2$ se puede expresar como $4k^2 + 2$, por lo tanto no es divisible entre
                     cuatro.
 
-                    Si $n$ es impar, tenemos que $(2k+1)^+2$ se puede expresar como $4k^2 + 4k + 1 + 2$
+                    Si $n$ es impar, tenemos que $(2k+1)+2$ se puede expresar como $4k^2 + 4k + 1 + 2$
                     es decir $4(k^2+k) +3$, por lo tanto tampoco es divisible entre cuatro.
 
                 \end{SmallIndentation}
@@ -2549,9 +2549,151 @@
 
 
                 \end{SmallIndentation}
-                \end{itemize}
 
             \clearpage
+
+            \item Si $a,b$ son naturales diferentes entonces
+                $(a,b) = (a,c)$ implica que $(a^2, b^2) = (a^2, c^2)$
+
+                % ======== DEMOSTRACION ========
+                \begin{SmallIndentation}[1em]
+                    \textbf{Demostración}:
+                    
+                    Sabemos que $(a^2, b^2) = (a, b)^2$.
+
+                    Demostrar esto es muy sencillo pues:
+                    \begin{equation*}
+                        \prod_{i=1}^{n} p_i^{min(2e_i, 2f_i)}
+                        = \prod_{i=1}^{n} 2p_i^{min(e_i, f_i)}   
+                        = \Wrap{\prod_{i=1}{n} p_i^{min(e_i, f_i)}}^2   
+                    \end{equation*}
+
+                    Por lo tanto $(a^2,b^2)=(a,b)^2=(c,d)^2=(c^2,d^2)$.
+                    Demostrado.
+                
+                \end{SmallIndentation}
+
+            \item $\dfrac{n(n+1)}{2} | n! $ si y solo si $n$ es impar.
+
+                % ======== DEMOSTRACION ========
+                \begin{SmallIndentation}[1em]
+                    \textbf{Demostración}:
+
+                    $\dfrac{n(n+1)}{2} | n!$ si y solo si $\dfrac{n!}{\dfrac{n(n+1)}{2}}$
+                    pertenece a los enteros.
+
+                    Por lo tanto $\dfrac{(n-1)!}{\dfrac{n+1}{2}}$ es decir
+                    si $\dfrac{2(n-1)!}{n+1}$.
+
+                    Eso no pertenece a los enteros si $n$ fuera par, pues $2(n-1)!$ son elementos
+                    pares y $n+1$ (al $n$ ser par) es impar, por lo tanto es imposible encontrar
+                    factores para cancelarlo.
+
+                    Si $n$ fuera impar entonces el tenemos que la expansión de terminos de
+                    $2(n-1)!$ tiene un número par de factores, veamos el termino de enmedio más
+                    uno (por ejemplo el 3 en $(1)(2)(3)(4)$), aquel número en esa posción en la 
+                    expansión $(n-1)!$ tendrá un valor de $\dfrac{n+1}{2}$ pero al multiplicarlo
+                    por dos tenemos justo un $n+1$ por lo tanto se cancela y dicho número será
+                    un entero.
+
+                    $\dfrac{n(n+1)}{2} | n! $ si y solo si $n$ es impar.
+
+                    Quiza el último párrafo no quedará tan claro, así que unos ejemplos aquí:
+
+                    \begin{itemize}
+                        \item 
+                            $\dfrac{2(5-1)!}{6} 
+                                = \dfrac{2[(1)(2)(3)(4)]}{6} 
+                                = \dfrac{(1)(2)(6)(4)}{6}
+                                = (1)(2)(4)$
+
+                        \item 
+                            $\dfrac{2(9-1)!}{10} 
+                                = \dfrac{2[(1)(2)(3)(4)(5)(6)(7)(8)]}{10} 
+                                = \dfrac{(1)(2)(3)(4)(10)(6)(7)(8)}{10} 
+                                = (1)(2)(3)(4)(6)(7)(8)$
+
+                        \item 
+                            $\dfrac{2(7-1)!}{8} 
+                                = \dfrac{2[(1)(2)(3)(4)(5)(6)]}{8} 
+                                = \dfrac{(1)(2)(3)(8)(5)(6)}{8} 
+                                = (1)(2)(3)(5)(6)$ 
+                    \end{itemize}
+                \end{SmallIndentation}
+
+            \clearpage
+
+            \item Si $x, y$ son primos relativos tenemos que $(x+y, x-y) < 3$
+
+                % ======== DEMOSTRACION ========
+                \begin{SmallIndentation}[1em]
+                    \textbf{Demostración}:
+                    
+                    Esto se demuestra fácil, pues como son primos relativos:
+                    $sx + ty = 1$, por lo tanto:
+
+                    \begin{MultiLineEquation*}{4}
+                        &(2s)x &&+ (2t)y &&&= 2                                     \\
+                        &(2sx)   &&+ (2ty)    &&&= 2                                \\
+                        &(sx + ty)   &&+ (sx + ty)    &&&= 2                        \\
+                        &(sx + sy + tx + ty)   &&+ (sx - sy - tx + ty)    &&&= 2    \\
+                        &(s+t)(x+y)   &&+ (s-t)(x-y)    &&&= 2                  
+                    \end{MultiLineEquation*}
+
+                    Y como pudimos expresar en combinación lineal a $(x+y)$ y $(x-y)$
+                    o 2 es el GCD o es 1.
+                    Por lo tanto $GCD((x+y), (x-y)) < 3$.
+                
+                \end{SmallIndentation}
+
+            \item No existen naturales diferentes tales que $(a^n-b^n)|(a^n+b^n)$
+
+                % ======== DEMOSTRACION ========
+                \begin{SmallIndentation}[1em]
+
+                    \textbf{Demostración}:
+
+
+                    Esta demostración esta bien intensa, así que vamos a agarrar nuestros
+                    cinturones.
+
+                    Recuerda que ya demostramos que si $x, y$ son primos relativos tenemos
+                    que $(x+y, x-y) < 3$
+
+                    Supongamos que existen dichos enteros, por lo tanto:
+                    $(a^n-b^n) = Q(a^n+b^n)$.
+                    Dividiendo todo entre el $GCD$ o $d$ tenemos que
+                    $\pfrac{a}{d}^n-\pfrac{b}{d}^n = Q\Wrap{\pfrac{a}{d}^n+\pfrac{b}{d}^n}$
+                    
+                    Entonces esto pasa si y solo existen dichos enteros
+                    $\pfrac{a}{d}, \pfrac{b}{d}$ que son primos relativos y que cumplen
+                    que $(a^n-b^n)|(a^n+b^n)$.
+
+                    Ahora renombremos nuestras variables $a = \dfrac{a}{d}$, y $b = \dfrac{b}{d}$.
+
+                    Ahora, como sabemos que estas nuevas $a, b$ son primos relativos, se cumple que
+                    $(a^n) -(b^n) = GCD\Wrap{(a^n -b^n),(a^n + b^n)}$.
+
+                    Esto se cumple pues $GCD(a, ka) = a$ y estamos suponiendo que
+                    $(a^n-b^n)|(a^n+b^n)$, pero además por el lema que demostramos
+                    $GCD\Wrap{(a^n -b^n),(a^n + b^n)} < 3$.
+
+                    Ahora como son diferentes $(a-b)\geq 1$. Pero tenemos que:
+                    $a^n-b^n = (a-b)(a^{n-1} + \dots + b^{n-1})$
+                    y al ser naturales $(a^{n-1} + \dots + b^{n-1}) \geq 3$.
+
+                    Por lo tanto $a^n-b^n = (a-b)(a^{n-1} + \dots + b^{n-1}) \geq 3$.
+
+                    Pero esto no puede ser pues dijimos que
+                    $(a^n) -(b^n)$ es igual al $GCD\Wrap{(a^n -b^n),(a^n + b^n)}$ que por el
+                    lema tiene que ser menor que 3.
+
+                    ¡Contradicción!
+
+                \end{SmallIndentation}
+
+            \end{itemize}
+
 
 
 

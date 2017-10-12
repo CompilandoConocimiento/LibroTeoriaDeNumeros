@@ -348,6 +348,8 @@
 
 
 
+
+
 % ======================================================================================
 % ===========================         DIVISIBILIDAD           ==========================
 % ======================================================================================
@@ -1982,6 +1984,16 @@
 
             \begin{itemize}
 
+                \item $\phi(1) = 1$
+                    % ======== DEMOSTRACION ========
+                    \begin{SmallIndentation}[1em]
+                        \textbf{Demostración}:
+                        
+                        Esto es por simple definición para que todo lo demás funcione
+                    
+                    \end{SmallIndentation}
+                        
+
                 \item Si $1 < k$ entonces $\phi(k) < k$
                 
                     % ======== DEMOSTRACION ========
@@ -2042,6 +2054,8 @@
                         Esto nos dice que la suma de las phi's de todos los divisores
                         de $n$ es la misma $n$.
 
+                        Por ejemplo $4 = \phi(1) + \phi(2) + \phi(4) = 1 + 1 + 2 = 4$
+
                         Para un divisor $d$ de $n$, sea el conjunto:
                         \begin{equation*}
                             S_d = \Set{ a \in \Set{1, \dots, n} \Such GCD(a, n) = \dfrac{n}{d}}  
@@ -2054,6 +2068,34 @@
                         También, es claro que cada entero entre 1 y n pertenece a un único 
                         $S_d$. El resultado entonces sigue de sumar sobre todos los divisores
                         $d$ de $n$.
+
+                    \end{SmallIndentation}
+
+
+                    % ======== DEMOSTRACION ========
+                    \begin{SmallIndentation}[1em]
+                        \textbf{Demostración 2}:
+
+                        Considera que $n = p^k$
+
+                        Entonces tenemos que:
+                        \begin{MultiLineEquation*}{3}
+                            \sum_{d | p^k} \phi(d)
+                                &= \phi(1) + \phi(p) + \phi(p^2) + \dots + \phi(p^k)                        \\
+                                &= 1 + (p-1) + p^2(1 - \dfrac{1}{p}) + \dots +  p^k(1 - \dfrac{1}{p})       \\
+                                &= p + (1 - \dfrac{1}{p})[p^2 + p^3 + \dots + p^k]                          \\
+                                &= p + (1 - \dfrac{1}{p}) \pfrac{p^2 - p^{k+1}}{1-p}                        \\
+                                &= p + \pfrac{p-1}{p} \pfrac{p^2 - p^{k+1}}{1-p}                            \\
+                                &= p - \pfrac{p^2 - p^{k+1}}{p}                                             \\
+                                &= p - (p - p^k)                                                            \\
+                                &= p^k          
+                        \end{MultiLineEquation*}
+
+
+                        Ahora por inducción podemos resolver el caso en que $n = p_1^{k_1} p_2^{k_2} \dots p_r^{k_r}$
+
+                        Ahora apliquemos inducción sobre el número de primos que dividen a $n$ y todo estará listo con 
+                        un par de pasos extra.
 
                     \end{SmallIndentation}
 
@@ -2163,7 +2205,9 @@
 
 
 
-                \item $\sum\limits_{GCD(i, n) = 1 \text{ y } i < n} i = \dfrac{n}{2} \phi(n)$
+                \item La suma de todos los primos relativos es algo muy genial:\\
+                    $\sum\limits_{(i, n) = 1 \text{ y } i < n} i = \dfrac{n}{2} \phi(n)$
+                    
                     % ======== DEMOSTRACION ========
                     \begin{SmallIndentation}[1em]
                         \textbf{Ideas}:
@@ -2173,7 +2217,7 @@
 
                     \end{SmallIndentation}
 
-                \item $\phi(n^m) = n^{m-1} \phi(n)$
+                \item Para simplificar cálculos tenemos: $\phi(n^m) = n^{m-1} \phi(n)$
 
                 \clearpage
 
@@ -2664,12 +2708,6 @@
 
 
 
-
-
-
-
-
-
 % ======================================================================================
 % ===========================         NUMEROS PRIMOS          ==========================
 % ======================================================================================
@@ -3038,6 +3076,8 @@
         \end{itemize}
 
 
+
+
 % ======================================================================================
 % ===================              ALGORITMOS COOL                  ====================
 % ======================================================================================
@@ -3183,9 +3223,6 @@
                 \end{alignat*}
 
             \end{SmallIndentation}
-
-
-
 
 
 

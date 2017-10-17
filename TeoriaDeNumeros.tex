@@ -2149,8 +2149,16 @@
                         primos relativos tanto a $n$ como a $m$ y por lo tanto
                         $\phi(mn) = \phi(m)\phi(n)$ es decir $\phi$ es multiplicativa.
                     
+                        Ahora, supon que $(m, n) > 1$, es decir, no son primos relativos, es decir comparten
+                        mínimo un número en su factorización prima.
+
+                        Ahora podemos entonces decir que entonces podemos decir que $n = GCD(n, m)k$, ahora sabemos 
+                        que $\phi(m, n) = \phi(\dfrac{GCD(m, n)}{GCD(n, m)}n m) = \phi(m) \phi(\dfrac{n}{GCD(m, n)})
+                        = \phi(m) \phi(n) \dfrac{GCD(m, n)}{\phi(GCD(m, n))}$
+
                     \end{SmallIndentation}
-                        
+                
+                         
 
                 \item Usando la factorización prima podemos calcular $\phi(n)$ como:\\
                     $\phi(n) = n \; \prod_{p|n} \Wrap{1 - \frac{1}{p}}$
@@ -3393,16 +3401,12 @@
 
 
 
-    % =====================================================
-    % ========      ARITMETICA CON MODULOS        =========
-    % =====================================================
-    \clearpage
-    \section{Aritmética con Modulo n}
 
 
         % =====================================================
         % ================    PROPIEDADES      ================
         % =====================================================
+        \clearpage
         \subsection{Propiedades Básicas}
 
             \begin{itemize}
@@ -3492,6 +3496,7 @@
         % =====================================================
         % ============   PROPIEDADES COOL      ================
         % =====================================================
+        \clearpage
         \subsection{Propiedades Cool}
 
             \begin{itemize}
@@ -3518,12 +3523,44 @@
 
                     \end{SmallIndentation}
 
+                \item Si $a \equiv b \pmod{n_1}$ y $a \equiv b \pmod{n_2}$ entonces
+                    $a \equiv b \pmod{[n_1, n_2]}$ 
+
+                \item Sea $p$ un primo, entonces $a^x \equiv b^x \pmod{p}$ si y solo si 
+                    $a \equiv b \pmod{p}$
+
+                    % ======== DEMOSTRACION ========
+                    \begin{SmallIndentation}[1em]
+                        \textbf{Demostración}:
+                        
+                        \begin{MultiLineEquation*}{3}
+                            a^x \equiv b^x \pmod{p}             \\
+                            a^x - b^x \equiv 0 \pmod{p}         \\
+                            (a - b)^x \equiv 0 \pmod{p}         
+                        \end{MultiLineEquation*}
+
+                        Esto ocurre si y solo si $p|(a-b)^x$ y por el Teorema de Euler para los
+                        primos si $p|(a-b)^{x-1} (a-b)$ y llevar por inducción para $p|a-b$
+
+                        Es decir $a \equiv b \pmod{p}$
+                    
+                    \end{SmallIndentation}
+                        
+
                 \end{itemize}
+
+
+    % =====================================================
+    % ========      ARITMETICA CON MODULOS        =========
+    % =====================================================
+    \clearpage
+    \section{Aritmética con Modulo n}
+
+
 
         % =====================================================
         % ================    PROPIEDADES      ================
         % =====================================================
-        \clearpage
         \subsection{La Aritmética en Congruncias}
 
             \begin{itemize}
@@ -3795,11 +3832,11 @@
         \clearpage
         \subsection{Pequeño Teorema de Fermat}
 
-
             Llamamos al Teorema anterior \Quote{Teorema Generalizado de Fermat por Euler}
             porque generaliza un Teorema conocido como el pequeño Teorema de Fermat.
 
-            Este se enuncia como que si $a, n \in \Integers$ tenemos entonces que:
+            Este se enuncia como que si $a, n \in \Integers$ donde $p$ no divida a $a$
+            tenemos entonces que:
             \begin{MultiLineEquation*}{3}
                 p       &\;|\;    && n^p - n           \Space &&\text{Versión con Divisibilidad} \\
                 a^{p-1} &\equiv \;&& 1 \pmod{p}        \Space &&\text{Versión con Congruencias}
@@ -3833,7 +3870,7 @@
 
             Este hermoso teorema lo podemos escribir como:
             \begin{equation}
-                \text{Si $p$ es primo entonces } (p-1)! \equiv -1 \pmod{p}
+                \text{Si $p$ es primo si y solo si } (p-1)! \equiv -1 \pmod{p}
             \end{equation}
 
 
@@ -3885,6 +3922,25 @@
                 entero.
 
                 Y con esto hemos demostrado este hermoso teorema :')
+
+
+                \textbf{Demostración del otro Condicional}:
+
+                Ahora veamos el regreso, en el que decimos que si $(n-1)! \equiv -1 \pmod{n}$
+                entonces $n$ es primo.
+
+                Probemos por contradicción.
+
+                Supón que $n$ es compuesta entonces se puede ver a $n$ como $n=ab$ con
+                $a, b \in Naturals-\Set{1}$
+
+                Ahora de la hipotesis, $n|(n-1)! + 1$
+
+                Además como $a$ es un divisor entonces $a|n$ y $n|(n-1)! + 1$, entonces $a|(n-1)! + 1$.
+                Ahora como $1 < a < n-1$ entonces $a|(n-1)!$
+
+                Ahora ve que $a$ entonces divide a cualquier combinación lineal, es decir
+                $a|[1][(n-1)! + 1] +[-1][(n-1)!]$, es decir $a|1$ y esto solo es posible si $a=1$
 
             \end{SmallIndentation}   
 

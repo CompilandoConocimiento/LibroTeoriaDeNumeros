@@ -1989,12 +1989,14 @@
                     \begin{SmallIndentation}[1em]
                         \textbf{Demostración}:
                         
-                        Esto es por simple definición para que todo lo demás funcione
+                        Esto es por simple definición para que todo lo demás funcione.
+
+                        :D
                     
                     \end{SmallIndentation}
                         
 
-                \item Si $1 < k$ entonces $\phi(k) < k$
+                \item Si $k > 1$ entonces $\phi(k) < k$
                 
                     % ======== DEMOSTRACION ========
                     \begin{SmallIndentation}[1em]
@@ -2045,6 +2047,8 @@
 
                     \end{SmallIndentation}
 
+
+                \clearpage
 
                 \item $\sum\limits_{d | n} \phi(d) = n$
                     % ======== DEMOSTRACION ========
@@ -2109,7 +2113,7 @@
 
                     % ======== DEMOSTRACION ========
                     \begin{SmallIndentation}[1em]
-                        \textbf{Demostración Debíl}:
+                        \textbf{Demostración}:
                         
                         Tenemos que demostrar que $\phi(nm) = \phi(n)\phi(m)$ siempre que
                         $(n, m) = 1$.
@@ -2153,12 +2157,13 @@
                         mínimo un número en su factorización prima.
 
                         Ahora podemos entonces decir que entonces podemos decir que $n = GCD(n, m)k$, ahora sabemos 
-                        que $\phi(m, n) = \phi(\dfrac{GCD(m, n)}{GCD(n, m)}n m) = \phi(m) \phi(\dfrac{n}{GCD(m, n)})
-                        = \phi(m) \phi(n) \dfrac{GCD(m, n)}{\phi(GCD(m, n))}$
+                        que $\phi(m, n) = \phi(\frac{GCD(m, n)}{GCD(n, m)}n m) = \phi(m) \phi(\frac{n}{GCD(m, n)})
+                        = \phi(m) \phi(n) \frac{GCD(m, n)}{\phi(GCD(m, n))}$
 
                     \end{SmallIndentation}
                 
                          
+                \clearpage
 
                 \item Usando la factorización prima podemos calcular $\phi(n)$ como:\\
                     $\phi(n) = n \; \prod_{p|n} \Wrap{1 - \frac{1}{p}}$
@@ -2191,9 +2196,55 @@
                     \end{SmallIndentation}
 
 
+                \item
+                    $\phi(n)$ es la cantidad de naturales que son primos relativos menores
+                    que n, pero también $n$ es la cantidad de primos relativos con $n$ en el
+                    segmento $[n+1, 2n]$
+
+                    % ======== DEMOSTRACION ========
+                    \begin{SmallIndentation}[1em]
+                        \textbf{Demostración}:
+                        
+                        Esto puede ser muy obvio o como para mi extremadamente interesante, para verlo
+                        tenemos que recordar la clave... $GCD(a,b) = GCD(a, b+ak)$.
+
+                        Usando esto podemos darnos cuenta que cualquier entero $k$ que cumpla con que
+                        $GCD(n, k) = 1 = GCD(n, k+n)$ es decir, si $k$ es un coprimo con $n$ entonces
+                        $k+n$ también lo será, por lo tanto puedo hacer esto con cada uno y solo con cada
+                        uno de los elementos que contaba la $phi(n)$.
+
+                        Otra forma de decir lo que acabo de decir que podemos hacer una biyección entre ambos
+                        intervalos usando lo que acabo de decir, a cada elemento $a \in [1, n-1]$ tal que $(a, n) = 1$
+                        lo vamos a relacionar con $a+n$ que pertenece a $[n+1, 2n]$
+                    
+                    \end{SmallIndentation}
 
 
+                \item
+                    Para cuales quiera $a, b$ se cumple que el número de naturales menores o
+                    iguales que $ab$ que son primos relativos con $b$ es $a \phi(b)$
+
+                    % ======== DEMOSTRACION ========
+                    \begin{SmallIndentation}[1em]
+                        \textbf{Demostración}:
+                        
+                        Sea $\phi(b)$ la cantidad de naturales que son coprimos con b y que estan en el intervalo
+                        $[1, b-1]$.
+
+                        Ya que sabemos que $\phi(n)$ es la cantidad de naturales que son primos relativos menores
+                        que n, pero también $n$ es la cantidad de primos relativos con $n$ en el
+                        segmento $[n+1, 2n]$... o incluso más general en el intervalo $[kn+1, (k+1)n]$.
+
+                        Por lo tanto sabemos que la cantidad de primos relativos con $b$ entre $[1, ab]$ es
+                        simplemente la suma de $a$ intervalos, y ya sabemos que la cantidad de primos relativos
+                        con b en cada intervalo es $\phi(b)$ por lo tanto $a\phi(b)$ nos dará la cantidada de
+                        primos relativos en el intervalo $[1, ab]$.
+                    
+                    \end{SmallIndentation}
+                        
                 \clearpage
+
+
                 \item Para $n > 2$ se tiene que $\phi(n)$ es un número par
                 
                     % ======== DEMOSTRACION ========
@@ -2210,6 +2261,101 @@
 
                     \end{SmallIndentation}
 
+                \item
+                    Si n tiene k factores primos impares distintos, entonces $2^k|\phi(n)$
+
+                    % ======== DEMOSTRACION ========
+                    \begin{SmallIndentation}[1em]
+                        \textbf{Demostración}:
+                        
+                        Esta se ve fea, pero la verdad es que no lo esta, suponte que tenemos a $n$
+                        como un producto de $k$ primos mayores que dos (y quiza dos a alguna potencia)
+                        elevados a una potencia.
+                        \begin{MultiLineEquation*}{3}
+                            \phi(n) = \phi(p_1^{k_1} \; p_2^{k_2} \; \dots p_k^{k_n})
+                        \end{MultiLineEquation*}
+                            
+                        Ahora, como la Phi de Euler es una función multiplicativa (siempre que sean
+                        primos relativos, pero ya que vamos a trabajar con la factorización prima de $n$
+                        creo que doy esto por obvio) podemos ver que:
+
+                        La $\phi(n)$ es el producto de las phis de cada uno de dichos factores impares.
+
+                        La clave esta recordar que si $n < 2$ entonces $\phi(n)$ es par, ahí esta la clave.
+
+                        Gracias a lo anterior podemos separar la $\phi(n)$ en $k$ productos, donde $k$ es el número
+                        de factores primos impares, ahora de como la $\phi$ de un cualquier cosa mayor de dos en par
+                        podemos factorizar un dos de cada una de los productos que tengo.
+                        \begin{MultiLineEquation*}{3}
+                            \phi(n) &= \phi(p_1^{k_1} \; p_2^{k_2} \; \dots p_k^{k_n})
+                                    &= \phi(p_1^{k_1}) \phi(p_2^{k_2}) \dots \phi(p_k^{k_n})
+                        \end{MultiLineEquation*}
+
+                        Por lo tanto, al momento de calcular la $\phi(n)$ podremos factorizar $k$ veces el número 2,
+                        por lo tanto $2^k|\phi(n)$         
+                    
+                    \end{SmallIndentation}
+
+                \clearpage
+
+
+                \item
+                    Si $(a, n) = 1$ y $(a-1, n) = 1$ es decir si tanto $a$ como su antecesor es primo
+                    relativo con m tenemos que:
+                    $1 + a + a^2 + \dots + a^{\phi(n)-1} \equiv 0 \pmod{n}$
+
+                    % ======== DEMOSTRACION ========
+                    \begin{SmallIndentation}[1em]
+                        \textbf{Demostración}:
+                        
+                        Esta demostración pide a gritos una serie geométrica, hagamosla y veamos que:
+                        \begin{MultiLineEquation*}{3}
+                            1 + a + a^2 + \dots + a^{\phi(n)-1}
+                                &= \sum_{k=0}^{\phi(n)-1} a^k
+                                &= \dfrac{a^{\phi(n)}-1}{a-1}
+                        \end{MultiLineEquation*}
+
+                        Ahora, sabemos que como $(a, n) = 1$ entonces $a^{\phi(n)} \equiv 1 \pmod{n}$
+                        es decir $n | a^{\phi(n)} - 1$ es decir $a^{\phi(n)} - 1 = qn$ entonces 
+                        en vez de decir $\frac{a^{\phi(n)}-1}{a-1}$ podriamos decir $\frac{nq}{a-1}$
+                        
+                        Ahora recuerda que $\frac{nq}{a-1}$ es un entero, pero aun más que como $(a-1, n)=1$
+                        $a-1$ no elimina tienen ningún factor en común con $n$, por lo tanto podemos sacar comodamente
+                        a $n$ y decir que $1 + a + a^2 + \dots + a^{\phi(n)-1} = \frac{a^{\phi(n)}-1}{a-1} = n \frac{q}{a-1}$
+                        es decir $1 + a + a^2 + \dots + a^{\phi(n)-1}$ es un multiplo de $n$, por lo tanto
+                        es congruente con cero módulo n
+
+                    \end{SmallIndentation}
+
+
+
+                \item
+                    Para cualquier entero n, tal que $(n,10) = 1$ tenemos que $n$ divide a algún N que consiste de
+                    solamente unos (en su representación decimal)
+
+                    % ======== DEMOSTRACION ========
+                    \begin{SmallIndentation}[1em]
+                        \textbf{Demostración}:
+                        
+                        Esta se ve difícil pero veras que solo es una aplicación del teorema:
+                        Si $(a, n) = 1$ y $(a-1, n) = 1$ es decir si tanto $a$ como su antecesor es primo
+                        relativo con m tenemos que:
+                        $1 + a + a^2 + \dots + a^{\phi(n)-1} \equiv 0 \pmod{n}$
+
+                        Si $(n,10)=1$ y $(n,9)=1$. Y con esto podemos aplicar ya el Teorema, pues podemos ver a 
+                        $N$ como $10^0 + 10^1 + 10^{\phi(n)-1}$.
+
+                        Gracias a ese Teorema vemos que esa N que son puros unos contendrá a $\phi(n)-1$ unos, quiza
+                        no sea la menor $N$ pero es una válida siempre.
+
+                        Pero... que pasa si $(9, n) \neq 1$, entonces podemos a hacer la idea de la demostración del teorema y
+                        llegar a que sea $x$ la cantidad de unos, entonces $\sum_{k=0}^{x-1} 10^k = \dfrac{10^x-1}{9} = nq$, 
+                        esto es equivalente a $10^x = 9nq +1$ y esto es equivalente a $10^x \equiv 1 \pmod{3}$ y como
+                        podemos ver que $(1)^x \equiv 1 \pmod{3}$, lo cual claramente es siempre cierto, despues de todo
+                        $10^x-1$ es un número de puros 9, y este siempre será divisible entre $3$, por lo tanto la congruencia
+                        siempre tendrá solución y más aún nuestro problema también.
+                    \end{SmallIndentation}
+        
 
 
 
@@ -2264,8 +2410,8 @@
                     \end{itemize}
 
                     Ahora, el truco esta en que como tenemos $k$ residuos, pero todos ellos tienen
-                    que cumplir que $0 \geq r_x < b$, pero esto implica que solo puede haber
-                    $k-1$ resudios posibles: $0, 1, \dots, k-1$. Por lo tanto habrá dos residuos iguales.
+                    que cumplir que $0 \leq r_x < b$, pero esto implica que solo puede haber
+                    $k-1$ resudios posibles: $0, 1, \dots, k-1$. Por lo tanto habrá al menos dos residuos iguales.
 
                     Tomemos ambos enteros que nos dan resudios iguales y saquemos la diferencia:
 
@@ -4269,7 +4415,7 @@
                         Antes que nada, recuerda que a $n$ lo puedes escribir como
                         $n = a_0(10^0) + a_1(10^1) + a_2(10^2) + \dots + a_k(10^k)$.
 
-                        Ahora, también recuerda que $4 |10^k$ con $k<1$.
+                        Ahora, también recuerda que $4 |10^k$ con $k>1$.
                         Para demostrar esto basta con ver que $100/4 = 25$, 
                         $1000/4 = 25$ (creo que la demostración formal por inducción
                         es más que obvia, además todas las demás potencias base diez mayores son
@@ -4552,5 +4698,37 @@
                 De aquí podemos rescatar que si $GCD(a, n) = 1$, es decir \textbf{si $a$ y $n$
                 son} primos relativos entonces tendremos una \textbf{única solución}.
 
-       
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+% ===============================================
+% ========        BIBLIOGRAFIA            =======
+% ===============================================
+
+\begin{thebibliography}{10}
+
+    \bibitem{LeonardoFaustinosMorales} 
+        Leonardo Faustinos Morales y Jonathan López Ruiz
+        \textit{Algebra Superior 2}. 
+        Facultad de Ciencias, UNAM, 2017
+
+\end{thebibliography}
+
+
+
+
+
+
+
+
 \end{document}

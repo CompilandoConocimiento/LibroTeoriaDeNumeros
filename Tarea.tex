@@ -360,6 +360,31 @@
         Pero $5^2- 3^2$ es 16 y 16 no es divisible entre 91 
     
     \end{SmallIndentation}
+
+    \clearpage
+
+
+    \textbf{Probar que $n^{12} - a{12}$ es divisible entre 91 si n y a son primos relativos con 91}
+
+    % ======== DEMOSTRACION ========
+    \begin{SmallIndentation}[1em]
+        \textbf{Solución}:
+        
+        Como $n$ y $a$ son primos relativos con 91 (y $91 = 13*7$), también son primos relativos con 13 y con 7
+        por lo tanto obtenemos que:
+        \begin{itemize}
+            \item $n^{\phi(13)} \equiv 1 \pmod{13}$ y $a^{\phi(13)} \equiv 1 \pmod{13}$
+            \item $n^{\phi(7)} \equiv 1 \pmod{7}$ y $a^{\phi(7)} \equiv 1 \pmod{7}$
+        \end{itemize}
+
+        Con lo tanto tenemos que $n^{6} - a^{6} \equiv 0 \pmod{7}$ y si la elevamos al cuadrado tenemos
+        que $n^{12} - a^{12} \equiv 0 \pmod{7}$ es decir $n^{12} - a^{12}$ es un multiplo de 12.
+
+        Por otro lado $n^{12} - a^{12} \equiv 0 \pmod{13}$ es decir $n^{12} - a^{12}$ es un multiplo de 13.
+
+        Y como es multiplo de ambos de sus factores, tenemos que $n^{12} - a^{12}$ es divisible entre 91
+    
+    \end{SmallIndentation}
         
 
 
@@ -427,17 +452,24 @@
     \textbf{$\phi(n)$ es la cantidad de naturales que son primos relativos menores que n, pero 
     también $n$ es la cantidad de primos relativos con $n$ en el segmento $[n+1, 2n]$}
 
-        Esto puede ser muy obvio o como para mi extremadamente interesante, para verlo
-        tenemos que recordar la clave... $GCD(a,b) = GCD(a, b+ak)$.
+        % ======== DEMOSTRACION ========
+        \begin{SmallIndentation}[1em]
+            \textbf{Demostración}:
+            
+            Esto puede ser muy obvio o como para mi extremadamente interesante, para verlo
+            tenemos que recordar la clave... $GCD(a,b) = GCD(a, b+ak)$.
 
-        Usando esto podemos darnos cuenta que cualquier entero $k$ que cumpla con que
-        $GCD(n, k) = 1 = GCD(n, k+n)$ es decir, si $k$ es un coprimo con $n$ entonces
-        $k+n$ también lo será, por lo tanto puedo hacer esto con cada uno y solo con cada
-        uno de los elementos que contaba la $phi(n)$.
+            Usando esto podemos darnos cuenta que cualquier entero $k$ que cumpla con que
+            $GCD(n, k) = 1 = GCD(n, k+n)$ es decir, si $k$ es un coprimo con $n$ entonces
+            $k+n$ también lo será, por lo tanto puedo hacer esto con cada uno y solo con cada
+            uno de los elementos que contaba la $phi(n)$.
 
-        Otra forma de decir lo que acabo de decir que podemos hacer una biyección entre ambos
-        intervalos usando lo que acabo de decir, a cada elemento $a \in [1, n-1]$ tal que $(a, n) = 1$
-        lo vamos a relacionar con $a+n$ que pertenece a $[n+1, 2n]$
+            Otra forma de decir lo que acabo de decir que podemos hacer una biyección entre ambos
+            intervalos usando lo que acabo de decir, a cada elemento $a \in [1, n-1]$ tal que $(a, n) = 1$
+            lo vamos a relacionar con $a+n$ que pertenece a $[n+1, 2n]$
+        
+        \end{SmallIndentation}
+            
 
     \textbf{Para cuales quiera $a, b$ se cumple que el número de naturales menores o iguales que $ab$
     que son primos relativos con $b$ es $a \phi(b)$}
@@ -632,8 +664,8 @@
 \clearpage
 \section{Ejercicio 11}
 
-    \textbf{Para cualquier entero n, tal que $(n,10) = 1$ divide a algún N que consiste de
-    solamente unos}:
+    \textbf{Para cualquier entero n, tal que $(n,10) = 1$ tenemos que $n$ divide a algún N que consiste de
+    solamente unos en su representación decimal}:
 
     % ======== DEMOSTRACION ========
     \begin{SmallIndentation}[1em]
@@ -644,20 +676,18 @@
         relativo con m tenemos que:
         $1 + a + a^2 + \dots + a^{\phi(n)-1} \equiv 0 \pmod{n}$
 
-        Entonces date cuenta que $a = 10$ y $n$ es cualquier número que cumpla con que $(10, n) = 1$
-        pues si $n$ es primero relativo con $10$ $n$ es primo relativo con 9.
-
-        Suponte que no, que existe un número que no es un primo relativo con 9, es decir que n
-        es un multiplo de 3, pero no cualquier multiplo de 3, es uno tal que al sumarle uno e primo
-        relativo con $10$, pero esto es imposible, pues $3^k$ siempre es impar, por lo tanto al sumarle uno 
-        será siempre par y un par si que comparte factores con 10, el dos, por lo tanto, no existe dicha
-        n.
-
-        Si $(n,10)=1$ entonces $(n,9)=1$. Y con esto podemos aplicar ya el Teorema.
+        Si $(n,10)=1$ y $(n,9)=1$. Y con esto podemos aplicar ya el Teorema, pues podemos ver a 
+        $N$ como $10^0 + 10^1 + 10^{\phi(n)-1}$.
 
         Gracias a ese Teorema vemos que esa N que son puros unos contendrá a $\phi(n)-1$ unos, quiza
         no sea la menor $N$ pero es una válida siempre.
-            
+
+        Pero... que pasa si $(9, n) \neq 1$, entonces podemos a hacer la idea de la demostración del teorema y
+        llegar a que sea $x$ la cantidad de unos, entonces $\sum_{k=0}^{x-1} 10^k = \dfrac{10^x-1}{9} = nq$, 
+        esto es equivalente a $10^x = 9nq +1$ y esto es equivalente a $10^x \equiv 1 \pmod{3}$ y como
+        podemos ver que $(1)^x \equiv 1 \pmod{3}$, lo cual claramente es siempre cierto, despues de todo
+        $10^x-1$ es un número de puros 9, y este siempre será divisible entre $3$, por lo tanto la congruencia
+        siempre tendrá solución y más aún nuestro problema también.
     
     \end{SmallIndentation}
         

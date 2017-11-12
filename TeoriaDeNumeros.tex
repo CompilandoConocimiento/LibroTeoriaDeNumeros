@@ -2346,12 +2346,38 @@
                         Gracias a ese Teorema vemos que esa N que son puros unos contendrá a $\phi(n)-1$ unos, quiza
                         no sea la menor $N$ pero es una válida siempre.
 
-                        Pero... que pasa si $(9, n) \neq 1$, entonces podemos a hacer la idea de la demostración del teorema y
-                        llegar a que sea $x$ la cantidad de unos, entonces $\sum_{k=0}^{x-1} 10^k = \dfrac{10^x-1}{9} = nq$, 
-                        esto es equivalente a $10^x = 9nq +1$ y esto es equivalente a $10^x \equiv 1 \pmod{3}$ y como
-                        podemos ver que $(1)^x \equiv 1 \pmod{3}$, lo cual claramente es siempre cierto, despues de todo
-                        $10^x-1$ es un número de puros 9, y este siempre será divisible entre $3$, por lo tanto la congruencia
-                        siempre tendrá solución y más aún nuestro problema también.
+                        Pero... que pasa si $(9, n) \neq 1$.
+
+                        Entonces piensa que si $(n, 10) = 1$ si y solo si $(9n, 10)$ pues $9n=(n)(3)(3)$ y la única forma en 
+                        que esto afectaría el valor del gcd es que 10 compartierá algun factor con nueve, pero como no, podemos
+                        afirmar esto.
+
+                        Entonces $10^{\phi(9n) \equiv 1 \pmod(9n)}$ por el Teorema de Fermat-Euler si $(10, 9n)=1$ lo que implica
+                        que $(10, n)$.
+
+                        Ahora, ya que sabemos que $10^{\phi(9n) \equiv 1 \pmod(9n)}$ podemos escribirlo como que:
+                        $10^{\phi(9n)} - 1 = 9nq$ que podemos poner como:
+                        \begin{MultiLineEquation*}{3}
+                            nq 
+                                &= \dfrac{10^{\phi(9n)} - 1}{9}         \\  
+                                &= \dfrac{10^{\phi(9n)} - 1}{10 - 1}    \\
+                                &= \sum_{k=0}^{\phi(9n)-1} 10^k
+                        \end{MultiLineEquation*}
+
+                        \clearpage
+
+                        Por lo tanto siempre lo podemos escribir como una suma geometríca, es decir una N que esta hecha
+                        de puros unos.
+
+                        Por lo tanto y como resumen:
+
+                        \begin{itemize}
+                            \item Si es que $(n, 10) = 1$ y $n \neq 3k$ entonces un número creado por $\phi(n)-1$ unos
+                                siempre será un múltiplo de $n$.
+
+                            \item Si es que $(n, 10) = 1$ y $n = 3k$ entonces un número creado por $\phi(9n)-1$ unos
+                                siempre será un múltiplo de $n$.
+                        \end{itemize}
                     \end{SmallIndentation}
         
 
@@ -4715,6 +4741,23 @@
     % =====================================================
     \section{Polinomios}
 
+
+        % ==================================
+        % =========   PROPIEDADES    =======
+        % ==================================
+        \subsection*{Enteros y los Polinomios}
+
+            \begin{itemize}
+                \item \textbf{Algoritmo de la División}
+
+                En los polinomios se cumple el Algoritmo de la División, es decir
+                que sea $f(x), g(x) \in K[x]$ con $f(x)$ de grado mayor entonces
+                existe una $q(x), r(x) \in K[x]$ tal que
+                \begin{MultiLineEquation*}{3}
+                   f(x) = g(x) \; q(x) + r(x)  
+                \end{MultiLineEquation*}
+                      
+            \end{itemize}
 
 
         % ==================================

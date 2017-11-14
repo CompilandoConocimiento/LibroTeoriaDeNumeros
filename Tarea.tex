@@ -730,6 +730,29 @@
         \end{itemize}
 
     \end{SmallIndentation}
+
+
+    % ======== DEMOSTRACION ========
+    \clearpage
+    \begin{SmallIndentation}[1em]
+        \textbf{Demostración Versión 2}:
+        
+        Para alguna $n$ arbitaria crea el conjunto $Unos = {1, 11, 111, 1111, \dots \sum_{k=0}^{N}10^k }$.
+        Ahora, nota que $Unos$ tiene $N+1$ elementos, desde $0$ hasta $N$.
+
+        Ahora ve los residuos que obtiene al dividir cada elementos de $Unos$ entre $n$. Si te das cuenta
+        al dividir entre $n$ solo tendrás $n$ residuos posibles, pero como tienes $N+1$ elementos 2 elementos
+        diferentes tendrán un mismo residuo, por lo tanto su resta será divisible entre $n$ (llamemos a la resta
+        $N'$).
+
+        Entonces para cualquier $n$ tenemos que es posible encontrar una $N'$ que esta hecha de la resta de dos
+        números que contienen puros unos en su representación decimal, por lo tanto $N'$ tendrá la forma de
+        $N' = 1\cdots0\cdots$, es decir $N'$ esta formada de $q$ unos consecutivos y de $k$ ceros consecutivos.
+
+        Finalmente si $(10, n) =1$ y sabemos que $n|N'$ tenemos que $n|(N)(10^k)$ con $N$ siendo un número de puros
+        unos, por lo tanto tenemos que $n|N$ pues $n$ no puede dividir a $10^k$ pues es primo relativo con 10.
+
+    \end{SmallIndentation}
         
 
 

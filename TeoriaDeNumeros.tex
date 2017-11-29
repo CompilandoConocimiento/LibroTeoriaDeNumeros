@@ -1,5 +1,5 @@
 % ****************************************************************************************
-% ************************        TEORIA DE NUMEROS      	  ****************************
+% ************************        TEORIA DE NUMEROS           ****************************
 % ****************************************************************************************
 
 
@@ -7,10 +7,11 @@
 % =======         HEADER FOR DOCUMENT        ============
 % =======================================================
     % *********   DOCUMENT ITSELF   **************
-    \documentclass[12pt, fleqn]{report}                             %Type of document and size of font and left eq
+    \documentclass[12pt, fleqn]{report}                             %Type of docuemtn and size of font and left eq
     \usepackage[margin=1.2in]{geometry}                             %Margins and Geometry pacakge
     \usepackage{ifthen}                                             %Allow simple programming
     \usepackage{hyperref}                                           %Create MetaData for a PDF and LINKS!
+    \usepackage{pdfpages}                                           %Create MetaData for a PDF and LINKS!
     \hypersetup{pageanchor=false}                                   %Solve 'double page 1' warnings in build
     \setlength{\parindent}{0pt}                                     %Eliminate ugly indentation
     \author{Oscar Andrés Rosas}                                     %Who I am
@@ -159,38 +160,68 @@
     % TRIGONOMETRIC FUNCTIONS
     \newcommand{\Cos}[1]{\cos\Wrap{#1}}                             %Simple wrappers
     \newcommand{\Sin}[1]{\sin\Wrap{#1}}                             %Simple wrappers
+    \newcommand{\Tan}[1]{tan\Wrap{#1}}                              %Simple wrappers
+    
+    \newcommand{\Sec}[1]{sec\Wrap{#1}}                              %Simple wrappers
+    \newcommand{\Csc}[1]{csc\Wrap{#1}}                              %Simple wrappers
+    \newcommand{\Cot}[1]{cot\Wrap{#1}}                              %Simple wrappers
 
     % === COMPLEX ANALYSIS ===
     \newcommand \Cis[1]  {\Cos{#1} + i \Sin{#1}}                    %Use: \Cis for cos(x) + i sin(x)
     \newcommand \pCis[1] {\Wrap{\Cis{#1}}}                          %Use: \pCis for the same ut parantesis
     \newcommand \bCis[1] {\Brackets{\Cis{#1}}}                      %Use: \bCis for the same to Brackets
 
-    % === CALCULUS ===
-    \newcommand \Partial[2] {\dfrac{\partial #1}{\partial #2}}      %Use: \Partial for simple use
+    % ====== TRANSFORMS =====
+    \newcommand{\FourierT}[1]{\mathscr{F} \left\{ #1 \right\} }     %Use: \FourierT {Funtion}
+    \newcommand{\InvFourierT}[1]{\mathscr{F}^{-1}\left\{#1\right\}} %Use: \InvFourierT {Funtion}
 
+    % === CALCULUS ===
+    \newcommand \MiniDerivate[1][x] {\dfrac{d}{d #1}}               %Use: \MiniDerivate for simple use
+    \newcommand \Derivate[2]                                        %Complete Derivate -- [f(x)][x]
+        {\dfrac{d \; #1}{d #2}}                                     %Use: \Partial for simple use
+    
+    \newcommand \MiniUpperDerivate[2]                               %Mini Derivate High Orden Derivate -- [x][1]
+        {\dfrac{d^{#2}}{d#1^{#2}}}                                  %Mini Derivate High Orden Derivate
+    \newcommand \UpperDerivate[3]                                   %Complete High Orden Derivate -- [f(x)][x][1]
+        {\dfrac{d^{#3} \; #1}{d#2^{#3}}}                            %Use: \UpperDerivate for simple use
+    
+    \newcommand \MiniPartial[1][x] {\dfrac{\partial}{\partial #1}} %Use: \MiniDerivate for simple use
+    \newcommand \Partial[2]                                        %Complete Derivate -- [f(x)][x]
+        {\dfrac{\partial \; #1}{\partial #2}}                      %Use: \Partial for simple use
+    
+    \newcommand \MiniUpperPartial[2]                                %Mini Derivate High Orden Derivate -- [x][1] 
+        {\dfrac{\partial^{#2}}{\partial #1^{#2}}}                   %Mini Derivate High Orden Derivate
+    \newcommand \UpperPartial[3]                                    %Complete High Orden Derivate -- [f(x)][x][1]
+        {\dfrac{\partial^{#3} \; #1}{\partial#2^{#3}}}              %Use: \UpperDerivate for simple use
+
+    \DeclareMathOperator \Evaluate  {\Big|}                         %Use: \Evaluate por Notation
+
+    
     % =====  GENERAL COLOR  =========
-    \definecolor{IndigoMD}{HTML}{3F51B5}                            %Use: Color :D
-    \definecolor{DeepPurpleMD}{HTML}{673AB7}                        %Use: Color :D
     \definecolor{TealMD}{HTML}{009688}                              %Use: Color :D        
-    \definecolor{BlueGrey800MD}{HTML}{37474F}                       %Use: Color :D
-    \definecolor{BlueGrey100MD}{HTML}{CFD8DC}                       %Use: Color :D
     \definecolor{IndigoMD}{HTML}{3F51B5}                            %Use: Color :D
     \definecolor{Green100MD}{HTML}{DCEDC8}                          %Use: Color :D
+    \definecolor{Blue300MD}{HTML}{64B5F6}                           %Use: Color :D
+    \definecolor{DeepPurpleMD}{HTML}{673AB7}                        %Use: Color :D
+    \definecolor{BlueGrey100MD}{HTML}{CFD8DC}                       %Use: Color :D
+    \definecolor{BlueGrey800MD}{HTML}{37474F}                       %Use: Color :D
+    \definecolor{BlueGrey200MD}{HTML}{B0BEC5}                       %Use: Color :D
+    \definecolor{Lime300MD}{HTML}{E6EE9C}                           %Use: Color :D
 
     \newenvironment{ColorText}[1]{                                  %Use: \begin{ColorText}
         \leavevmode\color{#1}\ignorespaces}                         %That's is!
-
 
     % =====  CODE EDITOR =========
     \lstdefinestyle{CompilandoStyle} {                              %This is Code Style
         backgroundcolor=\color{BlueGrey800MD},                      %Background Color  
         basicstyle=\tiny\color{white},                              %Font color
-        commentstyle=\color{BlueGrey100MD},                         %Comment color
-        stringstyle=\color{TealMD},                                 %String color
-        keywordstyle=\color{Green100MD},                            %keywords color
+        commentstyle=\color{BlueGrey200MD},                         %Comment color
+        stringstyle=\color{Lime300MD},                              %String color
+        keywordstyle=\color{Blue300MD},                             %keywords color
         numberstyle=\tiny\color{TealMD},                            %Size of a number
         frame=shadowbox,                                            %Adds a frame around the code
-        breakatwhitespace=true,                                     %Style                       
+        breakatwhitespace=true,                                     %Style   
+        showstringspaces=false,                                     %Hate those spaces                  
         breaklines=true,                                            %Style                   
         keepspaces=true,                                            %Style                   
         numbers=left,                                               %Style                   
@@ -202,32 +233,33 @@
     \lstset{style=CompilandoStyle}                                  %Use this style
 
 
+
 % =====================================================
-% ============     	  COVER PAGE	   ================
+% ============        COVER PAGE       ================
 % =====================================================
 \begin{document}
 \begin{titlepage}
 
-	\center
-	% ============ UNIVERSITY NAME AND DATA =========
-	\textbf{\textsc{\Large Proyecto Compilando Conocimiento}}\\[1.0cm] 
-	\textsc{\Large Matemáticas Discretas}\\[1.0cm] 
+    \center
+    % ============ UNIVERSITY NAME AND DATA =========
+    \textbf{\textsc{\Large Proyecto Compilando Conocimiento}}\\[1.0cm] 
+    \textsc{\Large Matemáticas Discretas}\\[1.0cm] 
 
-	% ============ NAME OF THE DOCUMENT  ============
-	\rule{\linewidth}{0.5mm} \\[1.0cm]
-		{ \huge \bfseries Teoría de Números}\\[1.0cm] 
-	\rule{\linewidth}{0.5mm} \\[2.0cm]
-	
-	% ====== SEMI TITLE ==========
-	{\LARGE Ahora demostrado hasta que $2 + 2 = 4$}\\[7cm] 
-	
-	% ============  MY INFORMATION  =================
-	\begin{center} \large
-	\textbf{\textsc{Autor:}}\\
-	Rosas Hernandez Oscar Andres
-	\end{center}
+    % ============ NAME OF THE DOCUMENT  ============
+    \rule{\linewidth}{0.5mm} \\[1.0cm]
+        { \huge \bfseries Introducción a Teoría de Números}\\[1.0cm] 
+    \rule{\linewidth}{0.5mm} \\[2.0cm]
+    
+    % ====== SEMI TITLE ==========
+    {\LARGE Ahora demostrado hasta que $2 + 2 = 4$}\\[7cm] 
+    
+    % ============  MY INFORMATION  =================
+    \begin{center} \large
+    \textbf{\textsc{Autor:}}\\
+       Rosas Hernandez Oscar Andres
+    \end{center}
 
-	\vfill
+    \vfill
 
 \end{titlepage}
 

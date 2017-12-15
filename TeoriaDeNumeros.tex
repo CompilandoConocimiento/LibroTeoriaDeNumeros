@@ -4807,43 +4807,8 @@
 
 
         % ==================================
-        % ==== TEOREMA DE LA DIVISIÓN  =====
-        % ==================================
-        \subsection{Jerga de los Polinomios}
-
-            \begin{itemize}
-
-                \item
-                    Definimos al polinomio cero como aquel polinomio donde todos sus coeficientes son
-                    cero.
-
-                    Otra definición alterna es decir que es aquel polinomio con una cantidad infinita de raíces
-
-            \end{itemize}
-
-
-        % ==================================
-        % ==== TEOREMA DE LA DIVISIÓN  =====
-        % ==================================
-        \clearpage
-        \subsection{Polinomios Irreducibles}
-
-            Decimos que un polinomio $p(x)$ es irreducible si es que $r(x)|p(x)$ entonces
-            $r(x)$ es una constante o el mismo $p(x)$
-
-
-            % ==================================
-            % ==== TEOREMA DE LA DIVISIÓN  =====
-            % ==================================
-            \subsection{Teoremas usando Polinomios Irreducibles}
-       
-
-
-
-        % ==================================
         % =========   CONSECUENCIAS   ======
         % ==================================
-        \clearpage
         \subsection{Consecuencias del Teorema de la División}
 
             \begin{itemize}
@@ -4950,7 +4915,128 @@
                     Por lo tanto no existen raíces.
 
                 \end{SmallIndentation}
+
+            \item Teorema de las Raíces Enteras: \\
+                Sea $p$ un polinomio sobre los reales con coeficientes enteros entonces
+                $a - b | p(a) - p(b)$ 
+
+                % ======== DEMOSTRACION ========
+                \begin{SmallIndentation}[1em]
+                    \textbf{Demostración}:
+
+                    Puedes ver a $p(x) = a_n x^n + a_{n-1} x^{n-1} + \dots + a_0 x^0$, entonces
+                    podemos ver que:
+                    \begin{MultiLineEquation*}{3}
+                        p(a) - p(b) = a_n(a-b)^n + a_{n-1}(a-b)^{n-1} + \dots + a_1(a-b) 
+                    \end{MultiLineEquation*}
+
+                    Nota primero no hay termino constante porque se elimina entre $p(a)$ y $p(b)$
+                    ahora podemos factorizar de todos los demás un $(a-b)$ por el binomio de Newton,
+                    por lo tanto podemos concluir que $a - b | p(a) - p(b)$.
+                
+                \end{SmallIndentation}
                     
+
+            \item Teorema de las Raíces Racionales: \\
+                Sea $p(x) = a_n x^n + ... + a_0$ con coeficientes enteros y con
+                $a_n \neq 0$ y $a_0 \neq 0$, entonces si $\frac{p}{q}$ con $(p, q) = 1$
+                es raíz entonces $p | a_0$ y $q | a_n$
+
+                % ======== DEMOSTRACION ========
+                \begin{SmallIndentation}[1em]
+                    \textbf{Demostración}:
+
+                    Simplemente evaluar al polinomio tenemos que:
+                    \begin{MultiLineEquation*}{3}
+                        p\pfrac{p}{q} = a_n \pfrac{p}{q}^n + \dots + a_0 = 0             \\
+                        p\pfrac{p}{q} = a_n \pfrac{p}{q}^n + \dots = - a_0               \\
+                        p(a_n(p^{n-1}) + a_{n-1}(qp^{n-2}) + \dots) = -(a_0)q^n          \\
+                    \end{MultiLineEquation*}
+                        
+                    Ahora sabemos que $p | (a_0)q^n$ entonces como $(p, q) = 1$ entonces
+                    tenemos que $p | a_0$
+
+                    Podemos de manera similar factorizar y llegar a:
+                    \begin{MultiLineEquation*}{3}
+                        q(a_{n-1}p^{n-1} + a_{n-2}p^{n-2} + \dots + a_0 q^{n-1}) = -a_np^n 
+                    \end{MultiLineEquation*}
+
+                    Entonces de manera similar podemos concluir que $q | a_n$
+
+                \end{SmallIndentation}
+
+            \item Sea $\mathbb{F}$ un campo infinito, dados $f(x), g(x) \in \mathbb{F}[x]$.
+                Si $f(a) = g(a)$ para cada $a \in \mathbb{F}$ entonces $f = g$.
+
+                % ======== DEMOSTRACION ========
+                \begin{SmallIndentation}[1em]
+                    \textbf{Demostración}:
+
+                    Podemos demostrar facilmente que ambos son polinomios son iguales, simplemente
+                    pensando en que $f(x) - g(x)$ es cero en una cantidad infinita de puntos, 
+                    y esto solo pasa si es que $f(x)-g(x)$ es un polinomio cero, lo que implicaría
+                    que ambos polinomios son iguales.
+
+                    Es importante recalcar que necesitamos un campo infinito, porque de no serlo no
+                    podemos asegurar de que $f(x)-g(x)$ es un polinomio cero ya qu eno tenemos infinitos
+                    puntos donde evaluarlos y entonces $f(x)-g(x)$ podría ser simplemente un polinomio con
+                    muchas raíces.
+
+                \end{SmallIndentation}
+
+            \item Demuestra que si $z \in \Complexs$ es una raíz del polinomio $p(x)$ con $p$
+                con p con coeficientes en los reales, entonces 
+                $\Over{z} \in \Complexs$ también es raíz del polinomio.
+
+                % ======== DEMOSTRACION ========
+                \begin{SmallIndentation}[1em]
+                    \textbf{Demostración}:
+
+                    Entonces sabemos que $\sum_{r=0}^n a_r z^r = 0$
+
+                    Ahora si evaluamos en $p(\Over{z})$ tenemso que:
+                    \begin{MultiLineEquation*}{3}
+                        p(\Over{z})
+                            &= \sum_{r=0}^n a_r (\Over{z})^r        \\
+                            &= \Over{\sum_{r=0}^n a_r (z)^r}        \\
+                            &= \Over{0}                             \\
+                            &= 0
+                    \end{MultiLineEquation*}
+
+                \end{SmallIndentation}
+
+            \item Sea $p$ un número primo, entonces habrá exactamente $\frac{p^2-p}{2}$ polinomios
+                irreducibles de grado 2 en $\mathbb{Z}_p[x]$ donde el termino cuadratico sea 1.
+
+                % ======== DEMOSTRACION ========
+                \begin{SmallIndentation}[1em]
+                    \textbf{Demostración}:
+
+                    Antes que nada, todos los polinomios de ese estilo son de la forma $x^2+a_1x+a_0$ donde
+                    $a_1, a_0 \in \mathbb{Z}_p$ por lo tanto hay $p^2$ polinomios en total.
+
+                    Ahora los reducibles son o bien de la forma $(x-a)(x-b)$ (donde a y b son diferentes)
+                    o de la forma $(x-a)^2$.
+
+                    De los primeros reducibles hay $\frac{p(p-1)}{2}$ posibles, pues para $a$ hay $p$ posibles
+                    valores, para $b$ uno menos y no nos importa el orden, por lo tanto entre dos para no contar dos
+                    veces el mismo polinomio.
+
+                    Ahora de los segundos hay $p$ posibles.
+
+                    Por lo tanto:
+                    \begin{MultiLineEquation*}{3}
+                        p^2 - \Wrap{\frac{p(p-1)}{2} + p}               
+                            &= p^2 - \Wrap{\frac{p(p-1)}{2} + p}        \\
+                            &= p^2 - \Wrap{\frac{p(p-1) + 2p}{2}}       \\
+                            &= p^2 - \Wrap{\frac{p^2 - p + 2p}{2}}      \\
+                            &= p^2 - \Wrap{\frac{p^2 + p}{2}}           \\
+                            &= \Wrap{\frac{p^2 - p}{2}}
+                    \end{MultiLineEquation*}
+
+                    Magia :D
+
+                \end{SmallIndentation}
                     
         \end{itemize}
 

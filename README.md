@@ -33,7 +33,7 @@ En este libro podrás aprender sobre los siguientes temas:
 	- Teorema de Wilson
 	- Teorema Chino del Residuo
 	- Ecuaciones Modulares
-- **Polonimios**
+- **Polinomios**
 
 <br><br>
 

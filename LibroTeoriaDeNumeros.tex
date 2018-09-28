@@ -4138,12 +4138,15 @@
                 \item 
                     \textbf{Encontrar Inversos Multiplicativos:} 
                     Existe un inverso de $a$, es decir $a \; a^{-1} \equiv 1 \pmod{n}$ si y solo si
-                    $GCD(a, n) = 1$
+                    $GCD(a, n) = 1$.
+
+                    Ahora, supongamos que estamos seguros de que existe $a^{-1}$, entonces ... ¿Cómo
+                    lo encontramos?
 
                     \begin{itemize}
                         \item 
                             Podemos ver que el pequeño teorema de Fermat, ya sabes el que dice que:
-                            Si $(a, m) = 1$ entonces $a^{\phi(n)} \equiv 1 \pmod{n}$.
+                            \Quote{Si $(a, m) = 1$ entonces $a^{\phi(n)} \equiv 1 \pmod{n}$}.
 
                             Esto si te das cuenta nos dice que mucho sobre el inverso multiplicativo
                             pues tendremos que $(a)a^{\phi(n)-1} \equiv 1 \pmod{n}$.
@@ -4151,10 +4154,28 @@
                             Así que ahí esta tu inverso, es $a^{\phi(n)-1}$
                         
                         \item
-                            Por otro lado podemos usar Teorema de Euclides Extendido ya que tenemos que:
-                            $ax + by = 1$ entonces podemos escribirlo como: $a(1) + y(a'') \equiv 1 \pmod{n}$
-                            donde estamos.
+                            Por otro lado podemos usar Teorema de Euclides Extendido, te explico como:
+                            
+                            \begin{itemize}
 
+                                \item Hagamos el algoritmo de Euclides extendido entre (a, n), entonces
+                                    llegaremos a obtener que $a(x) + n(y) = gcd(a, n)$.
+
+                                \item
+                                    Ahora, como sabemos que el inverso existe entonces podemos hacer esto:
+                                    \begin{MultiLineEquation*}{3}
+                                        a(x) + n(y) &= gcd(a, n)            \\
+                                        a(x) + n(y) &= 1                    \\
+                                        a(x) + n(y) &\equiv 1 \pmod{n}      \\
+                                        a(x) + 0 &\equiv 1 \pmod{n}         \\
+                                        a(x) &\equiv 1 \pmod{n}             \\
+                                        a a^{-1} &\equiv 1 \pmod{n}     
+                                    \end{MultiLineEquation*}
+                                    
+                                    Es decir $x = a^{-1}$
+
+                            \end{itemize}
+                   
                     \end{itemize}
 
 
